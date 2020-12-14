@@ -1,7 +1,9 @@
 package com.semi.util.db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -23,5 +25,19 @@ public class DBCPBean {
 	
 	public static Connection getConn() throws SQLException{
 		return ds.getConnection();
+	}
+	
+	public static void close(Connection con, Statement stmt, ResultSet rs) {
+		try {		
+			if(rs!=null) {
+				rs.close();
+			}else if(stmt!=null) {
+				stmt.close();
+			}else if(con!=null) {
+				con.close();
+			}
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
 	}
 }
