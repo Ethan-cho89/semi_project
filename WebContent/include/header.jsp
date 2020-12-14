@@ -4,6 +4,6 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>쇼핑몰</title>
 </head>
 <body>
