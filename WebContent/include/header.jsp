@@ -7,5 +7,5 @@
 <title>쇼핑몰</title>
 </head>
 <body>
-<a href="/itemList">상품1</a>
-<a href="/itemList">상품2</a>
+<a href="/itemboard/list">상품1</a>
+<a href="/itemboard/list">상품2</a>

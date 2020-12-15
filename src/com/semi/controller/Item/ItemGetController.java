@@ -1,4 +1,4 @@
-package com.semi.controller;
+package com.semi.controller.Item;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import com.semi.domain.PhotoVo;
 import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
 
-@WebServlet("/itemGet")
+@WebServlet("/itemboard/get")
 public class ItemGetController extends HttpServlet {
 	
 	private ItemBoardService service;
