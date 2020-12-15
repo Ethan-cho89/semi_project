@@ -19,7 +19,7 @@ public class QnaCheckController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//¼¼¼Ç¿¡¼­ °ü¸®ÀÚ ¾ÆÀÌµğ¸¦ ¹ß°ßÇÏ¸é °ü¸®ÀÚ ±ÇÇÑ ÆäÀÌÁö·Î ÀÌµ¿
+		//ì„¸ì…˜ì—ì„œ ê´€ë¦¬ì ì•„ì´ë””ë¥¼ ë°œê²¬í•˜ë©´ ê´€ë¦¬ì ê¶Œí•œ í˜ì´ì§€ë¡œ ì´ë™
 		
 		HttpSession session = req.getSession();
 		int status= (int)session.getAttribute("status");
@@ -52,7 +52,7 @@ public class QnaCheckController extends HttpServlet {
 			req.setAttribute("vo", vo);
 			req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
 		}else {
-			req.setAttribute("code","ÀÔ·ÂÇÏÁø Á¤º¸°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù");
+			req.setAttribute("code","ì…ë ¥í•˜ì§„ ì •ë³´ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤");
 			req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);
 			
 		}
