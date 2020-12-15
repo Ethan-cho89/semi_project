@@ -4,8 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쇼핑몰</title>
+<title>Insert title here</title>
 </head>
 <body>
-<a href="/itemboard/list">상품1</a>
-<a href="/itemboard/list">상품2</a>
+<a href="${pageContext.request.contextPath }/qna/list">고고</a>
+<%
+	session.setAttribute("status", 4);
+%>
+</body>
+</html>
