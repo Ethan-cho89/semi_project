@@ -33,7 +33,7 @@ public class QnaListController extends HttpServlet {
 		
 		int startPageNum = (pageNum-1)/10*10+1;
 		int endPageNum= startPageNum+9;
-		int pageCount = (int)Math.ceil(dao.getCount(field,keyword)/10.0); //12¸¦ 10À¸·Î ³ª´²¼­ 1.2·Î ¸¸µé°í ¿Ã¸²Ã³¸®ÇØ¼­ 2·Î ¸¸µë
+		int pageCount = (int)Math.ceil(dao.getCount(field,keyword)/10.0); //12ë¥¼ 10ìœ¼ë¡œ ë‚˜ëˆ ì„œ 1.2ë¡œ ë§Œë“¤ê³  ì˜¬ë¦¼ì²˜ë¦¬í•´ì„œ 2ë¡œ ë§Œë“¬
 		
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
