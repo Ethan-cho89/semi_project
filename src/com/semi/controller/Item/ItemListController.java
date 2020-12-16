@@ -25,7 +25,10 @@ public class ItemListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<ItemVo> list = service.getList();
+		
+		int gender = Integer.parseInt(req.getParameter("gender"));
+		
+		List<ItemVo> list = service.getList(gender);
 		
 		req.setAttribute("list", list);
 		

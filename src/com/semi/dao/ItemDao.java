@@ -30,8 +30,31 @@ public class ItemDao {
 
 	}
 
-	public List<ItemVo> getList() {
-		List<ItemVo> list = jdbcTemplate.query("select * from tbl_item", 
+	public int add(ItemVo vo) {
+		return jdbcTemplate.update("insert into tbl_item values(?,?,?,?,?,0,0,?)",
+				new Object[] {
+						vo.getNum(),
+						vo.getName(),
+						vo.getType(),
+						vo.getPrice(),
+						vo.getDetail(),
+						vo.getGender()});
+	}
+	
+	public int getNextKey() {
+		return jdbcTemplate.queryForObject("selecgt SEQ_ITE.nextval from dual",
+				new RowMapper<Integer>() {
+				@Override
+				public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+					// TODO Auto-generated method stub
+					return rs.getInt(1);
+				}
+			});
+	}
+	
+	public List<ItemVo> getList(int gender) {
+		List<ItemVo> list = jdbcTemplate.query("select * from tbl_item where gender=?", 
+				new Object[] {gender},
 				new RowMapper<ItemVo>() {
 					@Override
 					public ItemVo mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -70,19 +93,8 @@ public class ItemDao {
 				}
 			});
 		
-		vo.setPhotoList(jdbcTemplate.query("select * from tbl_photo where inum = ?",
-				new Object[] {num} ,
-				new RowMapper<PhotoVo>() {
-				@Override
-				public PhotoVo mapRow(ResultSet rs, int rownum) throws SQLException {
-					PhotoVo vo = new PhotoVo(rs.getInt(1),
-											rs.getInt(2),
-											rs.getString(3),
-											rs.getString(4));
-					return vo;
-				}
-			}));
+		vo.setPhotoList(PhotoDao.getInstance().getList(num));
 		
 		return vo;
 	}
-}
+} 
