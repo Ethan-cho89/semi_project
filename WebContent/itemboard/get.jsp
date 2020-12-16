@@ -4,7 +4,7 @@
 <%@include file="../include/header.jsp" %><!-- <body> -->
 
 <div>상품 상세</div>
-${vo.photoList[0].filePath}
+${vo}
 
 
 

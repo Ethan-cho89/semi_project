@@ -26,10 +26,6 @@ public class ItemDao {
 		return instance;
 	}
 
-	private ItemDao() {
-
-	}
-
 	public int add(ItemVo vo) {
 		return jdbcTemplate.update("insert into tbl_item values(?,?,?,?,?,0,0,?)",
 				new Object[] {
@@ -38,11 +34,12 @@ public class ItemDao {
 						vo.getType(),
 						vo.getPrice(),
 						vo.getDetail(),
-						vo.getGender()});
+						vo.getGender()}
+		);
 	}
 	
 	public int getNextKey() {
-		return jdbcTemplate.queryForObject("selecgt SEQ_ITE.nextval from dual",
+		return jdbcTemplate.queryForObject("select SEQ_ITE.nextval from dual",
 				new RowMapper<Integer>() {
 				@Override
 				public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -92,8 +89,6 @@ public class ItemDao {
 					return vo;
 				}
 			});
-		
-		vo.setPhotoList(PhotoDao.getInstance().getList(num));
 		
 		return vo;
 	}

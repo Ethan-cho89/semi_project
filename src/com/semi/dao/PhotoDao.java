@@ -24,10 +24,6 @@ public class PhotoDao {
 		return instance;
 	}
 
-	private PhotoDao() {
-
-	}
-	
 	public List<PhotoVo> getList(int num){
 		return jdbcTemplate.query("select * from tbl_photo where inum = ?",
 				new Object[] {num} ,
@@ -41,5 +37,14 @@ public class PhotoDao {
 					return vo;
 				}
 			});
+	}
+	
+	public int add(int key,String path,String name) {
+		return jdbcTemplate.update("insert into tbl_photo values(seq_pho.nextVal,?,?,?)",
+				new Object[] {
+						key,
+						path,
+						name
+				});
 	}
 }
