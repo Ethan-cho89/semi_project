@@ -17,7 +17,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class ImageUploadController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String saveDir=req.getServletContext().getRealPath("/upload");
+		String saveDir=req.getServletContext().getRealPath("/upload/");
 		
 		MultipartRequest mr=new MultipartRequest(
 				req,// request객체
@@ -30,6 +30,9 @@ public class ImageUploadController extends HttpServlet{
 			);
 		
 		System.out.println(saveDir+mr.getFilesystemName("file"));
+		
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/plain;charset=utf-8");
 		
 		JsonObject json = new  JsonObject();
 		json.addProperty("url","/upload/"+mr.getFilesystemName("file"));

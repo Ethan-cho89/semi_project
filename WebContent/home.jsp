@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@include file="include/header.jsp" %><!-- <body> -->
 
-
-메인 페이지
+<div>
+	메인 페이지
+</div>
 
 
 <%@include file="include/footer.jsp" %><!-- </body> -->
