@@ -19,9 +19,9 @@
 	<div id="box">
 		<form method="post" action="${pageContext.request.contextPath }/qna/insert">
 			<label for="writer">작성자&nbsp;&nbsp;&nbsp;&nbsp;</label>
-			<input type="text" id="writer" name="writer" value="${id }"><br> <!-- 아이디는 3글자 이상 입력하도록 -->
+			<input type="text" id="writer" name="writer" value="${id }" required="required"><br> <!-- 아이디는 3글자 이상 입력하도록 -->
 			<label for="pwd">비밀번호 </label>
-			<input type="password" id="pwd" name="pwd"><br>
+			<input type="password" id="pwd" name="pwd" required="required"><br>
 			문의유형
 			<select name="type">
 				<option value="회원가입">회원가입</option>
@@ -30,10 +30,10 @@
 				<option value="교환/환불">교환/환불</option>
 				<option value="기타">기타</option>
 			</select><br>
-			<label for="title">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-			<input type="text" id="title" name="title"><br>
+			<label for="title" >제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" id="title" name="title" required="required"><br>
 			<label for="contents">문의내용</label><br>
-			<textarea rows="10" cols="50" id="contents" name="contents"></textarea><br>
+			<textarea rows="10" cols="50" id="contents" name="contents" required="required"></textarea><br>
 			<input type="submit" value="등록">
 		</form>
 	</div>

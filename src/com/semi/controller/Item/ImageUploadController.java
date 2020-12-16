@@ -22,6 +22,7 @@ public class ImageUploadController extends HttpServlet{
 		
 		Calendar cal = Calendar.getInstance();
 		
+		
 		String saveDir=req.getServletContext().getRealPath(uploadPath);
 		
 		MultipartRequest mr=new MultipartRequest(

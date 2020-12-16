@@ -19,22 +19,24 @@ public class QnaCheckController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//세션에서 관리자 아이디를 발견하면 관리자 권한 페이지로 이동
-		
-		HttpSession session = req.getSession();
-		int status= (int)session.getAttribute("status");
-		boolean isAdmin = false;
-		if(status==4) {
-			isAdmin=true;
-		}
-		
-		if(isAdmin) {
-			int num = Integer.parseInt(req.getParameter("num"));
-			QnaVo vo = QnaDao.getDao().load(num);
-			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
-			
-		}else {
+		try {
+			HttpSession session = req.getSession();
+			int status= (int)session.getAttribute("status");
+			boolean isAdmin = false;
+			if(status==4) {
+				isAdmin=true;
+			}
+			if(isAdmin) {
+				int num = Integer.parseInt(req.getParameter("num"));
+				QnaVo vo = QnaDao.getDao().load(num);
+				req.setAttribute("vo", vo);
+				req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
+			}else {
+				int num = Integer.parseInt(req.getParameter("num"));
+				req.setAttribute("num", num);
+				req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);
+			}
+		}catch(NullPointerException ne) {
 			int num = Integer.parseInt(req.getParameter("num"));
 			req.setAttribute("num", num);
 			req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);

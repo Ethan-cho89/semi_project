@@ -49,7 +49,7 @@ public class QnaDao {
 				String w = rs.getString("writer");
 				String tem =w.substring(2);
 				String rep ="";			
-				for(int i=0; i<tem.length(); i++) { //비공개 글이어서 작성자 이름 일부만 노출
+				for(int i=0; i<tem.length(); i++) {
 					rep+="*";
 				}
 				String nick = w.replace(tem, rep);

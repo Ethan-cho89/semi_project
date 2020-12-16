@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>coupon/index.jsp</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath }/qna/list">고고</a>
-
+<a href="${pageContext.request.contextPath }/coupon/list">쿠폰관리</a>
+<%
+	session.setAttribute("status", 4);
+%>
 </body>
 </html>

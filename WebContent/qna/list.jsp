@@ -18,11 +18,12 @@
 	<br>
 	<c:choose>
 		<c:when test="${!empty list }">
+			<a href="${cp }/qna/list?pageNum=1" style="font-size:15px">전체목록</a>&nbsp;|&nbsp;
 			<a href="${cp }/qna/insert" style="font-size:15px">문의하기</a>
 			<table border="1" width="800" style="margin: auto; margin-top:15px">
 				<tr>
 					<th>글번호</th>
-					<th>작성자</th> <%-- 앞에 세글자 뒤에는 ***로 바꿔버리는 거 생각해보자 --%>
+					<th>작성자</th>
 					<th>제목</th>
 					<th>문의유형</th>
 					<th>문의내용</th>
@@ -40,7 +41,7 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<div> <%--페이징 처리 --%>
+			<div>
 				<c:if test="${startPageNum>10 }">
 					<a href="${cp}/qna/list?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
 				</c:if>

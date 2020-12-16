@@ -33,19 +33,18 @@ public class QnaListController extends HttpServlet {
 		
 		int startPageNum = (pageNum-1)/10*10+1;
 		int endPageNum= startPageNum+9;
-		int pageCount = (int)Math.ceil(dao.getCount(field,keyword)/10.0); //12를 10으로 나눠서 1.2로 만들고 올림처리해서 2로 만듬
-		
+		int pageCount = (int)Math.ceil(dao.getCount(field,keyword)/10.0); 
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
+		
+		req.setAttribute("list", list);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword", keyword);
-		req.setAttribute("list", list);
 		req.setAttribute("pageNum",pageNum);
 		req.setAttribute("startPageNum",startPageNum);
 		req.setAttribute("endPageNum",endPageNum);
-		req.setAttribute("startRow",startRow);
-		req.setAttribute("endRow", endRow);
+		req.setAttribute("pageCount",pageCount);
 		
 		req.getRequestDispatcher("/qna/list.jsp").forward(req, resp);
 		

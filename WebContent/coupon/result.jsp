@@ -12,13 +12,16 @@
 </head>
 <body>
 <div id="wrap">
-	<form method="post" action="${pageContext.request.contextPath }/qna/check">
-		<input type="hidden" name="num" value="${num }">
-		작성자 &nbsp; &nbsp;<input type="text" name="writer" required="required"><br>
-		비밀번호 &nbsp;<input type="password" name="pwd" required="required"><br>
-		<input type="submit" value="확인"><br>
-		<span><c:if test="${code!=null }">${code }</c:if></span>
-	</form>
+	<c:choose>
+		<c:when test="${code=='success' }">
+			<h3>요청 작업을 성공적으로 마쳤습니다</h3>
+		</c:when>
+		<c:otherwise>
+			<h2>죄송합니다.</h2>
+			<h3>요청 작업중 오류가 발생했습니다</h3>
+		</c:otherwise>
+	</c:choose>
+	<a href="${pageContext.request.contextPath }/coupon/index.jsp">메인으로 돌아가기</a>
 </div>
 </body>
 </html>
