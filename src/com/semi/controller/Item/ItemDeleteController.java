@@ -14,8 +14,8 @@ import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
 import com.semi.service.PhotoServiceImpl;
 
-@WebServlet("/itemboard/get")
-public class ItemGetController extends HttpServlet {
+@WebServlet("/itemboard/delete")
+public class ItemDeleteController extends HttpServlet {
 	
 	private ItemBoardService service;
 	
@@ -31,9 +31,5 @@ public class ItemGetController extends HttpServlet {
 		req.setAttribute("vo",vo);
 		
 		req.getRequestDispatcher("/itemboard/get.jsp").forward(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
 }

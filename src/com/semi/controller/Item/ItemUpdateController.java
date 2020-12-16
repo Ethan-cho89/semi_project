@@ -14,8 +14,8 @@ import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
 import com.semi.service.PhotoServiceImpl;
 
-@WebServlet("/itemboard/get")
-public class ItemGetController extends HttpServlet {
+@WebServlet("/itemboard/update")
+public class ItemUpdateController extends HttpServlet {
 	
 	private ItemBoardService service;
 	

@@ -2,6 +2,7 @@ package com.semi.controller.Item;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class ImageUploadController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String saveDir=req.getServletContext().getRealPath("/upload/");
+		String uploadPath = "/upload/";
+		
+		Calendar cal = Calendar.getInstance();
+		
+		String saveDir=req.getServletContext().getRealPath(uploadPath);
 		
 		MultipartRequest mr=new MultipartRequest(
 				req,// request객체
