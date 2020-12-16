@@ -14,8 +14,8 @@
 <div id="wrap">
 	<form method="post" action="${pageContext.request.contextPath }/qna/check">
 		<input type="hidden" name="num" value="${num }">
-		작성자 &nbsp; &nbsp;<input type="text" name="writer"><br>
-		비밀번호 &nbsp;<input type="password" name="pwd"><br>
+		작성자 &nbsp; &nbsp;<input type="text" name="writer" required="required"><br>
+		비밀번호 &nbsp;<input type="password" name="pwd" required="required"><br>
 		<input type="submit" value="확인"><br>
 		<span><c:if test="${code!=null }">${code }</c:if></span>
 	</form>

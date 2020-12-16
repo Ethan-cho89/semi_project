@@ -49,7 +49,7 @@ public class QnaDao {
 				String w = rs.getString("writer");
 				String tem =w.substring(2);
 				String rep ="";			
-				for(int i=0; i<tem.length(); i++) { //ºñ°ø°³ ±ÛÀÌ¾î¼­ ÀÛ¼ºÀÚ ÀÌ¸§ ÀÏºÎ¸¸ ³ëÃâ
+				for(int i=0; i<tem.length(); i++) {
 					rep+="*";
 				}
 				String nick = w.replace(tem, rep);
@@ -130,7 +130,7 @@ public class QnaDao {
 		}
 	}
 	
-	 //±Û¹øÈ£,ÀÛ¼ºÀÚ,ºñ¹øÀ¸·Î Á¢±Ù±ÇÇÑ Ã¼Å©ÇÏ¸é¼­ Á¶È¸±îÁö ÇÑ¹ø¿¡ 
+	 //ï¿½Û¹ï¿½È£,ï¿½Û¼ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï¸é¼­ ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ 
 	public QnaVo check(int num, String writer, String pwd) {
 		Connection con= null;
 		PreparedStatement pstmt=null;
@@ -165,7 +165,7 @@ public class QnaDao {
 		}
 	}
 	
-	//¼öÁ¤¹öÆ° ´©¸£¸é ¼öÁ¤ÆäÀÌÁö·Î ³Ñ¾î°¥¶§ ºÒ·¯¿À´Â ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¥ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public QnaVo load(int num) {
 		Connection con= null;
 		PreparedStatement pstmt=null;
@@ -243,7 +243,7 @@ public class QnaDao {
 	
 	
 	
-	public int delete(int n) { //¹®ÀÇ ¹øÈ£, ºñ¹ø ¹Þ¾Æ »èÁ¦
+	public int delete(int n) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£, ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Connection con= null;
 		PreparedStatement pstmt=null;
 		try {

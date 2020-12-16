@@ -32,9 +32,9 @@
 				<option value="기타" <c:if test="${vo.type=='기타'}">selected</c:if>>기타</option>
 			</select><br>
 			<label for="title" >제목</label>
-			<input type="text" id="title" name="title" value="${vo.title }"><br>
+			<input type="text" id="title" name="title" value="${vo.title }" required="required" ><br>
 			<label for="contents">문의내용</label><br>
-			<textarea rows="5" cols="50" id="contents" name="contents">${vo.contents }</textarea><br><br>
+			<textarea rows="5" cols="50" id="contents" name="contents" required="required">${vo.contents }</textarea><br><br>
 			<c:if test="${status==4}">
 				<script type="text/javascript">
 					document.getElementById("type").disabled="disabled";

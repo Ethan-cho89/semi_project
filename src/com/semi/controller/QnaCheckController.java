@@ -19,22 +19,24 @@ public class QnaCheckController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//¼¼¼Ç¿¡¼­ °ü¸®ÀÚ ¾ÆÀÌµð¸¦ ¹ß°ßÇÏ¸é °ü¸®ÀÚ ±ÇÇÑ ÆäÀÌÁö·Î ÀÌµ¿
-		
-		HttpSession session = req.getSession();
-		int status= (int)session.getAttribute("status");
-		boolean isAdmin = false;
-		if(status==4) {
-			isAdmin=true;
-		}
-		
-		if(isAdmin) {
-			int num = Integer.parseInt(req.getParameter("num"));
-			QnaVo vo = QnaDao.getDao().load(num);
-			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
-			
-		}else {
+		try {
+			HttpSession session = req.getSession();
+			int status= (int)session.getAttribute("status");
+			boolean isAdmin = false;
+			if(status==4) {
+				isAdmin=true;
+			}
+			if(isAdmin) {
+				int num = Integer.parseInt(req.getParameter("num"));
+				QnaVo vo = QnaDao.getDao().load(num);
+				req.setAttribute("vo", vo);
+				req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
+			}else {
+				int num = Integer.parseInt(req.getParameter("num"));
+				req.setAttribute("num", num);
+				req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);
+			}
+		}catch(NullPointerException ne) {
 			int num = Integer.parseInt(req.getParameter("num"));
 			req.setAttribute("num", num);
 			req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);
@@ -52,7 +54,7 @@ public class QnaCheckController extends HttpServlet {
 			req.setAttribute("vo", vo);
 			req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
 		}else {
-			req.setAttribute("code","ÀÔ·ÂÇÏÁø Á¤º¸°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù");
+			req.setAttribute("code","ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½");
 			req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);
 			
 		}
