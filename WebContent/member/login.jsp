@@ -12,7 +12,10 @@
 	아이디<input type="text" name="id"><br>
 	비밀번호<input type="password" name="pwd"><br>
 	<div style="color: red;font-size: 12px">${errMsg }</div>
-	<input type="submit" value="로그인">
+	<input type="submit" value="로그인"><br><br>
+	<a href="find.jsp">아이디 찾기</a>
+	<a href="findpwd.jsp">임시비밀번호 발급</a>
+	
 </form>
 </body>
 </html>
