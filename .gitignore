@@ -1,5 +1,15 @@
-<<<<<<< HEAD
-/.classpath
-=======
+.classpath
 /build/
->>>>>>> branch 'master' of https://github.com/wm9596/semi_1team.git
+/bin/
+target/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
