@@ -1,8 +1,11 @@
 package com.semi.controller.Item;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +21,16 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class ImageUploadController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String uploadPath = "/upload/";
 		
-		Calendar cal = Calendar.getInstance();
+		uploadPath += getFolder();
 		
+		File uploadFolderPath = new File(req.getServletContext().getRealPath(uploadPath));
+		
+		if(!uploadFolderPath.exists()) {
+			uploadFolderPath.mkdirs();
+		}
 		
 		String saveDir=req.getServletContext().getRealPath(uploadPath);
 		
@@ -35,15 +44,26 @@ public class ImageUploadController extends HttpServlet{
 				//해당하는 숫자를 붙여서 파일을 생성한다.
 			);
 		
-		System.out.println(saveDir+mr.getFilesystemName("file"));
+		System.out.println(saveDir+"/"+mr.getFilesystemName("file"));
 		
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/plain;charset=utf-8");
 		
 		JsonObject json = new  JsonObject();
-		json.addProperty("url","/upload/"+mr.getFilesystemName("file"));
+		json.addProperty("url",uploadPath+"/"+mr.getFilesystemName("file"));
 		
 		PrintWriter pw = resp.getWriter();
 		pw.print(json.toString());
+	}
+	
+	private String getFolder() {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+		Date date = new Date();
+
+		String str = sdf.format(date);
+
+		return str;
 	}
 }

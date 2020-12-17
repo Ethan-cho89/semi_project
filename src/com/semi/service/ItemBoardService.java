@@ -13,4 +13,8 @@ public interface ItemBoardService {
 	public boolean add(ItemVo vo);
 	
 	public int addAndGetKey(ItemVo vo);
+	
+	public int delete(int num);
+	
+	public boolean modify(ItemVo vo);
 }

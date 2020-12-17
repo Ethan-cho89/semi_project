@@ -92,4 +92,24 @@ public class ItemDao {
 		
 		return vo;
 	}
+	
+	public int delete(int num) {
+		return jdbcTemplate.update("delete from tbl_item where num = ?",
+				new Object[] {
+						num
+				});
+	}
+	
+	public int update(ItemVo vo) {
+		return jdbcTemplate.update("update tbl_item set name = ?,type=?, price=?,detail=?,gender=? where num = ?",
+				new Object[] {
+					vo.getName(),
+					vo.getType(),
+					vo.getPrice(),
+					vo.getDetail(),
+					vo.getGender(),
+					vo.getNum()
+				});
+				
+	}
 } 

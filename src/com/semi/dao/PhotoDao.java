@@ -47,4 +47,11 @@ public class PhotoDao {
 						name
 				});
 	}
+	
+	public int delete(int num) {
+		return jdbcTemplate.update("delete from tbl_photo where inum = ?",
+				new Object[] {
+						num
+				});
+	}
 }

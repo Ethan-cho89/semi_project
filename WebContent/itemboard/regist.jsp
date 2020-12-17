@@ -49,7 +49,7 @@
 </form>
 
 <script type="text/javascript">
-
+//console.log(self.location.host+"/");
 var arr = new Array();
 	$(document).ready(function() {
 		//여기 아래 부분
@@ -64,6 +64,17 @@ var arr = new Array();
 			  callbacks:{
 				  onImageUpload: function(files){
 					  uploadSummernoteImageFile(files[0],this);
+				  },
+				  onMediaDelete:function($target, editor){
+					  var s = $target[0].src;
+					  s = s.substring(s.indexOf('upload')-1,s.length);
+					  for(i in arr){
+						  if(arr[i].indexOf(s)){
+							  arr.splice(i,1);
+							  break;
+						  }
+					  }
+					  
 				  }
 			  }//placeholder 설정
 	          

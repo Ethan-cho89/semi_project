@@ -11,7 +11,7 @@
 
 <c:if test="${true}">
 	<form method="get">
-		<input type="hidden" value="${vo.num}">
+		<input type="hidden" name="num" value="${vo.num}">
 		<input type="submit" formaction="/itemboard/update" value="수정">
 		<input type="submit" formaction="/itemboard/delete" value="삭제">
 	</form>

@@ -1,6 +1,8 @@
 package com.semi.controller.Item;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,24 +14,34 @@ import com.semi.domain.ItemVo;
 import com.semi.domain.PhotoVo;
 import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
+import com.semi.service.PhotoService;
 import com.semi.service.PhotoServiceImpl;
+import com.semi.service.StockService;
+import com.semi.service.StockServiceImpl;
 
 @WebServlet("/itemboard/delete")
 public class ItemDeleteController extends HttpServlet {
 	
-	private ItemBoardService service;
+	private ItemBoardService itemService;
+	private StockService stockService;
+	private PhotoService photoService;
 	
 	@Override
 	public void init() throws ServletException {
-		service =ItemBoardServiceImpl.getInstance();
+		itemService =ItemBoardServiceImpl.getInstance();
+		stockService = StockServiceImpl.getInstance();
+		photoService =PhotoServiceImpl.getInstance();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int num= Integer.parseInt(req.getParameter("num"));
-		ItemVo vo = service.get(num);
-		req.setAttribute("vo",vo);
 		
-		req.getRequestDispatcher("/itemboard/get.jsp").forward(req, resp);
+		photoService.delete(req.getServletContext(),num);
+
+		itemService.delete(num);
+		
+		resp.sendRedirect("/itemboard/list?gender=0");
 	}
+	
 }

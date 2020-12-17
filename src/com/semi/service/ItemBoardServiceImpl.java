@@ -46,5 +46,15 @@ public class ItemBoardServiceImpl implements ItemBoardService {
 		
 		return keyNum;
 	}
+
+	@Override
+	public int delete(int num) {
+		return dao.delete(num);
+	}
+
+	@Override
+	public boolean modify(ItemVo vo) {
+		return dao.update(vo)>=1;
+	}
 	
 }

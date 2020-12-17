@@ -1,5 +1,8 @@
 package com.semi.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.semi.dao.StockDao;
 import com.semi.domain.StockVo;
 
@@ -34,6 +37,23 @@ public class StockServiceImpl implements StockService {
 		}
 		
 		return cnt>=sizes.length;
+	}
+
+	@Override
+	public Map<String, Integer> getItemStock(int num) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		for(StockVo vo : dao.getList(num)) {
+			map.put(vo.getSsize(), vo.getCount());
+		}
+		
+		return map;
+	}
+
+	@Override
+	public boolean modify(int inum,int...sizes) {
+		
+		return true;
 	}
 
 }

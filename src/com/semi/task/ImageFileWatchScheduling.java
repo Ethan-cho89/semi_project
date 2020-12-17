@@ -28,7 +28,7 @@ public class ImageFileWatchScheduling extends HttpServlet{
 			JobDetail detail = new JobDetailImpl("ImageFileWatch",Scheduler.DEFAULT_GROUP,ImageFileWatchJob.class);
 			
 //			Trigger trigger = new CronTriggerImpl("trigger",Scheduler.DEFAULT_GROUP,"0 0 12 * * ?");
-			Trigger trigger = new CronTriggerImpl("trigger",Scheduler.DEFAULT_GROUP,"0 * * * * ?");
+			Trigger trigger = new CronTriggerImpl("trigger",Scheduler.DEFAULT_GROUP,"1 20 * * * ?");
 			
 			scheduler.scheduleJob(detail,trigger);
 			
