@@ -10,7 +10,7 @@ public interface PhotoService {
 	
 	public List<PhotoVo> getList(int num);
 	
-	public boolean add(int key,String...urls);
+	public boolean add(ServletContext sc,int key,String...paths);
 	
 	public boolean delete(ServletContext sc,int num);
 }

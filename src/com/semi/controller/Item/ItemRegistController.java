@@ -54,7 +54,7 @@ public class ItemRegistController extends HttpServlet {
 
 		String[] urls = req.getParameterValues("img");
 		
-		photoService.add(key, urls);
+		photoService.add(req.getServletContext(),key, urls);
 		
 		resp.sendRedirect("/itemboard/list?gender="+gender);
 	

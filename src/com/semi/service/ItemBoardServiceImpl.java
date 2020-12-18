@@ -42,6 +42,7 @@ public class ItemBoardServiceImpl implements ItemBoardService {
 		
 		int keyNum = dao.getNextKey();
 		vo.setNum(keyNum);
+		vo.setDetail(vo.getDetail().replaceAll("/upload/temp", "/upload/"+keyNum));
 		dao.add(vo);
 		
 		return keyNum;

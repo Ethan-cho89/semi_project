@@ -22,9 +22,9 @@ public class ImageUploadController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String uploadPath = "/upload/";
+		String uploadPath = "/upload/temp";
 		
-		uploadPath += getFolder();
+		//uploadPath += getFolder();
 		
 		File uploadFolderPath = new File(req.getServletContext().getRealPath(uploadPath));
 		
@@ -43,8 +43,6 @@ public class ImageUploadController extends HttpServlet{
 				//파일명을 생성하기 위한 객체-동일한 파일명이 업로드되면 파일명뒤에 1,2,..등에
 				//해당하는 숫자를 붙여서 파일을 생성한다.
 			);
-		
-		System.out.println(saveDir+"/"+mr.getFilesystemName("file"));
 		
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/plain;charset=utf-8");

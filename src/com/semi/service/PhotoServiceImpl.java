@@ -31,15 +31,24 @@ public class PhotoServiceImpl implements PhotoService {
 	}
 
 	@Override
-	public boolean add(int key, String... urls) {
+	public boolean add(ServletContext sc,int key, String... paths) {
 		int cnt = 0;
+		String saveDir = "/upload/"+key+"/";
+		File folder = new File(sc.getRealPath(saveDir));
 		
-		for(int i = 0 ; i < urls.length; i++) {
-			int index = urls[i].lastIndexOf('/');
-			cnt += dao.add(key, urls[i].substring(0,index+1),urls[i].substring(index+1));
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+			
+		for(int i = 0 ; i < paths.length; i++) {
+			File f = new File(sc.getRealPath(paths[i]));
+			
+			f.renameTo(new File(folder.getPath(),f.getName()));
+			
+			cnt += dao.add(key,saveDir,f.getName());
 		}
 		
-		return cnt >= urls.length;
+		return cnt >= paths.length;
 	}
 
 	@Override
@@ -50,15 +59,16 @@ public class PhotoServiceImpl implements PhotoService {
 	}
 	
 	public void fileDelete(ServletContext sc,List<PhotoVo> list) {
+		
 		for(PhotoVo vo : list) {
 			File f = new File(sc.getRealPath(vo.getFilePath()));
 			if(f.exists()) {
-				System.out.println("delete");
 				f.delete();
-			}else {
-				System.out.println("파일 없음");
 			}
 		}
+		
+		File f= new File(sc.getRealPath("/upload/"+list.get(0).getInum()));
+		f.delete();
 	}
 	
 }
