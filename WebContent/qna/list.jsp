@@ -2,17 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>QnaList.jsp</title>
+<%@include file="../include/header.jsp" %>
+
 <style>
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: pink; }
 </style>
-</head>
+
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<body>
+
 <div id="wrap">
 	<h1>Q n A</h1>
 	<br>
@@ -65,6 +62,7 @@
 			<a href="${cp }/qna/insert" style="font-size:15px">문의하기</a>
 		</c:otherwise>
 	</c:choose>
+	<br>
 	<div>
 		<form method="post" action="${cp}/qna/list">
 			<select name="field">
@@ -76,5 +74,5 @@
 		</form>
 	</div>
 </div>
-</body>
-</html>
+
+<%@include file="../include/footer.jsp" %>

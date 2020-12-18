@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>문의페이지</title>
+
+<%@include file="../include/header.jsp" %>
+
 <style type="text/css">
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: pink; }
 	#wrap #box{width:50%; margin:auto; margin-top:100px; text-align:left; background-color:yellow;}
 </style>
-</head>
-<body>
+
 <c:if test="${sessionScope.id!=null }">
 	<c:set var="id" value="${sessionScope.id }"/>
 </c:if>
@@ -38,5 +35,4 @@
 		</form>
 	</div>
 </div>
-</body>
-</html>
+<%@include file="../include/footer.jsp" %>

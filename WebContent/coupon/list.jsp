@@ -1,15 +1,12 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>coupon/list.jsp</title>
+
+<%@include file="../include/header.jsp" %>
+
 <style>
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: lightgreen; }
 </style>
-</head>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<body>
 <div id="wrap">
 	<h1>쿠폰관리</h1>
 	<c:choose>
@@ -71,5 +68,5 @@
 		</form>
 	</div>
 </div>
-</body>
-</html>
+
+<%@include file="../include/footer.jsp" %>

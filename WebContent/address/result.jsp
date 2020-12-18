@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<%@include file="../include/header.jsp" %>
+
 <style type="text/css">
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: pink; }
 </style>
-</head>
-<body>
+
 <div id="wrap">
 	<c:choose>
 		<c:when test="${code=='success' }">
@@ -23,5 +20,5 @@
 	</c:choose>
 	<a href="${pageContext.request.contextPath }/address/index.jsp">메인으로 돌아가기</a>
 </div>
-</body>
-</html>
+
+<%@include file="../include/footer.jsp" %>

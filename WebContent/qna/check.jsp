@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<%@include file="../include/header.jsp" %>
+
 <style type="text/css">
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: pink; }
 </style>
-</head>
-<body>
+
 <div id="wrap">
 	<form method="post" action="${pageContext.request.contextPath }/qna/check">
 		<input type="hidden" name="num" value="${num }">
@@ -20,5 +17,5 @@
 		<span><c:if test="${code!=null }">${code }</c:if></span>
 	</form>
 </div>
-</body>
-</html>
+
+<%@include file="../include/footer.jsp" %>

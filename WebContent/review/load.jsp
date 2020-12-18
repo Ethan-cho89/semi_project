@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<%@include file="../include/footer.jsp" %>
+
 <style type="text/css">
 	.comm{width: 300px; height: 150px; border: 1px solid gray; margin-bottom: 5px;}
 </style>
-</head>
-<body>
+
 아이템번호 입력<input type="text" id="num" name="num"><br>
 <input type="button"  value="검색" onclick="bring()">
 <div id="result" style="width:100px;">
 </div>
-</body>
+
 <script type="text/javascript">
 	function bring(){
 		var xhr= null;
@@ -23,7 +20,6 @@
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState==4 && xhr.status==200){
 				var xml = xhr.responseXML;
-				alert(xml);
 				var avgrate= xml.getElementsByTagName("avgrate")[0].firstChild.nodeValue;
 				var review = xml.getElementsByTagName("review");
 				var result = document.getElementById("result");
@@ -59,4 +55,5 @@
 	    xhr.send(param);
 	}
 </script>
-</html>
+
+<%@include file="../include/footer.jsp" %>

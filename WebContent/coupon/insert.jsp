@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>coupon/insert.jsp</title>
+
+<%@include file="../include/header.jsp" %>
+
 <style type="text/css">
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: lightblue; }
 	#wrap #box{width:30%; margin:auto; margin-top:70px; align-content: center; text-align:left; background-color: lightgray;}
 </style>
-</head>
-<body>
+
 <div id="wrap">
 	<h1>쿠폰 발급</h1>
 	<div id="box">
@@ -40,5 +37,5 @@
 		</form>
 	</div>
 </div>
-</body>
-</html>
+
+<%@include file="../include/footer.jsp" %>

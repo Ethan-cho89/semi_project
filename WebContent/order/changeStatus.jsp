@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>changeStatus.jsp</title>
+
+<%@include file="../include/header.jsp" %>
+
 <style type="text/css">
 	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: lightpurple; }
 	#wrap #box{width:50%; margin:auto; margin-top:100px; text-align:left; }
 </style>
-</head>
-<body>
+
 <div id="wrap">
 	<div id="box">
 		<form method="post" action="${pageContext.request.contextPath }/order/change">
@@ -29,5 +26,4 @@
 	</div>
 </div>
 
-</body>
-</html>
+<%@include file="../include/footer.jsp" %>
