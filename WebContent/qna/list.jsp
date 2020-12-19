@@ -38,7 +38,7 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<div>
+			<div style="margin-top:8px">
 				<c:if test="${startPageNum>10 }">
 					<a href="${cp}/qna/list?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
 				</c:if>
@@ -56,8 +56,7 @@
 					<a href="${cp}/qna/list?pageNum=${endPageNum+1}&field=${field}&keyword=${keyword}">[다음]</a>
 				</c:if>
 			</div>
-			<br>
-			<div>
+			<div style="margin-top:8px">
 				<form method="post" action="${cp}/qna/list">
 					<select name="field">
 						<option value="writer" <c:if test="${field=='writer'}">selected</c:if>>작성자</option>
