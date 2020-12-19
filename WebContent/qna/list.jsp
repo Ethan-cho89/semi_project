@@ -5,7 +5,8 @@
 <%@include file="../include/header.jsp" %>
 
 <style>
-	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: pink; }
+	#wrap{width:1000px; margin:auto; margin-bottom:50px; align-content: center; text-align : center; }
+	#wrap a{text-decoration: none; color:black; font-weight: 550;}
 </style>
 
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
@@ -17,8 +18,8 @@
 		<c:when test="${!empty list }">
 			<a href="${cp }/qna/list?pageNum=1" style="font-size:15px">전체목록</a>&nbsp;|&nbsp;
 			<a href="${cp }/qna/insert" style="font-size:15px">문의하기</a>
-			<table border="1" width="800" style="margin: auto; margin-top:15px">
-				<tr>
+			<table width="800" cellspacing=1 cellpadding=2 bgcolor="white" style="margin: auto; margin-top:15px;">
+				<tr style="background-color: #EAEAEA;">
 					<th>글번호</th>
 					<th>작성자</th>
 					<th>제목</th>
@@ -27,7 +28,7 @@
 					<th>작성일</th>
 				</tr>
 				<c:forEach var ="vo" items="${list }"> 
-					<tr>
+					<tr style="background-color: #F6F6F6">
 						<td>${vo.num }</td>
 						<td>${vo.nick }</td>
 						<td><a href="${cp }/qna/check?num=${vo.num}">${vo.title }
@@ -45,10 +46,10 @@
 				<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
 					<c:choose>
 						<c:when test="${pageNum==i }">
-							<a href="${cp}/qna/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style="color:purple">[${i}]</span></a>			
+							<a href="${cp}/qna/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style="color:gray">[${i}]</span></a>			
 						</c:when>					
 						<c:otherwise>
-							<a href="${cp}/qna/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style="color:blue">[${i}]</span></a>
+							<a href="${cp}/qna/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style="color:black">[${i}]</span></a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>			
