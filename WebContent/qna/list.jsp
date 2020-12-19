@@ -13,7 +13,6 @@
 
 <div id="wrap">
 	<h1>Q n A</h1>
-	<br>
 	<c:choose>
 		<c:when test="${!empty list }">
 			<a href="${cp }/qna/list?pageNum=1" style="font-size:15px">전체목록</a>&nbsp;|&nbsp;
@@ -57,23 +56,25 @@
 					<a href="${cp}/qna/list?pageNum=${endPageNum+1}&field=${field}&keyword=${keyword}">[다음]</a>
 				</c:if>
 			</div>
+			<br>
+			<div>
+				<form method="post" action="${cp}/qna/list">
+					<select name="field">
+						<option value="writer" <c:if test="${field=='writer'}">selected</c:if>>작성자</option>
+						<option value="title" <c:if test="${field=='title' }">selected</c:if>>제목</option>
+					</select>
+					<input type="text" name = "keyword" value="${keyword }">
+					<input type="submit" value="검색">
+				</form>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<h3>문의글이 존재하지 않습니다</h3>
-			<a href="${cp }/qna/insert" style="font-size:15px">문의하기</a>
+			<br>
+			<a href="${cp }/qna/insert" style="font-size:15px">문의하기</a><br><br>
 		</c:otherwise>
 	</c:choose>
-	<br>
-	<div>
-		<form method="post" action="${cp}/qna/list">
-			<select name="field">
-				<option value="writer" <c:if test="${field=='writer'}">selected</c:if>>작성자</option>
-				<option value="title" <c:if test="${field=='title' }">selected</c:if>>제목</option>
-			</select>
-			<input type="text" name = "keyword" value="${keyword }">
-			<input type="submit" value="검색">
-		</form>
-	</div>
 </div>
+
 
 <%@include file="../include/footer.jsp" %>
