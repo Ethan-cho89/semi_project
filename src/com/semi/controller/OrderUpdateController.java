@@ -1,6 +1,7 @@
 package com.semi.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,25 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi.dao.OrderDao;
 
-@WebServlet("/order/change")
-public class OrderChangeStatusController extends HttpServlet{
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath()+"/order/changeStatus.jsp");
-	}
-	
+@WebServlet("/order/update")
+public class OrderUpdateController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		int num = Integer.parseInt(req.getParameter("num"));
-		int status = Integer.parseInt(req.getParameter("status"));
+		int ship = Integer.parseInt(req.getParameter("ship"));
 		OrderDao dao = OrderDao.getDao();
-		int n = dao.change(num, status);
+		int n = dao.change(num, ship);
+		
+		resp.setContentType("text/xml;charset=utf-8");
+		PrintWriter pw = resp.getWriter();
+		pw.print("<result>");
 		if(n>0) {
-			req.setAttribute("code", "success");
+			pw.print("<code>success</code>");
 		}else {
-			req.setAttribute("code", "fail");
+			pw.print("<code>fail</code>");
 		}
-		req.getRequestDispatcher("/order/result.jsp").forward(req, resp);
+		pw.print("</result>");
 	}
 }

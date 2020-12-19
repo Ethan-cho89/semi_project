@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/header.jsp" %>
 
 <style type="text/css">
 	.comm{width: 300px; height: 150px; border: 1px solid gray; margin-bottom: 5px;}
