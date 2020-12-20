@@ -8,7 +8,7 @@ public interface StockService {
 	
 	public boolean add(int inum,int...sizes);
 	
-	public Map<String, Integer> getItemStock(int num);
+	public  Map<String, StockVo> getItemStock(int num);
 	
 	public boolean modify(int inum,int...sizes);
 }

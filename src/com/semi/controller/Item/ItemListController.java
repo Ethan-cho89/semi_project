@@ -13,14 +13,20 @@ import com.semi.dao.ItemDao;
 import com.semi.domain.ItemVo;
 import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
+import com.semi.service.PhotoService;
+import com.semi.service.PhotoServiceImpl;
+import com.semi.service.StockService;
+import com.semi.service.StockServiceImpl;
 
 @WebServlet("/itemboard/list")
 public class ItemListController extends HttpServlet{
-	private ItemBoardService service;
+	private ItemBoardService itemService;
+	private PhotoService photoService;
 	
 	@Override
 	public void init() throws ServletException {
-		service = ItemBoardServiceImpl.getInstance();
+		itemService =ItemBoardServiceImpl.getInstance();
+		photoService =PhotoServiceImpl.getInstance();
 	}
 	
 	@Override
@@ -28,7 +34,11 @@ public class ItemListController extends HttpServlet{
 		
 		int gender = Integer.parseInt(req.getParameter("gender"));
 		
-		List<ItemVo> list = service.getList(gender);
+		List<ItemVo> list = itemService.getList(gender);
+		
+		for(ItemVo vo : list) {
+			vo.setPhotoList(photoService.getList(vo.getNum()));
+		}
 		
 		req.setAttribute("list", list);
 		

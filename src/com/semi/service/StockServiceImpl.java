@@ -10,7 +10,7 @@ import com.semi.domain.StockVo;
 public class StockServiceImpl implements StockService {
 	
 	private static StockService instance;
-	private final static String[] SizeArr = {"S","M","L","XL"};
+	private final static String[] SIZE_ARR = {"S","M","L","XL"};
 
 	private StockDao dao;
 	
@@ -33,18 +33,18 @@ public class StockServiceImpl implements StockService {
 		int cnt = 0;
 		
 		for(int i = 0 ; i < sizes.length; i++) {
-			cnt += dao.add(new StockVo(0, inum,SizeArr[i], sizes[i]));
+			cnt += dao.add(new StockVo(0, inum,SIZE_ARR[i], sizes[i]));
 		}
 		
 		return cnt>=sizes.length;
 	}
 
 	@Override
-	public Map<String, Integer> getItemStock(int num) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public Map<String, StockVo> getItemStock(int num) {
+		Map<String, StockVo> map = new HashMap<>();
 		
 		for(StockVo vo : dao.getList(num)) {
-			map.put(vo.getSsize(), vo.getCount());
+			map.put(vo.getSsize(), vo);
 		}
 		
 		return map;
@@ -52,8 +52,11 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	public boolean modify(int inum,int...sizes) {
-		
-		return true;
+		int cnt = 0;
+		for(int i = 0 ; i < sizes.length; i++) {
+			cnt += dao.update(inum, SIZE_ARR[i], sizes[i]);
+		}
+		return cnt>=sizes.length;
 	}
 
 }

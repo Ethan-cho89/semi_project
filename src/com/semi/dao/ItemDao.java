@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.semi.domain.ItemVo;
 import com.semi.domain.PhotoVo;
+import com.semi.service.PhotoService;
+import com.semi.service.PhotoServiceImpl;
 import com.semi.util.db.DBCPBean;
 
 public class ItemDao {
@@ -50,6 +52,7 @@ public class ItemDao {
 	}
 	
 	public List<ItemVo> getList(int gender) {
+		PhotoService photoService = PhotoServiceImpl.getInstance();
 		List<ItemVo> list = jdbcTemplate.query("select * from tbl_item where gender=?", 
 				new Object[] {gender},
 				new RowMapper<ItemVo>() {
@@ -64,6 +67,7 @@ public class ItemDao {
 								rs.getInt(6),
 								rs.getInt(7),
 								rs.getInt(8));
+						
 						return vo;
 					}
 				});

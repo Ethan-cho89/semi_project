@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.semi.domain.ItemVo;
 import com.semi.domain.PhotoVo;
+import com.semi.domain.StockVo;
 import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
 import com.semi.service.PhotoService;
@@ -41,10 +43,10 @@ public class ItemUpdateController extends HttpServlet {
 		
 		req.setAttribute("vo",vo);
 		
-		Map<String, Integer> map = stockService.getItemStock(num);
+		Map<String, StockVo> map = stockService.getItemStock(num);
 		
 		for(String str : map.keySet()) {
-			req.setAttribute(str, map.get(str));
+			req.setAttribute(str, map.get(str).getCount());
 		}
 		
 		req.getRequestDispatcher("/itemboard/update.jsp").forward(req, resp);
@@ -69,6 +71,12 @@ public class ItemUpdateController extends HttpServlet {
 		int sizeXL = Integer.parseInt(req.getParameter("sizeXL"));
 		
 		stockService.modify(num, sizeS,sizeM,sizeL,sizeXL);
+		
+		photoService.deleteWithOutFile(num);
+		
+		String[] urls = req.getParameterValues("img");
+		
+		photoService.add(req.getServletContext(),num, urls);
 		
 		resp.sendRedirect("/itemboard/get?num="+num);
 	}
