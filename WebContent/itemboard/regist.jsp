@@ -44,7 +44,6 @@
   <textarea id="summernote" name="editordata"></textarea>
   <input type="button" value="등록"  onclick="onClickSubmit()">
   <input type="button"  value="리셋 " onclick="onClickReset()">
-  
 
 </form>
 
@@ -54,6 +53,17 @@ var arr = new Array();
 	$(document).ready(function() {
 		//여기 아래 부분
 		$('#summernote').summernote({
+			  toolbar: [
+				    ['fontname', ['fontname']],
+				    ['fontsize', ['fontsize']],
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    ['color', ['forecolor','color']],
+				    ['table', ['table']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['insert',['picture','link']],
+				    ['view', ['fullscreen', 'help']]
+				  ],
 			  height: 300,  
 			  width: 800,// 에디터 높이
 			  minHeight: null,             // 최소 높이

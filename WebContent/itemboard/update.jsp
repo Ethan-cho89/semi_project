@@ -52,26 +52,24 @@
 
 <script type="text/javascript">
 //console.log(self.location.host+"/");
-var arr = new Array();
+var imgArr = new Array();
+<c:forEach items="${vo.photoList}" var="item" varStatus="idx" >
+imgArr.push("${item.filePath }");
+</c:forEach>
 	$(document).ready(function() {
 		//여기 아래 부분
 		$('#summernote').summernote({
-		     toolbar: [
-                 // [groupName, [list of button]]
-                 ['Font Style', ['fontname']],
-                 ['style', ['bold', 'italic', 'underline']],
-                 ['font', ['strikethrough']],
-                 ['fontsize', ['fontsize']],
-                 ['color', ['color']],
-                 ['para', ['paragraph']],
-                 ['height', ['height']],
-                 ['Misc', ['fullscreen']]
-              ],
-              popover:{
-            	  image: [
-            	    ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
-            	    ['float', ['floatLeft', 'floatRight', 'floatNone']]
-            	  ]},
+			 toolbar: [
+				    ['fontname', ['fontname']],
+				    ['fontsize', ['fontsize']],
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    ['color', ['forecolor','color']],
+				    ['table', ['table']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['insert',['picture','link']],
+				    ['view', ['fullscreen', 'help']]
+				  ],
 			  height: 300,  
 			  width: 800,// 에디터 높이
 			  minHeight: null,             // 최소 높이
@@ -81,25 +79,22 @@ var arr = new Array();
 			  placeholder: '최대 2048자까지 쓸 수 있습니다',
 			  callbacks:{
 				  onImageUpload: function(files){
-					  return;
 					  uploadSummernoteImageFile(files[0],this);
 				  },
 				  onMediaDelete:function($target, editor){
-					  return;
 					  var s = $target[0].src;
 					  s = s.substring(s.indexOf('upload')-1,s.length);
-					  for(i in arr){
-						  if(arr[i].indexOf(s)){
-							  arr.splice(i,1);
+					  for(i in imgArr){
+						  if(imgArr[i].indexOf(s)){
+							  imgArr.splice(i,1);
 							  break;
 						  }
 					  }
-					  
 				  }
 			  }//placeholder 설정
 	          
 		});
-
+		
 	});
 	
 	function onClickReset(){
@@ -108,9 +103,31 @@ var arr = new Array();
 	
 	function onClickUpdate() {
 		var form = $('#regForm');
-		
+		for(var url of imgArr){
+			form.append("<input type='hidden' value='"+url+"' name='img'>");
+		}
 		form.submit();
 	}
+	
+	function uploadSummernoteImageFile(file, editor){
+		var data = new FormData();
+		data.append("file",file);
+		data.append("update",0);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "/itemboard/upload",
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				data = JSON.parse(data);
+				$(editor).summernote('insertImage', data.url);
+				//arr.push( "<input type='hidden' value='"+data.url+"' name='img'>");
+				imgArr.push(data.url);
+			}
+		});
+	}
+	
 
 </script>
 
