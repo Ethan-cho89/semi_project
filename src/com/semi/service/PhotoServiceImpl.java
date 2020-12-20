@@ -31,6 +31,11 @@ public class PhotoServiceImpl implements PhotoService {
 	}
 
 	@Override
+	public List<PhotoVo> getAllList() {
+		return dao.getAllList();
+	}
+	
+	@Override
 	public boolean add(ServletContext sc,int key, String... paths) {
 		int cnt = 0;
 		String saveDir = "/upload/"+key+"/";
@@ -69,6 +74,11 @@ public class PhotoServiceImpl implements PhotoService {
 		
 		File f= new File(sc.getRealPath("/upload/"+list.get(0).getInum()));
 		f.delete();
+	}
+
+	@Override
+	public boolean deleteWithOutFile(int num) {
+		return dao.delete(num)>=1;
 	}
 	
 }

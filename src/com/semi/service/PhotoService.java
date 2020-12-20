@@ -8,9 +8,13 @@ import com.semi.domain.PhotoVo;
 
 public interface PhotoService {
 	
+	public List<PhotoVo> getAllList();
+
 	public List<PhotoVo> getList(int num);
 	
 	public boolean add(ServletContext sc,int key,String...paths);
 	
 	public boolean delete(ServletContext sc,int num);
+	
+	public boolean deleteWithOutFile(int num);
 }

@@ -24,6 +24,20 @@ public class PhotoDao {
 		return instance;
 	}
 
+	public List<PhotoVo> getAllList(){
+		return jdbcTemplate.query("select * from tbl_photo",
+				new RowMapper<PhotoVo>() {
+				@Override
+				public PhotoVo mapRow(ResultSet rs, int rownum) throws SQLException {
+					PhotoVo vo = new PhotoVo(rs.getInt(1),
+											rs.getInt(2),
+											rs.getString(3),
+											rs.getString(4));
+					return vo;
+				}
+			});
+	}
+	
 	public List<PhotoVo> getList(int num){
 		return jdbcTemplate.query("select * from tbl_photo where inum = ?",
 				new Object[] {num} ,
