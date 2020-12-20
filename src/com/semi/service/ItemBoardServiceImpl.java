@@ -55,6 +55,7 @@ public class ItemBoardServiceImpl implements ItemBoardService {
 
 	@Override
 	public boolean modify(ItemVo vo) {
+		vo.setDetail(vo.getDetail().replaceAll("/upload/temp", "/upload/"+vo.getNum()));
 		return dao.update(vo)>=1;
 	}
 	

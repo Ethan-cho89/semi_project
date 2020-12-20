@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 @WebServlet("/itemboard/upload")
 public class ImageUploadController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		String uploadPath = "/upload/temp";
 		
 		//uploadPath += getFolder();
@@ -39,11 +40,18 @@ public class ImageUploadController extends HttpServlet{
 				saveDir, //업로드할 디렉토리 경로
 				1024*1024*5,//최대업로드할 바이트수크기
 				"utf-8", //인코딩방식
-				new DefaultFileRenamePolicy() //동일한 파일명 존재시 중복되지 않는
-				//파일명을 생성하기 위한 객체-동일한 파일명이 업로드되면 파일명뒤에 1,2,..등에
-				//해당하는 숫자를 붙여서 파일을 생성한다.
+				new FileRenamePolicy() {
+					@Override
+					public File rename(File f) {
+						String name= f.getName();
+						String path = f.getParent();
+						UUID uuid = UUID.randomUUID();
+						name = uuid.toString()+"_"+name;
+						f = new File(path,name);
+						return f;
+					}
+				}
 			);
-		
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/plain;charset=utf-8");
 		
