@@ -30,6 +30,9 @@ public class ItemAddCartController extends HttpServlet {
 		Gson gson = new Gson();
 		String jsonStr = URLEncoder.encode(gson.toJson(list), "UTF-8");
 		
+		//URLDecoder.decode("cart", "UTF-8");
+		
+		
 		Cookie cookie = new Cookie("cart",jsonStr);
 		
 		resp.addCookie(cookie);

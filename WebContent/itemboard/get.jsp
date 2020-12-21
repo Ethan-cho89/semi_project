@@ -193,6 +193,7 @@ window.onload = function(){
 		console.log(selectedItemMap.size);
 		if(selectedItemMap.size<1){
 			alert('옵션을 선택하세요');	
+			return;
 		}
 		
 		var itemForm = $("#itemForm");
