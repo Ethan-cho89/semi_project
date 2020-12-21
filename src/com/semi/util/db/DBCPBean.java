@@ -43,23 +43,6 @@ public class DBCPBean {
 			e.printStackTrace();
 		}
 	}
-
-//	public static void close(Connection con, Statement stmt, ResultSet rs) {
-//		try {		
-//			if(rs!=null) {
-//				rs.close();
-//			}
-//			if(stmt!=null) {
-//				stmt.close();
-//			}
-//			if(con!=null) {
-//				con.close();
-//			}
-//		}catch(SQLException se) {
-//			se.printStackTrace();
-//		}
-//	}
-
 	public static DataSource getDataSource() {
 		return ds;
 	}

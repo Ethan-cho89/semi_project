@@ -70,7 +70,7 @@ public class OrderDao {
 			s.printStackTrace();
 			return null;
 		}finally {
-			DBCPBean.close(con, pstmt, null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 	public int getCount(String field, String keyword ) {
@@ -98,7 +98,7 @@ public class OrderDao {
 			s.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt, null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 	
@@ -117,7 +117,7 @@ public class OrderDao {
 			s.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt, null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 
