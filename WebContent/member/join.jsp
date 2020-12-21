@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/header.jsp" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 	.wrap{
             width: 250px;
@@ -16,7 +18,7 @@
             }
     
     input[value='회원가입하기(만 14세 이상)']{
-    	 	width: 250px;
+    	 	width: 280px;
             height: 50;
 
             color: white;
@@ -24,13 +26,26 @@
             background-color: black;
             background-position: center;
 
-            border-radius: 10px;
+            border-radius: 5px;
 
             padding-top: 10px;
             padding-bottom: 10px;
             
             cursor: pointer;
         } 
+    input[value='중복검사']{   
+    	width: 280px;
+           
+            color: white;
+
+            background-color: black;
+            background-position: center;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+    
+    } 
         .input-group {
 		    top: 180px;
 		   
@@ -147,22 +162,21 @@
 		<h2>쇼핑몰 멤버 가입</h2>
 	 </div>
 	 <div class="input-group">
-		<label for="email">이메일 아이디</label><br />
-		<input type="email" id="id" name="id" placeholder="example@domain.com" required="required" class="input-field">
+		<input type="email" id="id" name="id" placeholder="사용하실 ID를 입력해주세요(수신가능 E-mail)" required="required" class="input-field">
 		<input type="button" value="중복검사" onclick="checkid()"><br>
 		<span id="idcheck"></span><br>
 		
-		<label for="pwd">비밀번호</label><br />
-	    <input type="password" id="pwd" name="pwd" class="input-field"/><br/><br/>
+		
+	    <input type="password" id="pwd" name="pwd" class="input-field" placeholder="영문+숫자+특수문자 8~16자리로 입력해주세요"/><br/><br/>
 	   
-	    <label for="pwd-check">비밀번호확인</label><br />
-	    <input type="password" id="pwd-check" class="input-field"/><br /><br/>
+	    
+	    <input type="password" id="pwd-check" class="input-field" placeholder="패스워드를 다시 입력해 주세요"/><br /><br/>
 		
-		<label for="phone">전화번호</label><br />
-		<input type="text" name="phone" id="phone" onKeyup="inputPhoneNumber(this);" maxlength="13" placeholder="숫자로만 입력해주세요" class="input-field"><br/> <br>
 		
-		<label for="nick">닉네임</label><br />
-		<input type="text" name="nick" id="nick" class="input-field"><br><br/>
+		<input type="text" name="phone" id="phone" onKeyup="inputPhoneNumber(this);" maxlength="13" placeholder="휴대폰 번호를 숫자로만 입력해주세요" class="input-field"><br/> <br>
+		
+		
+		<input type="text" name="nick" id="nick" class="input-field" placeholder="닉네임을 입력해 주세요"><br><br/>
 		
 		<label for="eokay">이메일 수신 여부</label>
 		<input type="checkbox" name="eokay"id="eokay">수신<br><br>
