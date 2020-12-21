@@ -15,8 +15,18 @@
 	<a href="/itemboard/list?gender=1">여성의류</a>
 	<a href="">관리자 페이지(관리자 기능)</a>
 	<a href="${cp}/qna/list">고객센터</a>
-	<a href="#">로그인</a>
-	<a href="#">회원가입</a>
+	<c:choose>
+		<c:when test="${empty sessionScope.id}">
+			<a href="${cp}/member/login.jsp">회원로그인</a>
+			<a href="${cp}/member/join.jsp">회원가입</a>
+		</c:when>
+		<c:otherwise> 
+			<span style="color:red;font-size:0.8em">${id }님 반갑습니다.</span>
+			<a href="${cp}/member/logout">로그아웃</a>
+			<a href="${cp}/member/list">마이페이지</a>
+		</c:otherwise>
+	</c:choose>		
+	
 	<a href="장바구니">장바구니</a>
 	
 	<input type="text" name="keyword">

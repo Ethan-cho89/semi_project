@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../include/header.jsp" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,8 @@
 <script type="text/javascript">
 	var xhr=null;
 	function checkid() {
+		var e_RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 		var id=document.getElementById("id").value;
 		if(id.trim()==""){
 			alert("아이디를 입력하세요.");
@@ -18,6 +21,11 @@
 	    	  alert("이메일 형식이 아닙니다");
 	    	  return false;
 	      }
+	      if(!e_RegExp.test(id)){ //이메일 유효성 검사
+	            alert("올바른 이메일 형식이 아닙니다.");
+	            return false;
+	        }
+
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
@@ -116,3 +124,4 @@
 
 </body>
 </html>
+<%@include file="../include/footer.jsp" %>
