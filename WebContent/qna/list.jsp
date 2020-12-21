@@ -5,7 +5,7 @@
 <%@include file="../include/header.jsp" %>
 
 <style>
-	#wrap{width:1000px; margin:auto; margin-bottom:50px; align-content: center; text-align : center; }
+	#wrap{width:1000px; margin:auto; margin-bottom:50px; align-content: center; text-align : center;}
 	#wrap a{text-decoration: none; color:black; font-weight: 550;}
 </style>
 

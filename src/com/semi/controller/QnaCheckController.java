@@ -18,7 +18,6 @@ public class QnaCheckController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		try {
 			HttpSession session = req.getSession();
 			int status= (int)session.getAttribute("status");
@@ -49,14 +48,15 @@ public class QnaCheckController extends HttpServlet {
 		String writer = req.getParameter("writer");	
 		String pwd = req.getParameter("pwd");
 		QnaDao dao = QnaDao.getDao();
-		QnaVo vo =dao.check(num, writer, pwd);
-		if(!vo.getWriter().isBlank() && vo.getWriter()!=null) {
-			req.setAttribute("vo", vo);
+		int n =dao.check(num, writer, pwd);
+		if(n>0) {
+			req.setAttribute("vo", dao.load(num));
 			req.getRequestDispatcher("/qna/load.jsp").forward(req, resp);
 		}else {
-			req.setAttribute("code","입력하진 정보가 올바르지 않습니다");
+			req.setAttribute("num", num);
+			req.setAttribute("writer", writer);
+			req.setAttribute("code","정보가 일치하지 않습니다");
 			req.getRequestDispatcher("/qna/check.jsp").forward(req, resp);
-			
 		}
 	}
 	

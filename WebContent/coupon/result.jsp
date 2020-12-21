@@ -5,10 +5,11 @@
 <%@include file="../include/header.jsp" %>
 
 <style type="text/css">
-	#wrap{width:1000px; margin:auto; align-content: center; text-align : center; background-color: pink; }
+	#wrap{width:1000px; margin:auto; align-content: center; margin-top:50px; margin-bottom:50px; text-align : center;}
 </style>
 
 <div id="wrap">
+	<h1>쿠폰 관리</h1>
 	<c:choose>
 		<c:when test="${code=='success' }">
 			<h3>요청 작업을 성공적으로 마쳤습니다</h3>

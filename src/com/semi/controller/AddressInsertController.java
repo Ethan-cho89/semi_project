@@ -21,20 +21,20 @@ public class AddressInsertController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String id = (String)req.getSession().getAttribute("id");
-		System.out.println(id);
 		String name= req.getParameter("name");
 		String address = req.getParameter("address");
 		int isDefault=0;
 		AddressDao dao = AddressDao.getDao();
+		boolean check = false;
 		int n=0;
 		try {
 			isDefault = Integer.parseInt(req.getParameter("isDefault"));
-			dao.clean(id);
+			check=true;//오류가 안생겼다면 실행될 코드
 		}catch(NumberFormatException ne) {
 			
 		}finally {
 			AddressVo vo = new AddressVo(0, id, name, address, null, null, null, null, isDefault);
-			n = dao.insert(vo);
+			n = dao.insert(check,vo);
 		}
 		if(n>0) {
 			req.setAttribute("code", "success");
@@ -42,6 +42,5 @@ public class AddressInsertController extends HttpServlet{
 			req.setAttribute("code", "fail");
 		}
 		req.getRequestDispatcher("/address/result.jsp").forward(req, resp);
-		
 	}
 }

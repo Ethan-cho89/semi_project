@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import com.semi.domain.OrderVo;
 import com.semi.util.db.DBCPBean;
-
-public class OrderDao {
+ 
+public class OrderDao {  // semi_my
 	private static OrderDao instance = new OrderDao();
 	
 	private OrderDao() {}
@@ -70,7 +70,7 @@ public class OrderDao {
 			s.printStackTrace();
 			return null;
 		}finally {
-			DBCPBean.close(con, pstmt);
+			DBCPBean.close(con, pstmt, null);
 		}
 	}
 	public int getCount(String field, String keyword ) {
@@ -98,7 +98,7 @@ public class OrderDao {
 			s.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt);
+			DBCPBean.close(con, pstmt,null);
 		}
 	}
 	
@@ -117,8 +117,7 @@ public class OrderDao {
 			s.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt);
+			DBCPBean.close(con, pstmt, null);
 		}
 	}
-
 }

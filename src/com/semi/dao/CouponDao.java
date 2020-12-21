@@ -75,8 +75,11 @@ public class CouponDao {
 		int dcrate = vo.getDcrate();
 		Date stdate = vo.getStdate();
 		Date exdate = vo.getExdate();
+		//int couponNum=getMax()+1;
+		ArrayList<String> list = getIds();
 		try {
 			con=DBCPBean.getConn();
+			con.setAutoCommit(false);
 			String sql = "insert into tbl_coupon values(seq_cou.nextval,?,?,?,?)";//번호,할인률,끝날,이름,시작날
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, dcrate);
@@ -84,48 +87,38 @@ public class CouponDao {
 			pstmt.setString(3, name);
 			pstmt.setDate(4, stdate);
 			int n =pstmt.executeUpdate();
+			DBCPBean.close(null, pstmt, null);
+			
+			int couponNum = getNum(con,name);
+			sql = "insert into tbl_coupholder values(?,"+couponNum+",?)";//아이디,쿠폰번호,사용여부
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(2, 0);
+			int nn= 0;
+			for(String id : list) {
+				pstmt.setString(1, id);
+				nn += pstmt.executeUpdate();
+			}
+			con.commit();
+			if(nn==list.size()) {
+				n=2;
+			}
 			return n;
 		}catch(SQLException s) {
 			s.printStackTrace();
+			try {
+				con.rollback();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}
 			return -1;
 		}finally {
 			DBCPBean.close(con, pstmt, null);
 		}
 	}
-	
-	public int addCoupon(int couponNum){ // 등록과 동시에 전체 회원에게 뿌려줘야함.
-		Connection con = null;
-		PreparedStatement pstmt=null;
-		ArrayList<String> list = getIds();
-		try {
-			con=DBCPBean.getConn();
-			String sql = "insert into tbl_coupholder values(?,"+couponNum+",?)";//번호,할인률,끝날,이름,시작날
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(2, 0);
-			int n = 0;
-			for(String id : list) {
-				pstmt.setString(1, id);
-				n += pstmt.executeUpdate();
-			}
-			if(n==list.size()) {
-				return 1;
-			}else {
-				return 0;
-			}
-		}catch(SQLException s) {
-			s.printStackTrace();
-			return -1;
-		}finally {
-			DBCPBean.close(con, pstmt, null);
-		}
-	}
-	
-	public int getNum(String name) {
-		Connection con = null;
+	public int getNum(Connection con, String name) {
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
 		try {
-			con=DBCPBean.getConn();
 			String sql = "select * from tbl_coupon where name=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, name);
@@ -140,7 +133,7 @@ public class CouponDao {
 			s.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt, rs);
+			DBCPBean.close(null, pstmt, rs);
 		}
 	}
 	

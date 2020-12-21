@@ -24,7 +24,7 @@ public class CouponListController extends HttpServlet{
 		if(keyword!=null) {
 			keyword=keyword.toUpperCase();
 		}
-		
+
 		String spageNum = req.getParameter("pageNum");
 		int pageNum =1;
 		if(spageNum!=null) {

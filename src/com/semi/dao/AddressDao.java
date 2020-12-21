@@ -16,7 +16,7 @@ public class AddressDao {
 	public static AddressDao getDao() {
 		return instance;
 	}
-	public int insert(AddressVo vo) {
+	public int insert(boolean check, AddressVo vo) {
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		String id = vo.getId();
@@ -25,15 +25,32 @@ public class AddressDao {
 		int isDefault= vo.getIsDefault();
 		try {
 			con=DBCPBean.getConn();
+			con.setAutoCommit(false);
+			int n=0;
+			if(check) { // 기본배송지 정보가 있다고 하면 나머지를 다 0으로 바꿔주기
+				String sql = "update tbl_address set isdefault=? where id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, 0);
+				pstmt.setString(2, id);
+				n =pstmt.executeUpdate();
+				DBCPBean.close(null, pstmt, null);
+			}
 			String sql = "insert into tbl_address values(SEQ_ADD.nextval,?,?,?,null,null,null,null,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, name);
 			pstmt.setString(3, address);
 			pstmt.setInt(4, isDefault);
-			return pstmt.executeUpdate();
+			n+=pstmt.executeUpdate();
+			con.commit();
+			return n;
 		}catch(SQLException s) {
 			s.printStackTrace();
+			try {
+				con.rollback();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}
 			return -1;
 		}finally {
 			DBCPBean.close(con, pstmt, null);
@@ -96,46 +113,48 @@ public class AddressDao {
 		}
 	}
 	
-	public int edit(AddressVo vo) {
+	public int edit(boolean check, AddressVo vo){
 		Connection con = null;
 		PreparedStatement pstmt=null;
+		String id = vo.getId();
 		String name = vo.getName();
 		String address = vo.getAddress();
 		int num = vo.getNum();
 		int isDefault= vo.getIsDefault();
 		try {
 			con=DBCPBean.getConn();
+			con.setAutoCommit(false);
+			int n=0;
+			if(check) { // 기본배송지 정보가 있다고 하면 나머지를 다 0으로 바꿔주기
+				String sql = "update tbl_address set isdefault=? where id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, 0);
+				pstmt.setString(2, id);
+				n =pstmt.executeUpdate();
+				DBCPBean.close(null, pstmt, null);
+			}
 			String sql = "update tbl_address set name=?, address=?, isdefault=? where num =?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setString(2, address);
 			pstmt.setInt(3, isDefault);
 			pstmt.setInt(4, num);
-			return pstmt.executeUpdate();
+			n+= pstmt.executeUpdate();
+			con.commit();
+			return n;
 		}catch(SQLException s) {
 			s.printStackTrace();
+			try {
+				con.rollback();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}
 			return -1;
 		}finally {
 			DBCPBean.close(con, pstmt, null);
 		}
 	}
-	public int clean(String id) {
-		Connection con = null;
-		PreparedStatement pstmt=null;
-		try {
-			con=DBCPBean.getConn();
-			String sql = "update tbl_address set isdefault=? where id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, 0);
-			pstmt.setString(2, id);
-			return pstmt.executeUpdate();
-		}catch(SQLException s) {
-			s.printStackTrace();
-			return -1;
-		}finally {
-			DBCPBean.close(con, pstmt, null);
-		}
-	}
+	
 	public int delete(int num) {
 		Connection con = null;
 		PreparedStatement pstmt=null;

@@ -16,19 +16,24 @@ public class OrderUpdateController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		int num = Integer.parseInt(req.getParameter("num"));
-		int ship = Integer.parseInt(req.getParameter("ship"));
-		OrderDao dao = OrderDao.getDao();
-		int n = dao.change(num, ship);
-		
-		resp.setContentType("text/xml;charset=utf-8");
-		PrintWriter pw = resp.getWriter();
-		pw.print("<result>");
-		if(n>0) {
-			pw.print("<code>success</code>");
-		}else {
-			pw.print("<code>fail</code>");
+		try {
+			int num = Integer.parseInt(req.getParameter("num"));
+			int	ship = Integer.parseInt(req.getParameter("ship"));
+			
+			OrderDao dao = OrderDao.getDao();
+			int n = dao.change(num, ship);
+			
+			resp.setContentType("text/xml;charset=utf-8");
+			PrintWriter pw = resp.getWriter();
+			pw.print("<result>");
+			if(n>0) {
+				pw.print("<code>success</code>");
+			}else {
+				pw.print("<code>fail</code>");
+			}
+			pw.print("</result>");
+		}catch(NumberFormatException ne) {
+			
 		}
-		pw.print("</result>");
 	}
 }

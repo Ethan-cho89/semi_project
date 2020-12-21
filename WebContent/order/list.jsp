@@ -15,8 +15,11 @@
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 
 <script>
+	var value="";
+	function getValue(o){
+		value=o.value;
+	}
 	function update(num){
-		var ship = document.getElementById("button").previousSibling.value;
 		var xhr= new XMLHttpRequest();
 		xhr.onreadystatechange = function (){
 			if(xhr.readyState==4 && xhr.status==200){
@@ -30,10 +33,11 @@
 			}
 		}
 		xhr.open('post',"${cp}/order/update",true);
-		var param="num="+num+"&ship="+ship;
+		var param="num="+num+"&ship="+value;
 		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		xhr.send(param);
 	}
+
 </script>
 
 <div id="wrap">
@@ -54,7 +58,7 @@
 					<td>${vo.id }</td>
 					<td>${vo.paydate }</td>
 					<td>
-						<select name="status">
+						<select name="status" id="status" onchange="getValue(this)">
 							<option value="1" <c:if test="${vo.ship==1}">selected</c:if>>배송준비중</option>
 							<option value="2" <c:if test="${vo.ship==2}">selected</c:if>>배송중</option>
 							<option value="3" <c:if test="${vo.ship==3}">selected</c:if>>배송완료</option>
@@ -62,7 +66,8 @@
 							<option value="5" <c:if test="${vo.ship==5}">selected</c:if>>주문취소</option>
 							<option value="6" <c:if test="${vo.ship==6}">selected</c:if>>반품신청</option>
 							<option value="7" <c:if test="${vo.ship==7}">selected</c:if>>반품완료</option>
-						</select><input type="button" value="저장" id="button" onclick="update(${vo.num})"> 
+						</select>&nbsp;&nbsp;
+						<input type="button" value="저장" id="button" onclick="update(${vo.num})"> 
 					</td>
 				</tr>
 				</c:forEach>

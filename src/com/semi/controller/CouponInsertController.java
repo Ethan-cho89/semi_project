@@ -29,10 +29,8 @@ public class CouponInsertController extends HttpServlet{
 		CouponVo vo = new CouponVo(0, dcrate, stdate, exdate, name, null, 0);
 		CouponDao dao = CouponDao.getDao();
 		int n = dao.insert(vo);
-		int couponNum = dao.getNum(name);
-		int nn = dao.addCoupon(couponNum);
 		
-		if((n+nn)==2) {
+		if(n==2) {
 			req.setAttribute("code", "success");
 		}else {
 			req.setAttribute("code", "fail");

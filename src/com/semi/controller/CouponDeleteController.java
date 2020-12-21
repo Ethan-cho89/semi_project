@@ -1,6 +1,7 @@
 package com.semi.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,14 +15,12 @@ import com.semi.dao.CouponDao;
 public class CouponDeleteController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
 		int num = Integer.parseInt(req.getParameter("num"));
+	
 		CouponDao dao = CouponDao.getDao();
 		int n = dao.delete(num); //쿠폰 테이블에서 지우면 쿠폰홀더테이블에서도 지워짐
-		if(n>0) {
-			req.setAttribute("code", "success");
-		}else {
-			req.setAttribute("code", "fail");
-		}
-		req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
+		
+		req.getRequestDispatcher("/coupon/list").forward(req, resp);
 	}
 }

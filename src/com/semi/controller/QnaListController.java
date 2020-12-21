@@ -36,7 +36,6 @@ public class QnaListController extends HttpServlet {
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
-		
 		ArrayList<QnaVo> list = dao.list(field, keyword, startRow, endRow);
 		
 		req.setAttribute("list", list);

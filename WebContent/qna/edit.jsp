@@ -17,7 +17,7 @@
 	<h1>Q n A</h1>
 	<h3>문의글 수정</h3>
 	<div id="box">
-		<form method="post" action="${pageContext.request.contextPath }/qna/insert">
+		<form method="post" action="${pageContext.request.contextPath }/qna/edit">
 			<input type="hidden" name="num" value="${vo.num }">
 			<input type="hidden" name="writer" value="${vo.writer }" >
 			<input type="hidden" name="pwd" value="${vo.pwd }">

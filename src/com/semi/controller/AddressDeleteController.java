@@ -1,6 +1,7 @@
 package com.semi.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,17 +14,20 @@ import com.semi.dao.AddressDao;
 @WebServlet("/address/delete")
 public class AddressDeleteController extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int num = Integer.parseInt(req.getParameter("num"));
-		System.out.println(num);
-//		AddressDao dao = AddressDao.getDao();
-//		int n = dao.delete(num);
-//		if(n>0) {
-//			req.setAttribute("code", "success");
-//		}else {
-//			req.setAttribute("code", "fail");
-//		}
-//		req.getRequestDispatcher("/address/result.jsp").forward(req, resp);
+		AddressDao dao = AddressDao.getDao();
+		int n =dao.delete(num);
+		
+		resp.setContentType("text/xml;charset=utf-8");
+		PrintWriter pw = resp.getWriter();
+		pw.print("<result>");
+		if(n>0) {
+			pw.print("<code>success</code>");
+		}else {
+			pw.print("<code>fail</code>");
+		}
+		pw.print("</result>");
+		
 	}
 }

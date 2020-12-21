@@ -99,8 +99,6 @@ public class QnaDao {
 		}
 	}
 	
-	
-	
 	public int insert(QnaVo vo) {
 		Connection con= null;
 		PreparedStatement pstmt=null;
@@ -130,8 +128,7 @@ public class QnaDao {
 		}
 	}
 	
-	 //글번호,작성자,비번으로 접근권한 체크하면서 조회까지 한번에 
-	public QnaVo check(int num, String writer, String pwd) {
+	public int check(int num, String writer, String pwd) {
 		Connection con= null;
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
@@ -144,28 +141,18 @@ public class QnaDao {
 			pstmt.setInt(3, num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				int n = rs.getInt("num");
-				String w = rs.getString("writer");
-				String p = rs.getString("pwd");
-				String t = rs.getString("type");
-				String c = rs.getString("contents");
-				Date r = rs.getDate("regdate");
-				String a = rs.getString("answer");
-				String tt = rs.getString("title");
-				QnaVo vo = new QnaVo(n, w, p, t, c, r, a, tt, null);
-				return vo;
+				return 1;
 			}else {
-				return null;
+				return 0;
 			}
 		}catch(SQLException s) {
 			s.printStackTrace();
-			return null;
+			return -1;
 		}finally{
 			DBCPBean.close(con, pstmt, rs);
 		}
 	}
 	
-	//수정버튼 누르면 수정페이지로 넘어갈때 불러오는 메소드
 	public QnaVo load(int num) {
 		Connection con= null;
 		PreparedStatement pstmt=null;
@@ -176,7 +163,6 @@ public class QnaDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
-			ArrayList<QnaVo> list = new ArrayList<QnaVo>();
 			QnaVo vo = null;
 			if(rs.next()) {
 				int n = rs.getInt("num");
@@ -206,7 +192,6 @@ public class QnaDao {
 		int num = vo.getNum();
 		String type = vo.getType();
 		String contents = vo.getContents();
-		String answer = vo.getAnswer();
 		try {
 			con=DBCPBean.getConn();
 			String sql ="update tbl_qna set type=?,contents=? where num=?";
@@ -243,7 +228,7 @@ public class QnaDao {
 	
 	
 	
-	public int delete(int n) { //문의 번호, 비번 받아 삭제
+	public int delete(int n) {
 		Connection con= null;
 		PreparedStatement pstmt=null;
 		try {

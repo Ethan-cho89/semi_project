@@ -31,23 +31,29 @@ public class AddressEditController extends HttpServlet {
 		int num = Integer.parseInt(req.getParameter("num"));
 		int isDefault = 0;
 		AddressDao dao = AddressDao.getDao();
+		boolean check = false;
 		int n=0;
 		try {
 			isDefault = Integer.parseInt(req.getParameter("isDefault")); // null이 아닐경우 1이 들어간다
-			int d=  dao.clean(id); //주소 전체를 지워서 주소 갯수만큼 숫자가 리턴
-			if(d!=-1 && d!=0) { 
-				n=1;
-			}
+			check=true;//오류가 안생겼다면 실행될 코드
 		}catch(NumberFormatException ne) {
 			
 		}finally {
-			AddressVo vo = new AddressVo(num, null, name, address, null, null, null, null, isDefault);
-			n += dao.edit(vo);
+			AddressVo vo = new AddressVo(num, id, name, address, null, null, null, null, isDefault);
+			n = dao.edit(check,vo);
 		}
-		if(n==2) {
-			req.setAttribute("code", "success");
-		}else {
-			req.setAttribute("code", "fail");
+		if(check) {
+			if(n>0) {
+				req.setAttribute("code", "success");
+			}else {
+				req.setAttribute("code", "fail");
+			}
+		}else if(!check){
+			if(n>0) {
+				req.setAttribute("code", "success");
+			}else {
+				req.setAttribute("code", "fail");
+			}
 		}
 		req.getRequestDispatcher("/address/result.jsp").forward(req, resp);
 	}
