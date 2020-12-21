@@ -24,10 +24,14 @@ public class LoginDao {
 		pstmt.setString(2, map.get("pwd"));
 		rs=pstmt.executeQuery();
 		if(rs.next()) {
-			return true;
+			if(!(rs.getInt("status")==0)) {
+				return true;
+			}
+			return false;
 		}else {
 			return false;
 		}
+		
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return false;

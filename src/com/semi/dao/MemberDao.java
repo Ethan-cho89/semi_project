@@ -1,7 +1,6 @@
 package com.semi.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,24 +94,8 @@ public class MemberDao {
 			DBCPBean.close(con, pstmt,null);
 		}
 	}
-	public int delete(String id) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		String sql="delete from tbl_member where id=?";
-		try {
-			con=DBCPBean.getConn();
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			int n=pstmt.executeUpdate();
-			return n;
-		}catch(SQLException se) {
-			se.printStackTrace();
-			return -1;
-		}finally {
-			DBCPBean.close(con, pstmt,null);
-		}
-	}
-	public Member mygetinfo(Member mem) {
+
+	public Member mygetinfo(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -120,7 +103,7 @@ public class MemberDao {
 			String sql="select * from tbl_member where id=?";
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,mem.getId());
+			pstmt.setString(1,id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				 Member mem1=new Member(
@@ -144,7 +127,7 @@ public class MemberDao {
 	public int update(Member mem) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql="update tbl_member set pwd=?,phone=? nick=? eokay=? where id=?";
+		String sql="update tbl_member set pwd=?,phone=? ,nick=? ,eokay=? where id=?";
 		try {
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
@@ -153,6 +136,23 @@ public class MemberDao {
 			pstmt.setString(3,mem.getNick()); 
 			pstmt.setInt(4,mem.getEokay());
 			pstmt.setString(5,mem.getId()); 
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt,null);
+		}
+	}
+	public int delete(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update tbl_member set status=0 where id=?";
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
 			int n=pstmt.executeUpdate();
 			return n;
 		}catch(SQLException se) {
@@ -189,6 +189,40 @@ public class MemberDao {
 			return null;
 		}finally {
 			DBCPBean.close(con, pstmt, rs);
+		}
+	}
+	public int block(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update tbl_member set status=3 where id=?";
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt,null);
+		}
+	}
+	public int unblock(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update tbl_member set status=1 where id=?";
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt,null);
 		}
 	}
 }

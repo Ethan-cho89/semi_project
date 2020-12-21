@@ -21,8 +21,7 @@
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
-				//alert("success");
-				// span#idcheck에 사용중인 아이디인지 사용 가능한 아이디인지 출력되도록 해보세요.
+				
 				var data=xhr.responseXML;
 				var using=data.getElementsByTagName("using")[0].firstChild.nodeValue;
 				var span=document.getElementById("idcheck");
@@ -63,6 +62,31 @@
          form.submit();
          }
     }
+    function inputPhoneNumber(obj) {
+        var number = obj.value.replace(/[^0-9]/g, "");
+        var phone = "";
+
+        if(number.length < 4) {
+            return number;
+        } else if(number.length < 7) {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3);
+        } else if(number.length < 11) {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3, 3);
+            phone += "-";
+            phone += number.substr(6);
+        } else {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3, 4);
+            phone += "-";
+            phone += number.substr(7);
+        }
+        obj.value = phone;
+    }
 </script>
 </head>
 <body>
@@ -80,7 +104,7 @@
     <input type="password" id="pwd-check" /><br />
 	
 	<label for="phone">전화번호</label><br />
-	<input type="text" name="phone" id="phone"><br>
+	<input type="text" name="phone" id="phone" onKeyup="inputPhoneNumber(this);" maxlength="13" placeholder="숫자로만 입력해주세요"> <br>
 	
 	<label for="nick">닉네임</label><br />
 	<input type="text" name="nick" id="nick"><br>

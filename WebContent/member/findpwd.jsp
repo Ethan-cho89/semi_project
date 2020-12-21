@@ -14,7 +14,7 @@
 닉네임<input type="text" id="nick" name="nick"><br>
 <input type="submit" value="찾기">
 <div>${msg }</div><br>
-<a href="login.jsp">로그인창으로 가기</a>
+<a href="<%=request.getContextPath() %>/member/login.jsp">로그인창으로 가기</a>
 </form>
 </body>
 </html>

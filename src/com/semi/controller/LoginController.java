@@ -24,11 +24,11 @@ public class LoginController extends HttpServlet{
 		LoginDao dao=new LoginDao();
 		boolean a=dao.isMember(map);
 		if(a) {
-			HttpSession session=req.getSession();//¼¼¼Ç°´Ã¼ ¾ò¾î¿À±â
+			HttpSession session=req.getSession();
 			session.setAttribute("id", id);
 			resp.sendRedirect(req.getContextPath()+"/home.jsp");
 		}else {
-			req.setAttribute("errMsg","¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö ¾Ê¾Æ¿ä!");
+			req.setAttribute("errMsg","ì…ë ¥í•˜ì‹  ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			req.getRequestDispatcher("/member/login.jsp").forward(req, resp);
 		}
 	}
