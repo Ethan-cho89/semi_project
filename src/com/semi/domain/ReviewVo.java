@@ -3,6 +3,7 @@ package com.semi.domain;
 import java.sql.Date;
 
 public class ReviewVo {
+	private int rnum;
 	private int inum;
 	private String iname;
 	private String id;
@@ -12,14 +13,25 @@ public class ReviewVo {
 	
 	public ReviewVo() {}
 
-	public ReviewVo(int inum, String iname, String id, int rate, String content, Date regdate) {
+	public ReviewVo(int rnum, int inum, String iname, String id, int rate, String content, Date regdate) {
 		super();
+		this.rnum = rnum;
 		this.inum = inum;
 		this.iname = iname;
 		this.id = id;
 		this.rate = rate;
 		this.content = content;
 		this.regdate = regdate;
+	}
+
+	
+	
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public int getInum() {

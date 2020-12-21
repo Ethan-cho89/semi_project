@@ -2,11 +2,14 @@ package com.semi.service;
 
 import java.util.List;
 
+import com.semi.domain.Criteria;
 import com.semi.domain.ItemVo;
 
 public interface ItemBoardService {
 	
 	public List<ItemVo> getList(int gender);
+	
+	public List<ItemVo> getList(int gender,Criteria cri);
 	
 	public ItemVo get(int num);
 	
@@ -17,4 +20,6 @@ public interface ItemBoardService {
 	public int delete(int num);
 	
 	public boolean modify(ItemVo vo);
+	
+	public int getTotal();
 }

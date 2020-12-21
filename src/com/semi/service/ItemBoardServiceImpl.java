@@ -3,6 +3,7 @@ package com.semi.service;
 import java.util.List;
 
 import com.semi.dao.ItemDao;
+import com.semi.domain.Criteria;
 import com.semi.domain.ItemVo;
 
 public class ItemBoardServiceImpl implements ItemBoardService {
@@ -57,6 +58,16 @@ public class ItemBoardServiceImpl implements ItemBoardService {
 	public boolean modify(ItemVo vo) {
 		vo.setDetail(vo.getDetail().replaceAll("/upload/temp", "/upload/"+vo.getNum()));
 		return dao.update(vo)>=1;
+	}
+	
+	@Override
+	public int getTotal() {
+		return dao.getTotal();
+	}
+
+	@Override
+	public List<ItemVo> getList(int gender, Criteria cri) {
+		return dao.getList(gender, cri);
 	}
 	
 }

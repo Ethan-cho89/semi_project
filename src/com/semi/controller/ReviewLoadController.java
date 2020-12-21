@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.semi.dao.ReviewDao;
 import com.semi.domain.ReviewVo;
 
@@ -21,10 +22,20 @@ public class ReviewLoadController extends HttpServlet {
 		int inum = Integer.parseInt(req.getParameter("inum"));
 		ReviewDao dao = ReviewDao.getDao();
 		int avgRate = dao.aveRate(inum);
+		
 		ArrayList<ReviewVo> list = dao.reviews(inum);
-		resp.setContentType("text/xml;charset=utf-8");
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		
+//		resp.setContentType("text/xml;charset=utf-8");
+		
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/plain;charset=utf-8");
+		
 		PrintWriter pw = resp.getWriter();
-		pw.print("<start>"); // 전체를 감싸는 태그가 없으면 못읽음
+		
+		/*pw.print("<start>"); // 전체를 감싸는 태그가 없으면 못읽음
 		pw.print("<avgrate>"+avgRate+"</avgrate>");
 
 		for(ReviewVo vo : list) {
@@ -36,9 +47,8 @@ public class ReviewLoadController extends HttpServlet {
 			pw.print("<content>"+vo.getContent()+"</content>");
 			pw.print("<regdate>"+vo.getRegdate()+"</regdate>");
 			pw.print("</review>");
-		}
-		pw.print("</start>");
+		}*/
 		
-		
+		pw.print(json.toString());
 	}
 }

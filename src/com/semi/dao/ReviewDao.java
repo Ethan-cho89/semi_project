@@ -43,13 +43,32 @@ public class ReviewDao {
 	
 	}
 	
+	public boolean delete(int rnum) {
+		Connection con= null;
+		PreparedStatement pstmt=null;
+		try{
+			con= DBCPBean.getConn();
+			String sql ="delete tbl_review where rnum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, rnum);
+			
+			return pstmt.executeUpdate()>=1;
+			
+		}catch(SQLException s){
+			s.printStackTrace();
+		}finally{
+			DBCPBean.close(con, pstmt, null);
+		}
+		return false;
+	}
+	
 	public ArrayList<ReviewVo> reviews(int n){ //작성자 + 리뷰내용 + 리뷰당 먹힌 점수
 		Connection con= null;
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
 		try{
 			con= DBCPBean.getConn();
-			String sql ="select aa.inum, aa.name, r.id, r.rate, r.content, r.regdate from tbl_review r join " + 
+			String sql ="select r.rnum,aa.inum, aa.name, r.id, r.rate, r.content, r.regdate from tbl_review r join " + 
 					"( " + 
 					"    select o.num, a.num inum, a.name from tbl_order o join " + 
 					"    ( " + 
@@ -61,13 +80,14 @@ public class ReviewDao {
 			rs = pstmt.executeQuery();
 			ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 			while(rs.next()) {
+				int rnum=rs.getInt("rnum");
 				int inum= rs.getInt("inum");
 				String iname= rs.getString("name");
 				String id = rs.getString("id");
 				int rate = rs.getInt("rate");
 				String content = rs.getString("content");
 				Date regdate = rs.getDate("regdate");
-				ReviewVo vo = new ReviewVo(inum, iname, id, rate, content, regdate);
+				ReviewVo vo = new ReviewVo(rnum,inum, iname, id, rate, content, regdate);
 				list.add(vo);
 			}
 			return list;

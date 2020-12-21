@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.semi.domain.Criteria;
 import com.semi.domain.ItemVo;
 import com.semi.domain.PhotoVo;
 import com.semi.service.PhotoService;
@@ -28,6 +29,16 @@ public class ItemDao {
 		return instance;
 	}
 
+	public int getTotal() {
+		return jdbcTemplate.queryForObject("select count(*) from tbl_item",
+				new RowMapper<Integer>() {
+					@Override
+					public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+						return rs.getInt(1);
+					}
+				});
+	}
+	
 	public int add(ItemVo vo) {
 		return jdbcTemplate.update("insert into tbl_item values(?,?,?,?,?,0,0,?)",
 				new Object[] {
@@ -72,6 +83,42 @@ public class ItemDao {
 					}
 				});
 
+		return list;
+	}
+	
+	public List<ItemVo> getList(int gender,Criteria cri) {
+		PhotoService photoService = PhotoServiceImpl.getInstance();
+		//Index_desc
+		String sql = "select num,name,type,price,detail,review,avgrate,gender\r\n" + 
+				"from\r\n" + 
+				"(\r\n" + 
+				"    select /*+Index(tbl_item pk_item)*/\r\n" + 
+				"            rownum rn,num,name,type,price,detail,review,avgrate,gender\r\n" + 
+				"    from tbl_item\r\n" + 
+				"    where gender = ? and\r\n" + 
+				"         rownum <= ?\r\n" + 
+				")\r\n" + 
+				"where rn > ?";
+		
+		List<ItemVo> list = jdbcTemplate.query(sql, 
+				new Object[] {gender,cri.getAmount()*cri.getPageNum(),cri.getAmount()*(cri.getPageNum()-1)},
+				new RowMapper<ItemVo>() {
+			@Override
+			public ItemVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ItemVo vo = new ItemVo(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getInt(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getInt(8));
+				
+				return vo;
+			}
+		});
+		
 		return list;
 	}
 	

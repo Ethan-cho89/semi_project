@@ -4,6 +4,12 @@
 <%@include file="../include/header.jsp" %><!-- <body> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
+<style>
+  #itemContent{
+ 	border: 1px solid;
+  }
+</style>
+
 <div>상품 상세</div>
 상품명 : ${vo.name}<br>
 분류 : ${vo.type }<br>
@@ -21,9 +27,9 @@
 </select>
 <div id="itemList">
 
-</div>
+</div>
 <div id="totalPriceDiv">
-
+총 금액 : 0
 </div>
 
 <input type="hidden" id="totPriceInput" name="totPrice" value="0">
@@ -42,18 +48,26 @@
 </c:if>
 
 상품설명
-${vo.detail }<br>
+<div id="itemContent">
+	${vo.detail }
+</div>
+
+
 리뷰 수 : ${vo.review}<br>
 평점 : ${vo.avgrate }<br>
-
+<ul id ="reviewUl">
+</ul>
 
 <script type="text/javascript">
+var reviewUl = document.getElementById("reviewUl");
 var totalPriceDiv = document.getElementById("totalPriceDiv");
 var totPriceInput = document.getElementById("totPriceInput");
 var select = document.getElementById("sizeSelect");
 var itemList = document.getElementById("itemList");
+
 var sizeMap = new Map();
 var selectedItemMap = new Map();
+var inum = <c:out value="${vo.num}" />;
 
 sizeMap.set("S",[<c:out value="${S.count}"/>,<c:out value="${S.snum}"/>]);
 sizeMap.set("M",[<c:out value="${M.count}"/>,<c:out value="${M.snum}"/>]);
@@ -106,6 +120,7 @@ window.onload = function(){
 			e.preventDefault();
 			itemList.removeChild(itemDiv);
 			selectedItemMap.delete(size);
+			sumPrice();
 		}, false);
 		
 		itemDiv.appendChild(btn);
@@ -117,7 +132,63 @@ window.onload = function(){
 		 sumPrice();
 		
 	},false);
-}
+	
+	readReview();
+	
+}//onload
+
+	function readReview(){
+		$.ajax({
+			type : "GET",
+			url : "/review/load?inum="+inum,
+			success : function(data) {
+				
+				while(reviewUl.firstChild){
+					reviewUl.removeChild(reviewUl.firstChild);
+				}
+				
+				console.log(data);
+				var json = JSON.parse(data);
+				console.log(json);		
+				
+				for(obj of json){
+					var li = document.createElement("li");
+					li.innerHTML = obj.id +" "+obj.rate +" "+obj.content;
+					
+					<c:if test="${true}">
+						let btn = document.createElement("button");
+						let rnum = obj.rnum;
+						btn.innerHTML="삭제";
+						
+						btn.addEventListener("click",function(e){
+							removeReview(rnum);
+							console.log("A");
+						},false);
+						
+						li.appendChild(btn);
+					</c:if>
+					
+					reviewUl.appendChild(li);
+				}
+			},
+			failure:function(){
+				console.log("error");
+			}
+			
+		});
+	}
+	
+	function removeReview(num){
+		$.ajax({
+			data : {'rnum':num},
+			type : 'get',
+			url : "/review/delete",
+			success : function(data) {
+				readReview();
+			}
+		});
+	}
+	
 	function onClickAddCart(){
 		console.log(selectedItemMap.size);
 		if(selectedItemMap.size<1){
@@ -125,7 +196,6 @@ window.onload = function(){
 		}
 		
 		var itemForm = $("#itemForm");
-		
 
 		$.ajax({
 			data : itemForm.serialize(),
