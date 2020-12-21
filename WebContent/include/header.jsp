@@ -23,7 +23,7 @@
 		<c:otherwise> 
 			<span style="color:red;font-size:0.8em">${id }님 반갑습니다.</span>
 			<a href="${cp}/member/logout">로그아웃</a>
-			<a href="${cp}/member/list">마이페이지</a>
+			<a href="${cp}/shoppinginfo/orderlist">마이페이지</a>
 		</c:otherwise>
 	</c:choose>		
 	
