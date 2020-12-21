@@ -12,11 +12,11 @@ import com.semi.dao.MemberDao;
 import com.semi.domain.Member;
 
 @WebServlet("/member/join")
-public class JoinController extends HttpServlet{
+public class MemberJoinController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		//1.Àü¼ÛµÈ ÆÄ¶ó¹ÌÅÍ¸¦ db¿¡ ÀúÀåÇÏ±â
+		//1.ï¿½ï¿½ï¿½Ûµï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		String id=req.getParameter("id");
 		String pwd=req.getParameter("pwd");
 		String phone=req.getParameter("phone");

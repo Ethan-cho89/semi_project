@@ -13,7 +13,7 @@ import com.semi.dao.MemberDao;
 import com.semi.domain.Member;
 
 @WebServlet("/member/delete")
-public class DeleteController extends HttpServlet{
+public class MemberDeleteController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session=req.getSession();

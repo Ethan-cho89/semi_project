@@ -6,6 +6,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.wrap{
+            width: 250px;
+            margin: 30px auto;
+        }
+	.mytitle{
+            text-align: center;
+            }
+    
+    input[value='회원가입하기(만 14세 이상)']{
+    	 	width: 250px;
+            height: 50;
+
+            color: white;
+
+            background-color: black;
+            background-position: center;
+
+            border-radius: 10px;
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+            
+            cursor: pointer;
+        } 
+        .input-group {
+		    top: 180px;
+		   
+		    width: 280px;
+		    transition: .5s;
+		}
+		.input-field {
+		    width: 100%;
+		    padding: 10px 0;
+		    margin: 5px 0;
+		    border: none;
+		    border-bottom: 1px solid #999;
+		    outline: none;
+		    background: transparent;
+		}
+
+</style>
 <script type="text/javascript">
 	var xhr=null;
 	function checkid() {
@@ -98,30 +140,37 @@
 </script>
 </head>
 <body>
-<h1>회원가입</h1>
-<form name="boardWriteForm" action="../member/join" method="post">
-	<label for="email">이메일 아이디</label><br />
-	<input type="email" id="id" name="id" placeholder="example@domain.com" required="required">
-	<input type="button" value="중복검사" onclick="checkid()"><br>
-	<span id="idcheck"></span><br>
-	
-	<label for="pwd">비밀번호</label><br />
-    <input type="password" id="pwd" name="pwd"/><br />
-   
-    <label for="pwd-check">비밀번호확인</label><br />
-    <input type="password" id="pwd-check" /><br />
-	
-	<label for="phone">전화번호</label><br />
-	<input type="text" name="phone" id="phone" onKeyup="inputPhoneNumber(this);" maxlength="13" placeholder="숫자로만 입력해주세요"> <br>
-	
-	<label for="nick">닉네임</label><br />
-	<input type="text" name="nick" id="nick"><br>
-	
-	<label for="eokay">이메일 수신 여부</label>
-	<input type="checkbox" name="eokay"id="eokay">수신<br><br>
-	<input type="button" value="회원가입" onclick="test()">
-</form>
 
+	<form name="boardWriteForm" action="../member/join" method="post">
+	<div class="wrap">
+	 <div class="mytitle"> 
+		<h2>쇼핑몰 멤버 가입</h2>
+	 </div>
+	 <div class="input-group">
+		<label for="email">이메일 아이디</label><br />
+		<input type="email" id="id" name="id" placeholder="example@domain.com" required="required" class="input-field">
+		<input type="button" value="중복검사" onclick="checkid()"><br>
+		<span id="idcheck"></span><br>
+		
+		<label for="pwd">비밀번호</label><br />
+	    <input type="password" id="pwd" name="pwd" class="input-field"/><br/><br/>
+	   
+	    <label for="pwd-check">비밀번호확인</label><br />
+	    <input type="password" id="pwd-check" class="input-field"/><br /><br/>
+		
+		<label for="phone">전화번호</label><br />
+		<input type="text" name="phone" id="phone" onKeyup="inputPhoneNumber(this);" maxlength="13" placeholder="숫자로만 입력해주세요" class="input-field"><br/> <br>
+		
+		<label for="nick">닉네임</label><br />
+		<input type="text" name="nick" id="nick" class="input-field"><br><br/>
+		
+		<label for="eokay">이메일 수신 여부</label>
+		<input type="checkbox" name="eokay"id="eokay">수신<br><br>
+		<input type="button" value="회원가입하기(만 14세 이상)" onclick="test()">
+		</div>
+		</div>
+	</form>
+
+<%@include file="../include/footer.jsp" %>
 </body>
 </html>
-<%@include file="../include/footer.jsp" %>

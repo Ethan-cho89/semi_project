@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.semi.dao.LoginDao;
 
 @WebServlet("/member/login")
-public class LoginController extends HttpServlet{
+public class MemberLoginController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=req.getParameter("id");

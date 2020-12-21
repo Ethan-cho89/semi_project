@@ -14,7 +14,7 @@ import com.semi.domain.Member;
 
 
 @WebServlet("/findpwd")
-public class PwdController extends HttpServlet{
+public class MemberPwdController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=req.getParameter("id");

@@ -14,7 +14,7 @@ import com.semi.domain.Member;
 
 
 @WebServlet("/member/list")
-public class listController extends HttpServlet{
+public class MemberlistController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
