@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.semi.domain.Criteria;
 import com.semi.domain.ReviewVo;
 import com.semi.util.db.DBCPBean;
 
@@ -60,6 +62,48 @@ public class ReviewDao {
 			DBCPBean.close(con, pstmt, null);
 		}
 		return false;
+	}
+	
+	public List<ReviewVo> getListWithPage(int num,Criteria cri){
+		Connection con= null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try{
+			con= DBCPBean.getConn();
+			String sql ="select *" + 
+					"from (" + 
+					"    select rownum rn,v.*" + 
+					"    from view_or v" + 
+					"    where inum =? and rownum<=?" + 
+					")" + 
+					"where rn >?";
+			int start = (cri.getPageNum()-1)*cri.getAmount();
+			int end = cri.getPageNum() * cri.getAmount();
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, end);
+			pstmt.setInt(3,start);
+			rs = pstmt.executeQuery();
+			List<ReviewVo> list = new ArrayList<ReviewVo>();
+			while(rs.next()) {
+				int rnum=rs.getInt("rnum");
+				int inum= rs.getInt("inum");
+				String iname= rs.getString("name");
+				String id = rs.getString("id");
+				int rate = rs.getInt("rate");
+				String content = rs.getString("content");
+				Date regdate = rs.getDate("regdate");
+				ReviewVo vo = new ReviewVo(rnum,inum, iname, id, rate, content, regdate);
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException s){
+			s.printStackTrace();
+			return null;
+		}finally{
+			DBCPBean.close(con, pstmt, rs);
+		}
 	}
 	
 	public ArrayList<ReviewVo> reviews(int n){ //작성자 + 리뷰내용 + 리뷰당 먹힌 점수

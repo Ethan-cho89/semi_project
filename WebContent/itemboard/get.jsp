@@ -29,7 +29,7 @@
 
 </div>
 <div id="totalPriceDiv">
-총 금액 : 0
+	총 금액 : 0
 </div>
 
 <input type="hidden" id="totPriceInput" name="totPrice" value="0">
@@ -39,14 +39,14 @@
 <button onclick="onClickAddCart()">장바구니 담기</button>
 <button onclick="onClickPay()">결제</button>
 
-<c:if test="${true}">
+<c:if test="${status==4}">
 	<form method="get">
 		<input type="hidden" name="num" value="${vo.num}">
 		<input type="submit" formaction="/itemboard/update" value="수정">
 		<input type="submit" formaction="/itemboard/delete" value="삭제">
 	</form>
 </c:if>
-
+<br>
 상품설명
 <div id="itemContent">
 	${vo.detail }
@@ -57,17 +57,25 @@
 평점 : ${vo.avgrate }<br>
 <ul id ="reviewUl">
 </ul>
+<c:if test="${vo.review>0 }">
+	<button id="btnshowReview" onclick="showMoreReview()">리뷰 더보기</button>
+</c:if>
 
 <script type="text/javascript">
+const amount = 5;
+
 var reviewUl = document.getElementById("reviewUl");
 var totalPriceDiv = document.getElementById("totalPriceDiv");
 var totPriceInput = document.getElementById("totPriceInput");
 var select = document.getElementById("sizeSelect");
 var itemList = document.getElementById("itemList");
+var btnshowReview = document.getElementById("btnshowReview");
 
 var sizeMap = new Map();
 var selectedItemMap = new Map();
 var inum = <c:out value="${vo.num}" />;
+var reviewCnt =  <c:out value="${vo.review}" />;
+var reviewPage = 1;
 
 sizeMap.set("S",[<c:out value="${S.count}"/>,<c:out value="${S.snum}"/>]);
 sizeMap.set("M",[<c:out value="${M.count}"/>,<c:out value="${M.snum}"/>]);
@@ -133,36 +141,38 @@ window.onload = function(){
 		
 	},false);
 	
-	readReview();
+	readReview(reviewPage++);
+	
+	btnshowReview.addEventListener("click", function(e) {
+		var cnt = reviewPage*amount;
+		
+		if(cnt >= reviewCnt){
+			btnshowReview.style.display = 'none';
+		}
+		readReview(reviewPage++);
+	}, false)
 	
 }//onload
-
-	function readReview(){
+	
+	function readReview(page){
 		$.ajax({
+			data : {"inum":inum,"pageNum":page,"amount":amount},
 			type : "GET",
-			url : "/review/load?inum="+inum,
+			url : "/review/load",
 			success : function(data) {
-				
-				while(reviewUl.firstChild){
-					reviewUl.removeChild(reviewUl.firstChild);
-				}
-				
-				console.log(data);
 				var json = JSON.parse(data);
-				console.log(json);		
 				
 				for(obj of json){
 					var li = document.createElement("li");
 					li.innerHTML = obj.id +" "+obj.rate +" "+obj.content;
 					
-					<c:if test="${true}">
+					<c:if test="${status == 4}">
 						let btn = document.createElement("button");
 						let rnum = obj.rnum;
 						btn.innerHTML="삭제";
 						
 						btn.addEventListener("click",function(e){
-							removeReview(rnum);
-							console.log("A");
+							removeReview(li,rnum);
 						},false);
 						
 						li.appendChild(btn);
@@ -178,13 +188,14 @@ window.onload = function(){
 		});
 	}
 	
-	function removeReview(num){
+	function removeReview(li,num){
 		$.ajax({
 			data : {'rnum':num},
 			type : 'get',
 			url : "/review/delete",
 			success : function(data) {
-				readReview();
+				reviewUl.removeChild(li);
+				//readReview();
 			}
 		});
 	}

@@ -3,6 +3,7 @@ package com.semi.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.semi.dao.ReviewDao;
+import com.semi.domain.Criteria;
 import com.semi.domain.ReviewVo;
 
 @WebServlet("/review/load")
@@ -20,10 +22,12 @@ public class ReviewLoadController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		int inum = Integer.parseInt(req.getParameter("inum"));
-		ReviewDao dao = ReviewDao.getDao();
-		int avgRate = dao.aveRate(inum);
+		int amount = Integer.parseInt(req.getParameter("amount"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
-		ArrayList<ReviewVo> list = dao.reviews(inum);
+		ReviewDao dao = ReviewDao.getDao();
+		
+		List<ReviewVo> list = dao.getListWithPage(inum, new Criteria(pageNum,amount));
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
