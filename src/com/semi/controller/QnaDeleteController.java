@@ -17,11 +17,6 @@ public class QnaDeleteController extends HttpServlet{
 		int num = Integer.parseInt(req.getParameter("num"));
 		QnaDao dao = QnaDao.getDao();
 		int n =dao.delete(num);
-		if(n>0) {
-			req.setAttribute("code", "success");
-		}else {
-			req.setAttribute("code", "fail");
-		}
-		req.getRequestDispatcher("/qna/result.jsp").forward(req, resp);
+		resp.sendRedirect(req.getContextPath()+"/qna/list");
 	}
 }

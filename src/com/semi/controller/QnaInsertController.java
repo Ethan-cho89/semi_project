@@ -29,11 +29,8 @@ public class QnaInsertController extends HttpServlet{
 		QnaVo vo = new QnaVo(0, writer, pwd, type, contents, null, null, title,null);
 		QnaDao dao = QnaDao.getDao();
 		int n = dao.insert(vo);
-		if(n>0) {
-			req.setAttribute("code", "success");
-		}else {
-			req.setAttribute("code", "fail");
-		}
-		req.getRequestDispatcher("/qna/result.jsp").forward(req, resp);
+		
+		resp.sendRedirect(req.getContextPath()+"/qna/list");
+		
 	}
 }
