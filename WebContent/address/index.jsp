@@ -8,6 +8,4 @@
 <%
 	session.setAttribute("id", "kaka");
 %>
-
-
 <%@include file="../include/footer.jsp" %>

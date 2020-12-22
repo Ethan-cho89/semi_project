@@ -31,10 +31,11 @@ public class CouponInsertController extends HttpServlet{
 		int n = dao.insert(vo);
 		
 		if(n==2) {
-			req.setAttribute("code", "success");
+			resp.sendRedirect(req.getContextPath()+"/coupon/list");
 		}else {
 			req.setAttribute("code", "fail");
+			req.setAttribute("errMsg", "중복된 값이 없는지 확인해주세요");
+			req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
 	}
 }

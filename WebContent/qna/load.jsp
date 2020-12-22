@@ -50,8 +50,7 @@
 								&nbsp;|&nbsp;
 						</c:when>
 						<c:otherwise>
-								수정 <%-- 관리자는 회원 게시글 수정 권한이 없음 삭제만 가능! --%>
-								&nbsp;|&nbsp;
+								<td colspan="2" style="text-align: center;">
 								<a href="${cp}/qna/edit?num=${vo.num}">답글달기</a>
 								&nbsp;|&nbsp;
 						</c:otherwise>

@@ -6,6 +6,8 @@
 <style>
 	#wrap{width:1000px; margin:auto; margin-bottom:50px; margin-top:50px; align-content: center; text-align : center;}
 	#wrap a{text-decoration: none; color:black; font-weight: 550;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
+	td{font-size:14px;}
 </style>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 
@@ -15,7 +17,7 @@
 	<h1>쿠폰관리</h1>
 	<c:choose>
 		<c:when test="${!empty list }">
-			<a href="${cp }/coupon/list?pageNum=1" style="font-size:15px">전체목록</a>&nbsp;|&nbsp;
+			<a href="${cp }/coupon/list?pageNum=1" style="font-size:15px">전체목록</a>&nbsp;|
 			<a href="${cp }/coupon/insert" style="font-size:15px">쿠폰발급</a>
 			<table width="800" cellspacing=1 cellpadding=2 bgcolor="white" id="listTable"  style="margin: auto; margin-top:15px;">
 				<tr style="background-color: #EAEAEA;">
@@ -66,7 +68,7 @@
 				<option value="dcrate" <c:if test="${field=='dcrate'}">selected</c:if>>할인율</option>
 			</select>
 			<input type="text" name = "keyword" value="${keyword }">
-			<input type="submit" value="검색">
+			<input type="submit" class="button" value="검색">
 		</form>
 	</div>
 </div>

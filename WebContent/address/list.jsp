@@ -56,7 +56,7 @@ td:nth-child(5) {width: 100px;}
 				</tr>
 			</table>
 			<table width="800" cellspacing=1 cellpadding=2 bgcolor="white"
-				id="listTable" style="margin: auto;">
+				id="listTable" style="margin: auto; font-size:14px;">
 			</table>
 
 </div>
@@ -90,7 +90,6 @@ td:nth-child(5) {width: 100px;}
 				var listTable = document.getElementById("listTable");
 				var json = JSON.parse(xhr.responseText);
 				if(json[0].code==false){
-					// 다 지우고 비었다는 메시지 띄울 수 있는지!?
 				}else{
 					for (let i = 0; i < json.length; i++) {
 						var num = json[i].num;

@@ -44,17 +44,20 @@ public class AddressEditController extends HttpServlet {
 		}
 		if(check) {
 			if(n>0) {
-				req.setAttribute("code", "success");
+				resp.sendRedirect(req.getContextPath()+"/address/list");
 			}else {
 				req.setAttribute("code", "fail");
+				req.setAttribute("errMsg", "ERROR CODE:'0012' 관리자에게 문의해주세요");
+				req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
 			}
 		}else if(!check){
 			if(n>0) {
-				req.setAttribute("code", "success");
+				resp.sendRedirect(req.getContextPath()+"/address/list");
 			}else {
 				req.setAttribute("code", "fail");
+				req.setAttribute("errMsg", "ERROR CODE:'0013' 관리자에게 문의해주세요");
+				req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
 			}
 		}
-		req.getRequestDispatcher("/address/result.jsp").forward(req, resp);
 	}
 }

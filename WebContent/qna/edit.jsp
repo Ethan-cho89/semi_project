@@ -10,7 +10,9 @@
 	td:nth-child(1) {width:70px;}
 	td:nth-child(2) {width:280px;}
 	#wrap a{text-decoration: none; color:black;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
 </style>
+
 
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <div id="wrap">
@@ -37,7 +39,7 @@
 				</tr>
 				<tr>
 					<td><label for="title" >제목</label></td>
-					<td><input type="text" name="title" size="36px" value="${vo.title }" required="required"></td>
+					<td><input type="text" id= "title" name="title" size="36px" value="${vo.title }" required="required"></td>
 				</tr>
 				<tr>
 					<td>문의유형</td>
@@ -58,13 +60,17 @@
 					<td colspan="2"><textarea rows="5" cols="50" id="contents" name="contents" required="required">${vo.contents }</textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><input type="submit" value="등록"></td>
+					<td colspan="2" style="text-align: center;">
+						<input type="submit" id="upload" class="button" value="등록">
+					</td>
 				</tr>
 				<c:if test="${status==4}">
-				<script type="text/javascript">
+				<script>
 					document.getElementById("type").disabled="disabled";
 					document.getElementById("title").disabled="disabled";
 					document.getElementById("contents").disabled="disabled";
+					document.getElementById("upload").disabled="disabled";
+					document.getElementById("upload").style="display:none;";
 				</script>
 				<tr></tr>
 				<tr>
@@ -74,7 +80,10 @@
 					<td colspan="2"><textarea rows="5" cols="50" id="answer" name="answer">${vo.answer}</textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="저장">|<input type="reset" value="초기값"></td>
+					<td colspan="2" style="text-align: center;">
+						<input type="submit" class="button" value="저장">&nbsp;&nbsp;|
+						<input type="reset" class="button" value="초기값">
+					</td>
 				</tr>
 			</c:if>
 			</table>

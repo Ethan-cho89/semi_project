@@ -36,11 +36,13 @@ public class AddressInsertController extends HttpServlet{
 			AddressVo vo = new AddressVo(0, id, name, address, null, null, null, null, isDefault);
 			n = dao.insert(check,vo);
 		}
+		
 		if(n>0) {
-			req.setAttribute("code", "success");
+			resp.sendRedirect(req.getContextPath()+"/address/list");
 		}else {
 			req.setAttribute("code", "fail");
+			req.setAttribute("errMsg", "ERROR CODE:'0010' 관리자에게 문의해주세요");
+			req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/address/result.jsp").forward(req, resp);
 	}
 }

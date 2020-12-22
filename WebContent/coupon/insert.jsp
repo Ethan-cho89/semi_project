@@ -9,6 +9,7 @@
 	#wrap #box{width:300px; margin:auto; margin-top:50px; margin-bottom:50px; text-align:left; font-weight:bold;}
 	#wrap a{text-decoration: none; color:black;}
 	td:nth-child(1){width:100px;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
 </style>
 
 <script>
@@ -64,7 +65,7 @@
 				</table>
 			</fieldset>
 			<div style="text-align:center; margin-top:8px;">
-				<input type="submit"value="등록">
+				<input type="submit" class="button" value="등록">
 			</div>
 		</form>
 	</div>

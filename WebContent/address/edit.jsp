@@ -10,6 +10,7 @@
 	td:nth-child(1) {width:70px;}
 	td:nth-child(2) {width:280px;}
 	#wrap a{text-decoration: none; color:black;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
 </style>
 
 
@@ -34,7 +35,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><input type="submit" value="수정"></td>
+					<td colspan="2" style="text-align: center;"><input type="submit" class="button" value="수정"></td>
 				</tr>
 			</table>
 		</form>		

@@ -7,6 +7,8 @@
 <style>
 	#wrap{width:1000px; margin:auto; margin-bottom:50px; align-content: center; text-align : center;}
 	#wrap a{text-decoration: none; color:black; font-weight: 550;}
+	td{font-size:14px;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
 </style>
 
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
@@ -63,7 +65,7 @@
 						<option value="title" <c:if test="${field=='title' }">selected</c:if>>제목</option>
 					</select>
 					<input type="text" name = "keyword" value="${keyword }">
-					<input type="submit" value="검색">
+					<input type="submit" class="button" value="검색">
 				</form>
 			</div>
 		</c:when>

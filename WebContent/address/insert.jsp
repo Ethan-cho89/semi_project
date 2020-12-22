@@ -10,6 +10,8 @@
 	td:nth-child(1) {width:70px;}
 	td:nth-child(2) {width:280px;}
 	#wrap a{text-decoration: none; color:black;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
+	#checkBox{cue-after: "white";}
 </style>
 
 <div id="wrap">
@@ -28,10 +30,10 @@
 					<td><input type="text" id="address" name="address" size="40" required="required"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="checkbox" name="isDefault" value="1">기본배송지로 설정</td>
+					<td colspan="2"><input type="checkbox" id="checkBox" name="isDefault" value="1">기본배송지로 설정</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center"><input type="submit" value="추가"></td>
+					<td colspan="2" style="text-align: center"><input type="submit" class="button" value="추가"></td>
 				</tr>
 			</table>
 		</form>		

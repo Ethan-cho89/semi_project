@@ -28,6 +28,5 @@ public class AddressDeleteController extends HttpServlet {
 			pw.print("<code>fail</code>");
 		}
 		pw.print("</result>");
-		
 	}
 }

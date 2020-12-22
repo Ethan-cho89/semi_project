@@ -9,6 +9,7 @@
 	#wrap #box{width:260px; margin:auto; margin-top:50px; margin-bottom:50px; text-align:left; font-weight:bold;}
 	td:nth-child(1) {width:70px;}
 	td:nth-child(2) {width:100px;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:white; font-weight:bold; font-size:16px;}
 </style>
 
 <div id="wrap">
@@ -27,7 +28,7 @@
 					<td><input type="password" name="pwd" required="required"></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><input type="submit" value="확인"></td>			
+					<td colspan="2" style="text-align: center;"><input type="submit" class="button" value="확인"></td>			
 				</tr>
 				<c:if test="${code!=null }">
 				<tr>

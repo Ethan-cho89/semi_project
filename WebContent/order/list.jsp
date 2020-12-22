@@ -11,6 +11,8 @@
 	#wrap #box{width:800px; margin:auto; margin-top:50px; align-content: center; text-align:center;}
 	#wrap a{text-decoration: none; color:black; font-weight: 550;}
 	th:nth-child(2) {width:300px;}
+	td{font-size: 14px;}
+	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:#F6F6F6; font-weight:bold;}
 </style>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 
@@ -67,7 +69,7 @@
 							<option value="6" <c:if test="${vo.ship==6}">selected</c:if>>반품신청</option>
 							<option value="7" <c:if test="${vo.ship==7}">selected</c:if>>반품완료</option>
 						</select>&nbsp;&nbsp;
-						<input type="button" value="저장" id="button" onclick="update(${vo.num})"> 
+						<input type="button" value="저장" class="button" onclick="update(${vo.num})"> 
 					</td>
 				</tr>
 				</c:forEach>
@@ -96,8 +98,8 @@
 							<option value="num" <c:if test="${field==num}">checked</c:if>>주문번호</option>
 							<option value="id" <c:if test="${field==id}">checked</c:if>>아이디</option> <%-- 가능하면 날짜 검색기능도 --%>
 						</select>
-						<input type="text" name="keyword">&nbsp;&nbsp;
-						<input type="submit" value="검색">
+						<input type="text" name="keyword">&nbsp;
+						<input type="submit" class="button" style="background-color:white; font-size:16px;" value="검색">
 					</div>
 				</form>
 			</div>

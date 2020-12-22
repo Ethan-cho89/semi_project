@@ -3,6 +3,8 @@
 
 <%@include file="../include/header.jsp" %>
 
-<a href="${pageContext.request.contextPath }/order/list">주문관리</a> <%--배송상태 관리 하는 기능(판매물품 상태 처리) --%>
-
+<a href="${pageContext.request.contextPath }/qna/list">QnA페이지</a>
+<%
+	session.setAttribute("status", 4);
+%>
 <%@include file="../include/footer.jsp" %>

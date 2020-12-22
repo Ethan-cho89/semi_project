@@ -43,11 +43,13 @@ public class QnaEditController extends HttpServlet{
 			QnaVo vo = new QnaVo(num, writer, pwd, type, contents, null, null, title, null);
 			n = dao.edit(vo);
 		}
+		
 		if(n>0) {
-			req.setAttribute("code", "success");
+			resp.sendRedirect(req.getContextPath()+"/qna/list");
 		}else {
 			req.setAttribute("code", "fail");
+			req.setAttribute("errMsg", "ERROR CODE:'0001' 관리자에게 문의해주세요");
+			req.getRequestDispatcher("/coupon/result.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/qna/result.jsp").forward(req, resp);
 	}
 }
