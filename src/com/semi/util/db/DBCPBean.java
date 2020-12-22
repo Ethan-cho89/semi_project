@@ -35,7 +35,7 @@ public class DBCPBean {
 	public static void close(AutoCloseable... ac) {
 		try {
 			for (int i = ac.length - 1; i >= 0; i--) {
-				if (ac != null) {
+				if (ac[i] != null) {
 					ac[i].close();
 				}
 			}
