@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.semi.dao.LoginDao;
+import com.semi.dao.MemberDao;
+import com.semi.domain.Member;
 
 @WebServlet("/member/login")
 public class MemberLoginController extends HttpServlet{
@@ -22,10 +24,13 @@ public class MemberLoginController extends HttpServlet{
 		map.put("id",id);
 		map.put("pwd",pwd);
 		LoginDao dao=new LoginDao();
+		MemberDao dao1=new MemberDao();
 		boolean a=dao.isMember(map);
+		int n=dao1.authority(id);
 		if(a) {
 			HttpSession session=req.getSession();
 			session.setAttribute("id", id);
+			session.setAttribute("status", n);
 			resp.sendRedirect(req.getContextPath()+"/home.jsp");
 		}else {
 			req.setAttribute("errMsg","입력하신 아이디 또는 비밀번호가 없습니다.");

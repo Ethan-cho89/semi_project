@@ -30,7 +30,7 @@ public class MemberDao {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt,null);
+			DBCPBean.close(con,pstmt);
 		}
 	}
 	public static String randomPassword(int length){
@@ -91,7 +91,7 @@ public class MemberDao {
 			se.printStackTrace();
 			return null;
 		}finally {
-			DBCPBean.close(con, pstmt,null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 
@@ -142,7 +142,7 @@ public class MemberDao {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt,null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 	public int delete(String id) {
@@ -159,7 +159,7 @@ public class MemberDao {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt,null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 	public ArrayList<Member> list(){
@@ -205,7 +205,7 @@ public class MemberDao {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt,null);
+			DBCPBean.close(con, pstmt);
 		}
 	}
 	public int unblock(String id) {
@@ -222,7 +222,28 @@ public class MemberDao {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt,null);
+			DBCPBean.close(con, pstmt);
+		}
+	}
+	public int authority(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			String sql="select status from tbl_member where id=?";
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+	            return rs.getInt(1);
+	         }
+			return -1;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt, rs);
 		}
 	}
 }

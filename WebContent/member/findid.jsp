@@ -27,7 +27,7 @@
 	}catch(SQLException se){
 		se.printStackTrace();
 	}finally{
-		DBCPBean.close(con, pstmt, rs);
+		DBCPBean.close(con,pstmt,rs);
 	}
 	if(id!=null){
 %>

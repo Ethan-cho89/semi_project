@@ -38,7 +38,7 @@
            
             color: white;
 
-            background-color: black;
+            background-color: gray;
             background-position: center;
 
             border-radius: 5px;
