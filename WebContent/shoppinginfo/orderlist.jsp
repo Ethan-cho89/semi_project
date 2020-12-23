@@ -8,24 +8,12 @@
 <meta charset="UTF-8">
 <title>주문내역</title>
 <style type="text/css">
-	*{margin: 0px;padding: 0px;}
-	#left{width:200px; height:400px;border:2px solid gray;background-color: white;left:350px;top:100px;position: fixed;}
-	#right{background-color: white;width:500px; height:700px;left:580px;top:100px;}
+	#right{background-color: white;width:500px; height:700px;left:580px;top:100px;position: absolute;}
 </style>
 </head>
 <body>
-<div id="wrap">
-<table id="left">	
-	<tr><th>Shopping Info</th></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/orderlist">주문내역</a></td></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/couponlist">보유 쿠폰 조회</a></td></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/reviewlist">후기리스트</a></td></tr>
-	<tr><th>My Info</th></tr>
-	<tr><td>회원 정보 조회</td></tr>
-	<tr><td>회원 정보 수정</td></tr>
-	<tr><td>회원 탈퇴</td></tr>
-</table>
-<div id="right">
+<%@include file="../include/left.jsp" %>  
+<div id="right" class="right" name="right">
 	<c:set var="cp" value="${pageContext.request.contextPath }" />
 	<h1>주문내역</h1>
 	<table border="1" width="500">
@@ -67,7 +55,6 @@
 		<c:if test="${endPageNum<pageCount }">
 			<a href="${pageContext.request.contextPath }/shoppinginfo/orderlist?pageNum=${endPageNum+1 }">[다음]</a>
 		</c:if>
-	</div>
 	</div>
 	</div>
 </body>
