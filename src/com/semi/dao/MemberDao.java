@@ -246,4 +246,26 @@ public class MemberDao {
 			DBCPBean.close(con, pstmt, rs);
 		}
 	}
+	public boolean deleteok(String id, String pwd) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			String sql="select * from tbl_member where id=? and pwd=?";
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			pstmt.setString(2,pwd);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+	            return true;
+	         }
+			return false;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return false;
+		}finally {
+			DBCPBean.close(con, pstmt, rs);
+		}
+	}
 }

@@ -13,23 +13,25 @@ import com.semi.dao.MemberDao;
 import com.semi.domain.Member;
 
 @WebServlet("/member/delete")
-public class MemberDeleteController extends HttpServlet{
+public class MemberDeleteController extends HttpServlet{	 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session=req.getSession();
 		String id=(String)session.getAttribute("id");
+		String pwd=req.getParameter("pwd");
 		MemberDao dao=new MemberDao();
-		int n=dao.delete(id);
-		
-		if(n>0) {
-			session.invalidate();//방금 추가 
-			req.setAttribute("code","success");
+		boolean del=dao.deleteok(id, pwd);
+		if(del==true) {
+			int n=dao.delete(id);
+			if(n>0) {
+				session.invalidate();//방금 추가 
+				req.getRequestDispatcher("/home.jsp").forward(req, resp);
+			}else {
+				req.setAttribute("code","fail");
+			}
 		}else {
-			req.setAttribute("code","fail");
+			req.setAttribute("code","비밀번호가 다릅니다.");
 		}
-		
-		req.getRequestDispatcher("/member/result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/member/deletepage.jsp").forward(req, resp);
 	}
-		 
-	
 }

@@ -5,7 +5,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>    
 <%
 	String phone=request.getParameter("phone");
 	String nick=request.getParameter("nick");
@@ -31,11 +31,11 @@
 	}
 	if(id!=null){
 %>
-	<h1>회원님의 아이디: <%=id %></h1>
+	<h3>회원님의 아이디: <%=id %></h3>
 <%		
 	}else{
 %>		
-	<h1>요청하신 정보를 찾지 못했습니다..</h1>
+	<h4>요청하신 정보를 찾지 못했습니다..</h4>
 <%	
 	}
 %>

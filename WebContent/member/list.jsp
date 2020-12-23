@@ -7,9 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.wrap{
+            width: 250px;
+            margin: 30px auto;
+        }
+	.mytitle{
+            text-align: center;
+            }
+	a { text-decoration:none;} 
+	.input-link2{
+            text-align: right;
+		}
+</style>
 </head>
 <body>
-<h1>마이페이지</h1>
+<div class="wrap">
+	 <div class="mytitle"> 
+		<h2>회원 정보조회</h2>
+	</div>
         <table>
       
             <tr>
@@ -51,9 +67,10 @@
         </table>
         
         <br>
-      		<a href="<%=request.getContextPath() %>/member/delete?id=${member.id }">삭제</a>
-			<a href="<%=request.getContextPath() %>/member/update?id=${member.id}">수정</a>
-
+        	<div class="input-link2">
+			<a href="<%=request.getContextPath() %>/member/update?id=${member.id}">수정하기</a>
+			</div>
+</div>
 
 </body>
 </html>

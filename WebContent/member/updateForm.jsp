@@ -9,6 +9,35 @@
 <head>
 <meta charset="UTF-8">
 <title>updateForm.jsp</title>
+<style type="text/css">
+	.wrap{
+            width: 250px;
+            margin: 30px auto;
+        }
+	.mytitle{
+            text-align: center;
+            }
+    .b{background-color: #EAEAEA;}
+    label{font-size: 8px}
+    input[value='수정하기']{
+    	 	width: 280px;
+            height: 50;
+
+            color: white;
+
+            background-color: black;
+            background-position: center;
+
+            border-radius: 5px;
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+            
+            cursor: pointer;
+        } 
+
+
+</style>
 <script type="text/javascript">
 function test() {
 	var form = document.getElementsByTagName('form')[0];
@@ -56,22 +85,27 @@ function inputPhoneNumber(obj) {
 </head>
 <body>
 
-<h1>회원수정하기</h1>
+
 <form method="post" action="../member/update" name="boardWriteForm" >
+<div class="wrap">
+	 <div class="mytitle"> 
+		<h2>회원 정보수정</h2>
+	</div>
 	<label for="email">이메일 아이디</label><br />
-	<input type="email" id="id" name="id" value="${requestScope.member.id }" 
-	readonly="readonly"><br>
+	<input type="email" id="id" name="id" value="${requestScope.member.id }" size="35" 
+	readonly="readonly" class="b"><br>
 	<label for="pwd">비밀번호</label><br />
-	<input type="password" id="pwd" name="pwd" value="${member.pwd }"/><br />
+	<input type="password" id="pwd" name="pwd" value="${member.pwd }" size="35"/><br />
 	<label for="phone">전화번호</label><br />
-	<input type="text" name="phone" id="phone" value="${member.phone }" onKeyup="inputPhoneNumber(this);" maxlength="13"><br>
+	<input type="text" name="phone" id="phone" value="${member.phone }" onKeyup="inputPhoneNumber(this);" maxlength="13" size="35"><br>
 	<label for="nick">닉네임</label><br />
-	<input type="text" name="nick" id="nick" value="${member.nick }"><br>
+	<input type="text" name="nick" id="nick" value="${member.nick }" size="35"><br>
 	<label for="regdate">가입일</label><br />
-	<input type="text" value="${member.regdate }" readonly="readonly"><br>
-	<label for="eokay">이메일 수신 여부</label>
+	<input type="text" value="${member.regdate }" readonly="readonly" class="b" size="35"><br><br>
+	이메일 수신 여부
 	<input type="checkbox" name="eokay"id="eokay" >수신<br><br>
-	<input type="submit" value="저장" onclick="return test()">
+	<input type="submit" value="수정하기" onclick="return test()">
+</div>	
 </form>
 </body>
 </html>
