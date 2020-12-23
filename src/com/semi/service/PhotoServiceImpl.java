@@ -37,6 +37,8 @@ public class PhotoServiceImpl implements PhotoService {
 	
 	@Override
 	public boolean add(ServletContext sc,int key, String... paths) {
+		if(paths==null) return false;
+		
 		int cnt = 0;
 		String saveDir = "/upload/"+key+"/";
 		File folder = new File(sc.getRealPath(saveDir));
