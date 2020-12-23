@@ -16,6 +16,7 @@
 가격 : ${vo.price }<br>
 
 <form id="itemForm">
+<input type="hidden" name="name"value="${vo.name}">
 <input type="hidden" name="num"value="${vo.num}">
 <input type="hidden" name="price" value="${vo.price}">
 <select id=sizeSelect>

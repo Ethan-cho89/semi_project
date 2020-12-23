@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class CartVo {
 	private int inum;
+	private String iname;
 	private int snum;
 	private int count;
 	private int price;

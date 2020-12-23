@@ -49,6 +49,7 @@ public class ItemAddCartController extends HttpServlet {
 	
 	private List<CartVo> getSelectedSizes(HttpServletRequest req){
 		List<CartVo> list = new ArrayList<CartVo>();
+		String iname = req.getParameter("name");
 		int inum = Integer.parseInt(req.getParameter("num"));
 		int price = Integer.parseInt(req.getParameter("price"));
 		
@@ -59,7 +60,7 @@ public class ItemAddCartController extends HttpServlet {
 			if(name.equals("S")||name.equals("M")||name.equals("L")||name.equals("XL")) {
 				int cnt = Integer.parseInt(req.getParameterValues(name)[0]);
 				int snum = Integer.parseInt(req.getParameterValues(name)[1]);
-				list.add(new CartVo(inum, snum, cnt, price));
+				list.add(new CartVo(inum,iname ,snum, cnt, price));
 			}
 		}
 		
