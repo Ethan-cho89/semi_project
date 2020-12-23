@@ -12,8 +12,24 @@
 </style>
 </head>
 <body>
+<<<<<<< HEAD
 <%@include file="../include/left.jsp" %>  
 <div id="right" class="right" name="right">
+=======
+<div id="wrap">
+<table id="left">	
+	<tr><th>Shopping Info</th></tr>
+	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/orderlist">주문내역</a></td></tr>
+	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/couponlist">보유 쿠폰 조회</a></td></tr>
+	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/reviewlist">후기리스트</a></td></tr>
+	<tr><th>My Info</th></tr>
+	<tr><td><a href="${pageContext.request.contextPath }/member/list">회원 정보 조회</a></td></tr>
+	<tr><td><a href="${pageContext.request.contextPath }/member/update">회원 정보 수정</a></td></tr>
+	<tr><td><a href="${pageContext.request.contextPath }/member/deletepage.jsp">회원 탈퇴</a></td></tr>
+
+</table>
+<div id="right">
+>>>>>>> branch 'master' of https://github.com/wm9596/semi_1team.git
 	<c:set var="cp" value="${pageContext.request.contextPath }" />
 	<h1>주문내역</h1>
 	<table border="1" width="500">
