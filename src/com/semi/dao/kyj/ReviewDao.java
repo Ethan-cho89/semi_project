@@ -45,7 +45,7 @@ public class ReviewDao {
 			con=DBCPBean.getConn();
 			String sql = "select * from(\r\n" + 
 					"    select a.*,rownum rnum from(\r\n" + 
-					"        select i.name iname,o.mid omid,r.rate rrate,r.regdate rrd,r.content rct,r.onum onum\r\n" + 
+					"        select i.name iname,o.mid omid,r.rate rrate,r.regdate rrd,r.content rct,r.onum onum,i.num inum\r\n" + 
 					"        from tbl_stock s,tbl_item i , tbl_review r , tbl_order o\r\n" + 
 					"        where o.snum=s.snum and s.inum=i.num and o.num=r.onum and o.mid=?\r\n" + 
 					"        order by r.regdate desc\r\n" + 
@@ -65,8 +65,9 @@ public class ReviewDao {
 				int rrate = rs.getInt("rrate");
 				Date rrd = rs.getDate("rrd");
 				int onum = rs.getInt("onum");
+				int inum = rs.getInt("inum");
 				
-				ReviewVo vo = new ReviewVo(iname,omid,rct,rrate,rrd,onum);
+				ReviewVo vo = new ReviewVo(iname,omid,rct,rrate,rrd,onum,inum);
 				reviewlist.add(vo);
 			}
 			return reviewlist;
@@ -78,53 +79,67 @@ public class ReviewDao {
 		}
 	}
 	
-	public int write(String id,int onum,int rate,String content) {
+	public int write(String id,int onum,int rate,String content,int inum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		PreparedStatement pstmt2=null;
+		PreparedStatement pstmt3=null;
 		String sql="insert into tbl_review values(seq_rev.nextval,?,?,?,?,sysdate)";
 		String sql2="update tbl_order set revcheck=1 where num=?";
+		String sql3="update tbl_item\r\n" + 
+				"set review =review+1 , avgrate = ((avgrate*review)+?)/(review+1)\r\n" + 
+				"where num=?";
 		try {
 			con=DBCPBean.getConn();
 			
 			pstmt=con.prepareStatement(sql);
 			pstmt2=con.prepareStatement(sql2);
+			pstmt3=con.prepareStatement(sql3);
 			pstmt.setString(1,id);
 			pstmt.setInt(2,onum);
 			pstmt.setInt(3,rate);
 			pstmt.setString(4,content);
 			pstmt2.setInt(1, onum);
-			int n=pstmt.executeUpdate()+pstmt2.executeUpdate();
+			pstmt3.setInt(1, rate);
+			pstmt3.setInt(2, inum);
+			int n=pstmt.executeUpdate()+pstmt2.executeUpdate()+pstmt3.executeUpdate();
 			return n;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con,pstmt,pstmt2);
+			DBCPBean.close(con,pstmt,pstmt2,pstmt3);
 		}
 	}
 	
-	public int delete(int onum,String id) {
+	public int delete(int onum,String id,int inum,int rate) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		PreparedStatement pstmt2=null;
+		PreparedStatement pstmt3=null;
 		String sql="delete from tbl_review where onum=? and id=?";
 		String sql2 ="update tbl_order set revcheck=0 where num=? and mid=?";
+		String sql3="update tbl_item\r\n" + 
+				"set review = review-1, avgrate = ((avgrate*review)-?)/(review-1)\r\n" + 
+				"where num=?;";
 		try {
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
 			pstmt2=con.prepareStatement(sql2);
+			pstmt3=con.prepareStatement(sql3);
 			pstmt.setInt(1,onum);
 			pstmt.setString(2,id);
 			pstmt2.setInt(1,onum);
 			pstmt2.setString(2,id);
-			int n=pstmt.executeUpdate()+pstmt2.executeUpdate();
+			pstmt3.setInt(1,rate);
+			pstmt3.setInt(2,inum);
+			int n=pstmt.executeUpdate()+pstmt2.executeUpdate()+pstmt3.executeUpdate();
 			return n;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt,pstmt2);
+			DBCPBean.close(con, pstmt,pstmt2,pstmt3);
 		}
 	}
 }

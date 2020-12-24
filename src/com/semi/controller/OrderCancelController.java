@@ -21,10 +21,11 @@ public class OrderCancelController extends HttpServlet{
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");		
 		}else {
 			int num=Integer.parseInt(req.getParameter("num"));
+			int cnum=Integer.parseInt(req.getParameter("cnum"));
 			OrderDetailDao dao=new OrderDetailDao();
-			int n=dao.ordercancel(mid, num);
+			int n=dao.ordercancel(mid, num,cnum);
 			if(n>0) {
-				req.getRequestDispatcher("/index.jsp").forward(req, resp);
+				req.getRequestDispatcher("/home.jsp").forward(req, resp);
 			}
 		}
 	}

@@ -18,12 +18,14 @@ public class ReviewWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=(String)req.getSession().getAttribute("id");
 		String iname = req.getParameter("name");
+		int inum=Integer.parseInt(req.getParameter("inum"));
 		int onum=Integer.parseInt(req.getParameter("num"));
 		if(id==null) {
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");		
 		}else {
 		req.setAttribute("iname", iname);
 		req.setAttribute("onum", onum);
+		req.setAttribute("inum", inum);
 		req.getRequestDispatcher("/shoppinginfo/reviewwrite.jsp").forward(req, resp);
 		}
 	}
@@ -37,14 +39,15 @@ public class ReviewWriteController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");		
 		}else {
 			int onum = Integer.parseInt(req.getParameter("onum"));
+			int inum = Integer.parseInt(req.getParameter("inum"));
 			int rrate = Integer.parseInt(req.getParameter("rate"));
 			String rct = req.getParameter("content");
 			
 			ReviewDao dao =  new ReviewDao();
-			int n = dao.write(rid, onum, rrate, rct);
+			int n = dao.write(rid, onum, rrate, rct,inum);
 			
 			if(n>0) {
-				req.getRequestDispatcher("/index.jsp").forward(req, resp);
+				req.getRequestDispatcher("/home.jsp").forward(req, resp);
 			}
 		}
 	}

@@ -17,7 +17,7 @@
 			if (r) {
 				alert("리뷰가 삭제되었습니다.");
 				<c:forEach var ="list" items="${requestScope.list }">
-				location.href ="${cp }/shoppinginfo/reviewdelete?onum=${list.onum}";
+				location.href ="${cp }/shoppinginfo/reviewdelete?onum=${list.onum}&inum=${list.inum}&rate=${list.rrate}";
 				</c:forEach>
 			}
 	}

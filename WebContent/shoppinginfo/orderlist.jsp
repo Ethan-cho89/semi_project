@@ -12,24 +12,8 @@
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 <%@include file="../include/left.jsp" %>  
-<div id="right" class="right" name="right">
-=======
-<div id="wrap">
-<table id="left">	
-	<tr><th>Shopping Info</th></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/orderlist">주문내역</a></td></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/couponlist">보유 쿠폰 조회</a></td></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/reviewlist">후기리스트</a></td></tr>
-	<tr><th>My Info</th></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/member/list">회원 정보 조회</a></td></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/member/update">회원 정보 수정</a></td></tr>
-	<tr><td><a href="${pageContext.request.contextPath }/member/deletepage.jsp">회원 탈퇴</a></td></tr>
-
-</table>
 <div id="right">
->>>>>>> branch 'master' of https://github.com/wm9596/semi_1team.git
 	<c:set var="cp" value="${pageContext.request.contextPath }" />
 	<h1>주문내역</h1>
 	<table border="1" width="500">
@@ -46,14 +30,23 @@
 				<td>${list.paydate }</td>
 				<td>${list.name }</td>
 				<td>${list.pay }</td>
-				<td><a href="${pageContext.request.contextPath }/shoppinginfo/orderdetail?num=${list.num}">조회</a></td>
+				<td><a href="${pageContext.request.contextPath }/shoppinginfo/orderdetail?num=${list.num}&cnum=${list.cnum}">조회</a></td>
 				<td>
 					<c:choose>
-						<c:when test="${list.rc=='0' }">
-							<a href="${pageContext.request.contextPath }/shoppinginfo/reviewwrite?name=${list.name}&num=${list.num}">리뷰 쓰기</a>
+						<c:when test="${list.rc=='0' && list.ship=='4'}">
+							<a href="${pageContext.request.contextPath }/shoppinginfo/reviewwrite?name=${list.name}&num=${list.num}&inum=${list.inum}">리뷰 쓰기</a>
+						</c:when>
+						<c:when test="${list.rc=='1'}">
+							리뷰 작성함
+						</c:when>
+						<c:when test="${list.rc=='1'&& list.ship=='6'}">
+							리뷰 작성함
+						</c:when>
+						<c:when test="${list.rc=='0'&& list.ship=='6'}">
+							반품 신청함
 						</c:when>
 						<c:otherwise>
-							리뷰 작성됨
+							구매 확정 필요
 						</c:otherwise>
 					</c:choose>
 				</td>

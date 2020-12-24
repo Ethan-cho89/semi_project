@@ -22,9 +22,9 @@ public class OrderDetailViewController extends HttpServlet{
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");		
 		}else {
 			int onum=Integer.parseInt(req.getParameter("num"));
-			
+			int cnum=Integer.parseInt(req.getParameter("cnum"));
 			OrderDetailDao dao=new OrderDetailDao();
-			OrderDetailVo vo=dao.orderdetail(omid, onum);
+			OrderDetailVo vo=dao.orderdetail(omid, onum,cnum);
 			req.setAttribute("vo",vo);
 			req.getRequestDispatcher("/shoppinginfo/orderdetail.jsp").forward(req, resp);
 		}

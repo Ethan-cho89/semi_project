@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.semi.dao.kyj.ReviewDao;
-@WebServlet("/shoppinginfo/reviewdelete")
-public class ReviewDeleteController extends HttpServlet{
+import com.semi.dao.kyj.OrderDetailDao;
+
+@WebServlet("/shoppinginfo/orderconfirm")
+public class OrderConfirmController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id=(String)req.getSession().getAttribute("id");
-		if(id==null) {
+		String mid=(String)req.getSession().getAttribute("id");
+		if(mid==null) {
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");		
 		}else {
-			int onum=Integer.parseInt(req.getParameter("onum"));
-			int inum=Integer.parseInt(req.getParameter("inum"));
-			int rate=Integer.parseInt(req.getParameter("rate"));
-			ReviewDao dao=new ReviewDao();
-			int n=dao.delete(onum,id,inum,rate);
+			int num=Integer.parseInt(req.getParameter("num"));
+			int opay=Integer.parseInt(req.getParameter("opay"));
+			OrderDetailDao dao=new OrderDetailDao();
+			int n=dao.orderconfirm(mid, num,opay);
 			if(n>0) {
 				req.getRequestDispatcher("/home.jsp").forward(req, resp);
 			}

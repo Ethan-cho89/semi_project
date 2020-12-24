@@ -16,7 +16,7 @@ function cancel() {
 	var r = confirm("주문을 취소하시겠습니까?");
 		if (r) {
 			alert("주문이 취소되었습니다.");
-			location.href ="${cp }/shoppinginfo/ordercancel?num=${vo.onum}";
+			location.href ="${cp }/shoppinginfo/ordercancel?num=${vo.onum}&cnum=${vo.ccnum}";
 		}
 }
 
@@ -24,7 +24,15 @@ function back() {
 	var r = confirm("반품하시겠습니까?");
 		if (r) {
 			alert("반품 신청이 완료되었습니다.");
-			location.href ="${cp }/shoppinginfo/orderback?num=${vo.onum}";
+			location.href ="${cp }/shoppinginfo/orderback?num=${vo.onum}&cnum=${vo.ccnum}";
+		}
+}
+
+function orderconfirm() {  
+	var r = confirm("주문을 확정하시겠습니까?");
+		if (r) {
+			alert("주문을 확정했습니다.");
+			location.href ="${cp }/shoppinginfo/orderconfirm?num=${vo.onum}&opay=${vo.opay}";
 		}
 }
 </script>
@@ -62,6 +70,7 @@ function back() {
 	<table border="1" width="800">
 		<tr>
 			<th>상품명</th>
+			<th>사이즈</th>
 			<th>수량</th>
 			<th>가격</th>
 			<th>쿠폰 할인가</th>
@@ -71,6 +80,7 @@ function back() {
 		</tr>
 		<tr>
 			<th>${vo.iname }</th>
+			<th>${vo.ssize }</th>
 			<th>${vo.oc }</th>
 			<th>${vo.opc }</th>
 			<th>${vo.cd }</th>
@@ -112,9 +122,9 @@ function back() {
 					</c:when>
 					<c:when test="${vo.os=='3' }">
 						<input type="button" value="반품 신청" onclick="back()">
+						<input type="button" value="구매 확정" onclick="orderconfirm()">
 					</c:when>
 					<c:when test="${vo.os=='4' }">
-						<input type="button" value="반품 신청" onclick="back()">
 					</c:when>
 					<c:when test="${vo.os=='5' }">
 					</c:when>

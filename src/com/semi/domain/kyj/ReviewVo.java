@@ -11,10 +11,10 @@ import java.sql.Date;
 public class ReviewVo {
 
 	String iname,omid,rct;
-	int rrate,onum;
+	int rrate,onum,inum;
 	Date rrd;
 	
-	public ReviewVo(String iname, String omid, String rct, int rrate, Date rrd, int onum) {
+	public ReviewVo(String iname, String omid, String rct, int rrate, Date rrd, int onum, int inum) {
 		super();
 		this.iname = iname;
 		this.omid = omid;
@@ -22,6 +22,7 @@ public class ReviewVo {
 		this.rrate = rrate;
 		this.rrd = rrd;
 		this.onum = onum;
+		this.inum = inum;
 	}
 
 	public String getIname() {
@@ -71,4 +72,13 @@ public class ReviewVo {
 	public void setOnum(int onum) {
 		this.onum = onum;
 	}
+
+	public int getInum() {
+		return inum;
+	}
+
+	public void setInum(int inum) {
+		this.inum = inum;
+	}
+	
 }

@@ -3,12 +3,12 @@ package com.semi.domain.kyj;
 import java.sql.Date;
 
 public class OrderListVo {
-	int num, snum, cnum, anum, price, count, pay, ship,rc;
+	int num, snum, cnum, anum, price, count, pay, ship,rc,inum;
 	String mid,name;
 	Date paydate;
 	public OrderListVo() {}
 	public OrderListVo(int num, int snum, int cnum, int anum, int price, int count, int pay, int ship, String mid,
-			Date paydate,String name,int rc) {
+			Date paydate,String name,int rc,int inum) {
 		super();
 		this.num = num;
 		this.snum = snum;
@@ -22,6 +22,7 @@ public class OrderListVo {
 		this.paydate = paydate;
 		this.name=name;
 		this.rc = rc;
+		this.inum=inum;
 	}
 	public int getNum() {
 		return num;
@@ -95,5 +96,10 @@ public class OrderListVo {
 	public void setRc(int rc) {
 		this.rc = rc;
 	}
-	
+	public int getInum() {
+		return inum;
+	}
+	public void setInum(int inum) {
+		this.inum = inum;
+	}
 }

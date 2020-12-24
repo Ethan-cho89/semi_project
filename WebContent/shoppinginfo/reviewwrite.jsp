@@ -12,7 +12,7 @@
 
 <form method="post" action="${pageContext.request.contextPath }/shoppinginfo/reviewwrite" >
 	<input type="hidden" id="onum" name="onum" value="${requestScope.onum }">
-	
+	<input type="hidden" id="inum" name="inum" value="${requestScope.inum }">
 	상품명: ${requestScope.iname }<br>
 	별점
 	<select name="rate" id="rate">

@@ -48,7 +48,7 @@ public class OrderListDao {
 					"(\r\n" + 
 					"    select aa.*,rownum rnum from\r\n" + 
 					"    (\r\n" + 
-					"        select o.num , o.snum,o.cnum,o.anum,o.price,o.count,o.pay,o.ship,o.mid,o.paydate,i.name,o.revcheck rc\r\n" + 
+					"        select o.num , o.snum,o.cnum,o.anum,o.price,o.count,o.pay,o.ship,o.mid,o.paydate,i.name,o.revcheck rc,i.num inum\r\n" + 
 					"        from tbl_order o , tbl_stock s, tbl_item i\r\n" + 
 					"        where o.mid=? and o.snum=s.snum and s.inum=i.num and o.ship != 5 and o.ship != 7\r\n" + 
 					"        order by o.paydate desc\r\n" + 
@@ -74,9 +74,10 @@ public class OrderListDao {
 				Date paydate = rs.getDate("paydate");
 				String name = rs.getString("name");
 				int rc = rs.getInt("rc");
+				int inum = rs.getInt("inum");
 				
 				OrderListVo vo = new OrderListVo(num, snum, cnum, anum, price,count, pay, ship, mid,
-						paydate,name,rc);
+						paydate,name,rc,inum);
 				orderlist.add(vo);
 			}
 			return orderlist;

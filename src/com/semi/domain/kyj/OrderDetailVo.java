@@ -16,18 +16,18 @@ import java.sql.Date;
 //결제일 o.paydate= opd
 //배송현황 o.ship =os
 //결제방법 o.how = oh
-
-
+//사이즈 s.ssize = ssize
+//쿠폰번호 c.num = ccnum
 
 public class OrderDetailVo {
 
-	int onum,oc,opc,cd,opay,os;
-	String omid,aop,arc,arp,aad,iname,oh;
+	int onum,oc,opc,cd,opay,os,ccnum;
+	String omid,aop,arc,arp,aad,iname,oh,ssize;
 	Date opd;
 	
 	public OrderDetailVo() {}
 	public OrderDetailVo(int onum, int oc, int opc, int cd, int opay, String omid, String aop, String arc, String arp,
-			String aad, String iname, Date opd,int os,String oh) {
+			String aad, String iname, Date opd,int os,String oh,String ssize,int ccnum) {
 		super();
 		this.onum = onum;
 		this.oc = oc;
@@ -43,6 +43,8 @@ public class OrderDetailVo {
 		this.opd = opd;
 		this.os = os;
 		this.oh = oh;
+		this.ssize = ssize;
+		this.ccnum=ccnum;
 	}
 	public int getOnum() {
 		return onum;
@@ -128,4 +130,17 @@ public class OrderDetailVo {
 	public void setOh(String oh) {
 		this.oh = oh;
 	}
+	public String getSsize() {
+		return ssize;
+	}
+	public void setSsize(String ssize) {
+		this.ssize = ssize;
+	}
+	public int getCcnum() {
+		return ccnum;
+	}
+	public void setCcnum(int ccnum) {
+		this.ccnum = ccnum;
+	}
+	
 }

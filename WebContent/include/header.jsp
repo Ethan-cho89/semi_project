@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -33,15 +34,23 @@
 	<div id="headmenu1" style="background-color: black; ">
 		<c:if test="${status==4}"><a href="">관리자 페이지</a>|</c:if>
 		<a href="${cp}/qna/list">고객센터</a>|
-		<a href="#">로그인</a>|
-		<a href="#" style="margin-right:40px;">회원가입</a>
+		<c:choose>
+		<c:when test="${empty sessionScope.id}">
+			<a href="/member/login.jsp">회원로그인</a>|
+			<a href="/member/join.jsp">회원가입</a>|
+		</c:when>
+		<c:otherwise> 
+			<a href="/member/logout">로그아웃</a>|
+			<a href="/shoppinginfo/orderlist">마이페이지</a>|
+		</c:otherwise>
+	</c:choose>
 	</div>
 	<div id="headmenu2">
 		<a href="/home.jsp" style="left:10px; float:left;">
 		<img src="${cp}/images/logoBlack.PNG" alt="nikeLogo" width=80 style="margin-top:6px; margin-left:30px" ></a>
 		<a href="/itemboard/list?gender=0" style="margin-left:290px;">남성의류</a>
 		<a href="/itemboard/list?gender=1" style="margin-left:50px;">여성의류</a>
-		<a href="장바구니" style="float:right; margin-top:12px; margin-right:40px;">
+		<a href="/장바구니" style="float:right; margin-top:12px; margin-right:40px;">
 		<img src="${cp}/images/basket.PNG" alt="cart" width=40 style="margin-top: 3px;" ></a>
 		<input type="button" value="검색" style="float:right;">
 		<input type="text" name="keyword" size=20px; style="float: right; font-size:large; border-radius:20px;">
