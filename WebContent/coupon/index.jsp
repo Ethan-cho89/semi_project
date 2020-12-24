@@ -3,10 +3,12 @@
 
 <%@include file="../include/header.jsp" %>
 
-<body>
-<a href="${pageContext.request.contextPath }/coupon/list">쿠폰관리</a>
+<div style="width:1000px; height:1000px;background-color: pink; color: red;">
+왜안나오냐???
+<a href="${pageContext.request.contextPath }/coupon/list" style="location:relative; left:300px; top:300px; color:red;">쿠폰관리</a>
+</div>
 <%
 	session.setAttribute("status", 4);
 %>
-</body>
+
 <%@include file="../include/footer.jsp" %>

@@ -35,7 +35,6 @@ public class CouponDao {
 							")aa " + 
 						") where rnum>=? and rnum<=?";
 			}else {
-			
 				sql = "select * from " + 
 						"(" + 
 							"select rownum rnum, aa.* from " + 

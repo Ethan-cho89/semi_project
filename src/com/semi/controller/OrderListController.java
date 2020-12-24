@@ -21,7 +21,6 @@ public class OrderListController extends HttpServlet {
 		String spage = req.getParameter("pageNum");
 		String field = req.getParameter("field");
 		String keyword = req.getParameter("keyword");
-
 		
 		int pageNum= 1;
 		if(spage!=null) {
@@ -33,21 +32,25 @@ public class OrderListController extends HttpServlet {
 		
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum= startPageNum+9;
-		
-		int pageCount= (int)Math.ceil(dao.getCount(field, keyword)/10.0);
-		if(endPageNum>pageCount) {
-			endPageNum=pageCount;
+		ArrayList<OrderVo> list=null;
+		int pageCount=1;
+		try {
+			pageCount= (int)Math.ceil(dao.getCount(field, keyword)/10.0);
+			if(endPageNum>pageCount) {
+				endPageNum=pageCount;
+			}
+			list= dao.list(field, keyword, startRow, endRow);
+			req.setAttribute("list", list);
+			req.setAttribute("pageNum", pageNum);
+			req.setAttribute("field", field);
+			req.setAttribute("keyword", keyword);
+			req.setAttribute("startPageNum", startPageNum);
+			req.setAttribute("endPageNum", endPageNum);
+			req.setAttribute("pageCount", pageCount);
+		}catch(NumberFormatException n){
+			req.setAttribute("errMsg", "키워드를 확인해주세요");
+		}finally {
+			req.getRequestDispatcher("/order/list.jsp").forward(req, resp);
 		}
-		ArrayList<OrderVo> list= dao.list(field, keyword, startRow, endRow);
-		req.setAttribute("list", list);
-		req.setAttribute("pageNum", pageNum);
-		req.setAttribute("field", field);
-		req.setAttribute("keyword", keyword);
-		req.setAttribute("startPageNum", startPageNum);
-		req.setAttribute("endPageNum", endPageNum);
-		req.setAttribute("pageCount", pageCount);
-		req.getRequestDispatcher("/order/list.jsp").forward(req, resp);
-		
 	}
-	
 }

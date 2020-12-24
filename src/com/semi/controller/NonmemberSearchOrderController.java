@@ -20,13 +20,15 @@ public class NonmemberSearchOrderController extends HttpServlet  {
 		String email = req.getParameter("email");
 		String phone = req.getParameter("phone");
 		NonmemberDao dao = NonmemberDao.getDao();
-		ArrayList<NonmemberVo> list = dao.getInfo(email, phone);
-		if(list.isEmpty()) {
+		try {
+			ArrayList<NonmemberVo> list = dao.getInfo(email, phone);
+			if(!list.isEmpty()) {
+				req.setAttribute("list", list);
+				req.getRequestDispatcher("/nonmember/searchOrder.jsp").forward(req, resp);
+			}
+		}catch(NullPointerException ne) {
 			req.setAttribute("errMsg", "해당 정보로 조회되는 주문내역이 없습니다");
 			req.getRequestDispatcher("/nonmember/nonmember.jsp").forward(req, resp);
-		}else {
-			req.setAttribute("list", list);
-			req.getRequestDispatcher("/nonmember/searchOrder.jsp").forward(req, resp);
 		}
 	}
 }

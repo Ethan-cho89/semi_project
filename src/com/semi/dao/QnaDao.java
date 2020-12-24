@@ -192,13 +192,15 @@ public class QnaDao {
 		int num = vo.getNum();
 		String type = vo.getType();
 		String contents = vo.getContents();
+		String title = vo.getTitle();
 		try {
 			con=DBCPBean.getConn();
-			String sql ="update tbl_qna set type=?,contents=? where num=?";
+			String sql ="update tbl_qna set type=?,contents=?,title=? where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, type);
 			pstmt.setString(2, contents);
-			pstmt.setInt(3, num);
+			pstmt.setString(3, title);
+			pstmt.setInt(4, num);
 			return pstmt.executeUpdate();
 		}catch(SQLException s) {
 			s.printStackTrace();

@@ -83,7 +83,7 @@ public class OrderDao {  // semi_my
 			if(keyword!=null && !keyword.equals("")) {
 				if(field.equals("num")) {
 					int key = Integer.parseInt(keyword);
-					sql = "select nvl(count(num),0) from tbl_order where "+field+" like '%"+key+"%'";
+					sql = "select nvl(count(num),0) from tbl_order where "+field+" = "+key;
 				}else {
 					sql = "select nvl(count(num),0) from tbl_order where "+field+" like '%"+keyword+"%'";
 				}
