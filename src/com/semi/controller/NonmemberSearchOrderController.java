@@ -23,6 +23,8 @@ public class NonmemberSearchOrderController extends HttpServlet  {
 		try {
 			ArrayList<NonmemberVo> list = dao.getInfo(email, phone);
 			if(!list.isEmpty()) {
+				req.setAttribute("email", email);
+				req.setAttribute("phone", phone);
 				req.setAttribute("list", list);
 				req.getRequestDispatcher("/nonmember/searchOrder.jsp").forward(req, resp);
 			}

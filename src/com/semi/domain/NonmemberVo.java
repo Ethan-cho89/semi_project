@@ -8,6 +8,7 @@ public class NonmemberVo {
 	
 	private String size; // 스톡 테이블 
 	
+	private int onum;
 	private int price; //order 테이블 
 	private int count;
 	private int pay;
@@ -15,12 +16,13 @@ public class NonmemberVo {
 	private int ship;
 	private Date paydate;
 	public NonmemberVo() {}
-	public NonmemberVo(String iname, String type, String size, int price, int count, int pay, String how, int ship,
-			Date paydate) {
+	public NonmemberVo(String iname, String type, String size, int onum, int price, int count, int pay, String how,
+			int ship, Date paydate) {
 		super();
 		this.iname = iname;
 		this.type = type;
 		this.size = size;
+		this.onum = onum;
 		this.price = price;
 		this.count = count;
 		this.pay = pay;
@@ -45,6 +47,12 @@ public class NonmemberVo {
 	}
 	public void setSize(String size) {
 		this.size = size;
+	}
+	public int getOnum() {
+		return onum;
+	}
+	public void setOnum(int onum) {
+		this.onum = onum;
 	}
 	public int getPrice() {
 		return price;
@@ -82,5 +90,5 @@ public class NonmemberVo {
 	public void setPaydate(Date paydate) {
 		this.paydate = paydate;
 	}
-
+	
 }

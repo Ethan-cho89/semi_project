@@ -18,7 +18,6 @@ public class NonmemberDao {
 	public static NonmemberDao getDao() {
 		return instance;
 	}
-	
 	public ArrayList<NonmemberVo> getInfo(String email, String phone) {
 		Connection con = null;
 		PreparedStatement pstmt=null;
@@ -37,9 +36,8 @@ public class NonmemberDao {
 			}else {
 				return null;
 			}
-			
 			sql ="select * from ( " + 
-					"select aa.*, o.price, o.count, o.pay, o.how, o.ship, o.paydate,o.anum from ( " + 
+					"select aa.*, o.num, o.price, o.count, o.pay, o.how, o.ship, o.paydate,o.anum from ( " + 
 					"select s.snum,i.name,i.type,s.ssize from tbl_stock s join tbl_item i on s.inum=i.num " + 
 					")aa join tbl_order o on o.snum=aa.snum) where anum=?";
 			pstmt=con.prepareStatement(sql);
@@ -50,6 +48,7 @@ public class NonmemberDao {
 				String iname= rs.getString("name");
 				String type = rs.getString("type");
 				String size = rs.getString("ssize");
+				int onum = rs.getInt("num");
 				int price = rs.getInt("price");
 				int count = rs.getInt("count");
 				int pay = rs.getInt("pay");
@@ -57,7 +56,7 @@ public class NonmemberDao {
 				int ship = rs.getInt("ship");
 				Date paydate = rs.getDate("paydate");
 				
-				NonmemberVo vo = new NonmemberVo(iname, type, size, price, count, pay, how, ship, paydate);
+				NonmemberVo vo = new NonmemberVo(iname, type, size, onum, price, count, pay, how, ship, paydate);
 				list.add(vo);
 			}
 			return list;
@@ -69,7 +68,21 @@ public class NonmemberDao {
 			DBCPBean.close(con, pstmt, rs);
 		}
 	}
-	
-	
-	
+	public int edit(int num, int status) {
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		try {
+			con=DBCPBean.getConn();
+			String sql = "update tbl_order set ship=? where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, status);
+			pstmt.setInt(2, num);
+			return pstmt.executeUpdate();
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt, null);
+		}
+	}
 }
