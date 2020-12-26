@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>마이페이지</h1>
+<h2>마이페이지</h2>
         <table>
       
             <tr>

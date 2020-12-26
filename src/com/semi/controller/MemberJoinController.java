@@ -38,6 +38,6 @@ public class MemberJoinController extends HttpServlet{
 			resultCode="fail";
 		}
 		req.setAttribute("code", resultCode);
-		req.getRequestDispatcher("/member/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/home.jsp").forward(req, resp);
 	}
 }
