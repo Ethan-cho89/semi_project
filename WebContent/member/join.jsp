@@ -66,9 +66,7 @@
 		    outline: none;
 		    background: transparent;
 		}
-		label {
-			color: white;
-}
+
 
 </style>
 <script type="text/javascript">

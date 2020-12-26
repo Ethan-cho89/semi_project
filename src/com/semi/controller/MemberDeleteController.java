@@ -32,7 +32,7 @@ public class MemberDeleteController extends HttpServlet{
 				req.getRequestDispatcher("/member/deletepage.jsp").forward(req, resp);
 			}
 		}else {
-			req.setAttribute("code","비번 틀림");
+			req.setAttribute("code","비밀번호가 올바르지 않습니다.");
 			req.getRequestDispatcher("/member/deletepage.jsp").forward(req, resp);
 		}
 	}

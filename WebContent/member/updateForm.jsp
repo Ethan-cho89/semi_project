@@ -9,6 +9,50 @@
 <head>
 <meta charset="UTF-8">
 <title>updateForm.jsp</title>
+<style type="text/css">
+	.wrap{width:300px;position:relative; 
+		background-color: white;
+		margin:auto; margin-bottom:50px; 
+		top:200px; align-content: center; 
+		padding: 50px 50px 50px 50px;}
+
+	.mytitle{
+			
+			padding-bottom: 20px;
+			padding-left:20px;
+            text-align: center;
+            }
+    
+    input[value='수정하기']{
+    	 	width: 280px;
+            height: 50;
+
+            color: white;
+
+            background-color: black;
+            background-position: center;
+
+            border-radius: 5px;
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+            
+            cursor: pointer;
+        } 
+    
+        .input-group {
+		    top: 180px;
+		   
+		    width: 280px;
+		    transition: .5s;
+		}
+		label {
+			line-height:30px;
+			font-size: 10px;
+			font-weight: bold;
+		}
+
+</style>
 <script type="text/javascript">
 function test() {
 	var form = document.getElementsByTagName('form')[0];
@@ -55,24 +99,36 @@ function inputPhoneNumber(obj) {
 </script>
 </head>
 <body>
-
-<h1>회원수정하기</h1>
-<form method="post" action="../member/update" name="boardWriteForm" >
-	<label for="email">이메일 아이디</label><br />
+<div id="wrapper" style="width:100%; height:1100px; background-color: black;">
+	<form method="post" action="../member/update" name="boardWriteForm" >
+	<div class="wrap">
+	 <div class="mytitle"> 
+		<h2>회원수정하기</h2>
+	</div>
+	<div class="input-group">
+	<label for="email">이메일 아이디</label><br>
 	<input type="email" id="id" name="id" value="${requestScope.member.id }" 
-	readonly="readonly"><br>
+	readonly="readonly" class="input-field" style="height: 20px; width: 300px; background-color: gray;"><br>
 	<label for="pwd">비밀번호</label><br />
-	<input type="password" id="pwd" name="pwd" value="${member.pwd }"/><br />
+	<input type="password" id="pwd" name="pwd" value="${member.pwd }" class="input-field"
+	style="height: 20px; width: 300px;"/><br />
 	<label for="phone">전화번호</label><br />
-	<input type="text" name="phone" id="phone" value="${member.phone }" onKeyup="inputPhoneNumber(this);" maxlength="13"><br>
+	<input type="text" name="phone" id="phone" value="${member.phone }" 
+	onKeyup="inputPhoneNumber(this);" maxlength="13" class="input-field"
+	style="height: 20px; width: 300px;"><br>
 	<label for="nick">닉네임</label><br />
-	<input type="text" name="nick" id="nick" value="${member.nick }"><br>
+	<input type="text" name="nick" id="nick" value="${member.nick }" class="input-field"
+	style="height: 20px; width: 300px;"><br>
 	<label for="regdate">가입일</label><br />
-	<input type="text" value="${member.regdate }" readonly="readonly"><br>
-	<label for="eokay">이메일 수신 여부</label>
+	<input type="text" value="${member.regdate }" readonly="readonly" class="input-field"
+	style="height: 20px; width: 300px; background-color: gray;"><br>
+	이메일 수신 여부
 	<input type="checkbox" name="eokay"id="eokay" >수신<br><br>
-	<input type="submit" value="저장" onclick="return test()">
+	</div>
+	<input type="submit" value="수정하기" onclick="return test()">
+	</div>
 </form>
+</div>
 </body>
 </html>
 <%@include file="../include/footer.jsp" %>

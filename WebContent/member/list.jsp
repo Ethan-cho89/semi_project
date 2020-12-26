@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="../include/left.jsp" %>  
 <h2>마이페이지</h2>
         <table>
       
@@ -51,7 +52,6 @@
         </table>
         
         <br>
-      		<a href="<%=request.getContextPath() %>/member/delete?id=${member.id }">삭제</a>
 			<a href="<%=request.getContextPath() %>/member/update?id=${member.id}">수정</a>
 
 
