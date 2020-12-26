@@ -7,12 +7,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.wrap{
+        width:300px;position:relative; 
+		background-color: white;
+		margin:auto; margin-bottom:50px; 
+		top:200px; align-content: center; 
+		text-align : center; padding: 50px 50px 50px 50px;}
+        }
+	.mytitle{
+            text-align: center;
+            }
+
+        .input-group {
+		    top: 180px;
+		   
+		    width: 280px;
+		    transition: .5s;
+		}
+		.input-field {
+		    width: 100%;
+		    padding: 10px 0;
+		    margin: 5px 0;
+		    border: none;
+		    border-bottom: 1px solid #999;
+		    outline: none;
+		    background: transparent;
+		}
+		.input-link{
+			font-size: 12px;
+			float:right;
+			padding-top: 15px;
+            padding-bottom: 15px;
+		}
+		a { text-decoration:none;} 
+
+
+</style>
 </head>
 <body>
-<%@include file="../include/left.jsp" %>  
-<h2>마이페이지</h2>
+<%@include file="../include/left.jsp" %> 
+<div id="wrapper" style="width:100%; height:1100px; background-color: black;">
+ <div class="wrap">
+	 <div class="mytitle"> 
+<h2>나의 회원 정보</h2>
+	 </div>
+	 <div class="input-group">
         <table>
-      
             <tr>
                 <td id="title">아이디</td>
                 <td>${list.id }</td>
@@ -50,11 +91,14 @@
             </tr>
 
         </table>
-        
+		</div>
+		     
         <br>
-			<a href="<%=request.getContextPath() %>/member/update?id=${member.id}">수정</a>
-
-
+        	<div class="input-link">
+			<a href="<%=request.getContextPath() %>/member/update?id=${member.id}">정보수정하기</a>
+		</div>
+		</div>   
+	</div>
 </body>
 </html>
 <%@include file="../include/footer.jsp" %>

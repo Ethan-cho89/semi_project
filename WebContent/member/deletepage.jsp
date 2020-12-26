@@ -59,6 +59,7 @@
 </style>
 </head>
 <body>
+<%@include file="../include/left.jsp" %> 
 <div id="wrapper" style="width:100%; height:1100px; background-color: black;">
 <form action="${pageContext.request.contextPath }/member/deletepage" method="post">
 	<div class="wrap">
