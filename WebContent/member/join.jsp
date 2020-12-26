@@ -9,11 +9,16 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	.wrap{
-            width: 250px;
-            margin: 30px auto;
-        }
+	.wrap{width:300px;position:relative; 
+		background-color: white;
+		margin:auto; margin-bottom:50px; 
+		top:200px; align-content: center; 
+		text-align : center; padding: 50px 50px 50px 50px;}
+
 	.mytitle{
+			
+			padding-bottom: 20px;
+			padding-left:20px;
             text-align: center;
             }
     
@@ -61,6 +66,9 @@
 		    outline: none;
 		    background: transparent;
 		}
+		label {
+			color: white;
+}
 
 </style>
 <script type="text/javascript">
@@ -155,7 +163,7 @@
 </script>
 </head>
 <body>
-
+<div id="wrapper" style="width:100%; height:1100px; background-color: black;">
 	<form name="boardWriteForm" action="../member/join" method="post">
 	<div class="wrap">
 	 <div class="mytitle"> 
@@ -184,7 +192,7 @@
 		</div>
 		</div>
 	</form>
-
+	</div>	
 <%@include file="../include/footer.jsp" %>
 </body>
 </html>

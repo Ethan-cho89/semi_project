@@ -29,7 +29,7 @@ public class MemberPwdController extends HttpServlet{
 			msg=dao.updatepwd(mem);
 			
 		}else {
-			msg="잘못입력하셨습니다.";
+			msg="가입하신 정보가 확인되지 않습니다.";
 		}
 		req.setAttribute("msg",msg);
 		req.getRequestDispatcher("/member/findpwd.jsp").forward(req, resp);

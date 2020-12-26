@@ -36,12 +36,12 @@
 		<a href="${cp}/qna/list">고객센터</a>|
 		<c:choose>
 		<c:when test="${empty sessionScope.id}">
-			<a href="/member/login.jsp">회원로그인</a>|
-			<a href="/member/join.jsp">회원가입</a>|
+			<a href="${cp}/member/login.jsp">회원로그인</a>|
+			<a href="${cp}/member/join.jsp">회원가입</a>|
 		</c:when>
 		<c:otherwise> 
-			<a href="/member/logout">로그아웃</a>|
-			<a href="/shoppinginfo/orderlist">마이페이지</a>|
+			<a href="${cp}/member/logout">로그아웃</a>|
+			<a href="${cp}/shoppinginfo/orderlist">마이페이지</a>|
 		</c:otherwise>
 	</c:choose>
 	</div>

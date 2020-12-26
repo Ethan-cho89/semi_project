@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.wrap{
-            width: 250px;
-            margin: 30px auto;
+        width:300px;position:relative; 
+		background-color: white;
+		margin:auto; margin-bottom:50px; 
+		top:200px; align-content: center; 
+		text-align : center; padding: 50px 50px 50px 50px;}
         }
 	.mytitle{
             text-align: center;
@@ -63,7 +66,7 @@
 </style>
 </head>
 <body>
-
+<div id="wrapper" style="width:100%; height:1100px; background-color: black;">
 <form method="post" action="../member/login">
 <div class="wrap">
 	 <div class="mytitle"> 
@@ -84,7 +87,7 @@
 	</div>
 </div>
 </form>
-
+</div>
 
 
 </body>
