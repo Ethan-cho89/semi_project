@@ -35,21 +35,21 @@ function menuLoad(t) {
 }
 
 	var data = [ {
-		text : 'Shopping Info',
+		text : '쇼핑 정보',
 		iconCls : '',
 		state : 'open',
 		children : [ {
-			text : '<strong onclick="menuLoad(this)" data-url="/shoppinginfo/orderlist">주문내역</strong>'
+			text : '<strong onclick="menuLoad(this)" data-url="/shoppinginfo/orderlist">주문 내역</strong>'
 		}, {
 			text : '<strong onclick="menuLoad(this)" data-url="/shoppinginfo/couponlist">보유 쿠폰 조회</strong>'
 		}, {
-			text : '<strong onclick="menuLoad(this)" data-url="/shoppinginfo/reviewlist">후기리스트</strong>'
+			text : '<strong onclick="menuLoad(this)" data-url="/shoppinginfo/reviewlist">리뷰 리스트</strong>'
 		} ]
 	}, {
-		text : 'My Info',
+		text : '내 정보',
 		iconCls : '',
 		children : [ {
-			text : '<strong onclick="menuLoad(this)" data-url="/member/update">회원정보 관리</strong>'
+			text : '<strong onclick="menuLoad(this)" data-url="/member/update">회원 정보 관리</strong>'
 		}, {
 			text : '<strong onclick="menuLoad(this)" data-url="/member/deletepage.jsp">회원 탈퇴</strong>'
 		} ]
