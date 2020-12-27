@@ -33,7 +33,6 @@ public class ItemListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		int gender = Integer.parseInt(req.getParameter("gender"));
 	
 		Criteria  cri = getCriteria(req);

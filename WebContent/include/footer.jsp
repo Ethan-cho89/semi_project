@@ -5,7 +5,7 @@
 <div style="background-color: black; position:relative; float:bottom; width:100%; height:200px; text-align: center;">
 	<div style=" display:inline-block;">
 		<div class="names">
-		최인권<br><br>
+		최인권
 		</div>
 		<div class="names">
 		김유중
@@ -17,7 +17,6 @@
 		조동현
 		</div>
 	</div>
-	
 </div> 
 </body>
 </html>

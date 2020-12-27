@@ -7,8 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>주문상세조회</title>
+<style type="text/css">
+.wrap {
+	width: 50%;
+	padding-left: 600px;
+	padding-top: 300px;
+	margin: auto;
+	display: inline-block
+}
+</style>
 </head>
 <body>
+<div class="wrap" style="height:400px;width:70%;display:inline-block;padding-left:15%;padding-right:15%">
+		<%@include file="../include/left.jsp"%>
+		<div style="height:100%;width:80%;float:left;">
 <script type="text/javascript">
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 
@@ -132,7 +144,9 @@ function orderconfirm() {
 					</c:when>
 					<c:when test="${vo.os=='7' }">
 					</c:when>
-				</c:choose>
+			</c:choose>
+			</div>
+	</div>			
 </body>
 </html>
 <%@include file="../include/footer.jsp" %>
