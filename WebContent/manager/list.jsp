@@ -7,6 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.wrap{width:300px;position:relative; 
+		margin:auto; margin-bottom:50px; 
+		top:200px; align-content: center; 
+		text-align : center; padding: 50px 50px 50px 50px;}
+
+	.mytitle{
+			color:white;
+			padding-bottom: 20px;
+			padding-left:20px;
+            text-align: center;
+            }
+	
+
+</style>
 <script type="text/javascript">
 	function find(e) {
 		var id=e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.value;//id
@@ -18,9 +33,13 @@
 </script>
 </head>
 <body>
+<div id="wrapper" style="width:100%; height:1100px; background-color: black;">
+<div class="wrap">
+	 <div class="mytitle"> 
 <h1>회원목록</h1>
-
-<table border="1" width="500">
+	 </div>
+	 	 <div class="input-group">
+<table border="1" width="500" style="color: white;" >
 	<tr>
 		<th>아이디</th>
 		<th>휴대폰번호</th>
@@ -58,6 +77,9 @@
 		</tr>
 	</c:forEach>	
 </table>
+</div>
+</div>
+</div>
 </body>
 </html>
 <%@include file="../include/footer.jsp" %>
