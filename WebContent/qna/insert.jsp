@@ -11,7 +11,7 @@
 	td:nth-child(1) {width:90px;}
 	td:nth-child(2) {width:280px;}
 	#wrap a{text-decoration: none; color:white;}
-	.button{border-style:none; border:0; cursor:pointer; outline:none; background-color:black; color:white; font-weight:bold; font-size:16px;}
+	.button{border-style:none; width:60px; height:25px; border:0; cursor:pointer; outline:none; background-color:black; color:white; font-weight:bold; font-size:15px; border-radius:15px;}
 	input{font-weight:bold;}
 </style>
 
@@ -65,12 +65,12 @@
 	var buttons = document.getElementsByClassName("button");
 	for(let i= 0; i<buttons.length; i++){
 		buttons[i].addEventListener("mouseover", function(e) {
-			e.target.style="background-color: #EAEAEA;";
+			e.target.style="background-color: #353535;";
 		}, false)
 	}
 	for(let i= 0; i<buttons.length; i++){
 		buttons[i].addEventListener("mouseout", function(e) {
-			e.target.style="background-color: white;";
+			e.target.style="background-color: black;";
 		}, false)
 	}
 </script>

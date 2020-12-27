@@ -71,9 +71,10 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<h3>문의글이 존재하지 않습니다</h3>
+				<h3 style="color:white;">문의글이 존재하지 않습니다</h3>
 				<br>
-				<a href="${cp }/qna/insert" style="font-size:15px">문의하기</a><br><br>
+				<a href="${pageContext.request.contextPath }/qna/list" style="color:white;">QnA 메인 화면으로 돌아가기</a><br><br>
+				<a href="${cp }/qna/insert" style="font-size:15px; color:white;">문의하기</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
