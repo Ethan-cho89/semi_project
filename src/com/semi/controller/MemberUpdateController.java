@@ -48,6 +48,6 @@ public class MemberUpdateController extends HttpServlet {
 		}else {
 			req.setAttribute("code","fail");
 		}
-		req.getRequestDispatcher("/member/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/home.jsp").forward(req, resp);
 	}
 }

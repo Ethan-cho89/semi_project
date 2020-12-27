@@ -83,7 +83,7 @@
 	<input type="submit" value="로그인">
 	</div>
 	<div class="input-link2">
-	<a href="nonmember.jsp">비회원 주문 조회</a>
+	<a href="${cp}/nonmember/nonmember.jsp">비회원 주문 조회</a>
 	</div>
 </div>
 </form>

@@ -101,6 +101,7 @@ function inputPhoneNumber(obj) {
 </div>
 <input type="submit" value="임시비밀번호 발급">
 <div><h4>${msg }</h4></div><br>
+<h5>임시비밀번호는 로그인 후 비밀번호를 변경하여 이용해 주시기 바랍니다.</h5>
 <div class="input-link2">
 <a href="<%=request.getContextPath() %>/member/login.jsp">로그인창으로 가기</a>
 </div>
