@@ -26,7 +26,7 @@ public class OrderDetailDao {
 					"from tbl_order o,tbl_address a,tbl_stock s,tbl_item i\r\n" + 
 					"where o.mid = ? and o.num =? and o.anum = a.num and o.snum=s.snum and s.inum=i.num";
 			}else {
-				sql="select o.num onum,o.count oc,o.price opc,o.price*(c.dcrate/100)cd,o.pay opay,o.mid omid,a.orderphone aop,a.recipient arc,\r\n" + 
+				sql="select o.num onum,o.count oc,o.price opc,o.price*(c.dcrate/100)*o.count cd,o.pay opay,o.mid omid,a.orderphone aop,a.recipient arc,\r\n" + 
 						"        a.rephone arp,a.address aad , i.name iname , o.paydate opd , o.ship os,o.how oh,s.ssize ssize,c.num ccnum\r\n" + 
 						"from tbl_order o,tbl_coupon c,tbl_address a,tbl_stock s,tbl_item i\r\n" + 
 						"where o.mid = ? and o.num =? and o.anum = a.num and o.snum=s.snum and s.inum=i.num  and o.cnum=c.num";
