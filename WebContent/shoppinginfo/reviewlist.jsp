@@ -53,7 +53,7 @@ table.type11 td {
 		style="height:100%; width: 1920px; display: inline-block; padding-left: 10%; padding-right: 10%; background: black;padding-top: 300px;">
 		<%@include file="../include/left.jsp"%>
 		<div
-			style="height: 100%; width: 1000px; float: left; margin-left: 150px">
+			style="height: 1200px; width: 1000px; float: left; margin-left: 150px">
 			<h1 style="color: white;">리뷰 리스트</h1>
 			<c:forEach var="list" items="${requestScope.list }">
 				<table class="type11">

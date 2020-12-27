@@ -1,10 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
+    <link rel="stylesheet" type="text/css" href="../../assert/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../assert/demo.css">
+
+    <script type="text/javascript" src="../../assert/jquery.min.js"></script>
+    <script type="text/javascript" src="../../assert/jquery.easyui.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../../assert/demo/sidemenu/sidemenu_style.css">
+
 <style type="text/css">
-	#left{width:200px; height:400px;border:2px solid gray;background-color: white;left:350px;top:100px;position:absolute;}
+#headmenu2 {
+	height: 58px;
+}
+.accordion {
+	border-color: black;
+}
 </style>
-<<<<<<< HEAD
 <div style=" width: 188px; float: left;" id="sm" class="easyui-sidemenu" data-options="data:data">
 	<ul>
 		<%-- <li>Shopping Info</li>
@@ -52,19 +64,3 @@ function menuLoad(t) {
 		})
 	}
 </script>
-=======
-<div>
-	<table id="left">	
-		<tr><th>Shopping Info</th></tr>
-		<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/orderlist">주문내역</a></td></tr>
-		<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/couponlist">보유 쿠폰 조회</a></td></tr>
-		<tr><td><a href="${pageContext.request.contextPath }/shoppinginfo/reviewlist">후기리스트</a></td></tr>
-		<tr><th>My Info</th></tr>
-		<tr><td><a href="${pageContext.request.contextPath }/member/list">회원정보 관리</a></td></tr>
-		<tr><td><a href="${pageContext.request.contextPath }/member/update">회원정보 수정</a></td></tr>
-		<tr><td><a href="${pageContext.request.contextPath }/member/deletepage.jsp">회원 탈퇴</a></td></tr>
-	</table>
-</div> 
-</body>
-</html>
->>>>>>> branch 'master' of https://github.com/wm9596/semi_1team.git

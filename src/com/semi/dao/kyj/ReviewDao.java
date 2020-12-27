@@ -121,7 +121,7 @@ public class ReviewDao {
 		String sql2 ="update tbl_order set revcheck=0 where num=? and mid=?";
 		String sql3="update tbl_item\r\n" + 
 				"set review = review-1, avgrate = ((avgrate*review)-?)/(review-1)\r\n" + 
-				"where num=?;";
+				"where num=?";
 		try {
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
