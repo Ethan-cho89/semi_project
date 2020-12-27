@@ -61,13 +61,19 @@ public class ItemBoardServiceImpl implements ItemBoardService {
 	}
 	
 	@Override
-	public int getTotal() {
-		return dao.getTotal();
+	public int getTotal(Criteria cri) {
+		return dao.getTotal(cri);
 	}
 
 	@Override
-	public List<ItemVo> getList(int gender, Criteria cri) {
-		return dao.getList(gender, cri);
+	public List<ItemVo> getList(Criteria cri) {
+		return dao.getList(cri.getGender(), cri);
+	}
+
+	@Override
+	public List<ItemVo> getListWithKeyWord(Criteria cri) {
+		
+		return dao.getListWithKeyWord(cri);
 	}
 	
 }

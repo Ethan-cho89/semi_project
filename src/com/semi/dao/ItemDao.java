@@ -29,8 +29,18 @@ public class ItemDao {
 		return instance;
 	}
 
-	public int getTotal() {
-		return jdbcTemplate.queryForObject("select count(*) from tbl_item",
+	public int getTotal(Criteria cri) {
+		String sql = "select count(*) from tbl_item ";
+		
+		String condition = cri.getSQL();
+		
+		if(condition.length()>0) {
+			sql += "where ";
+			condition =condition.substring(0, condition.lastIndexOf("and")-1);
+			sql += condition;
+		}
+		
+		return jdbcTemplate.queryForObject(sql,
 				new RowMapper<Integer>() {
 					@Override
 					public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -102,6 +112,41 @@ public class ItemDao {
 		
 		List<ItemVo> list = jdbcTemplate.query(sql, 
 				new Object[] {gender,cri.getAmount()*cri.getPageNum(),cri.getAmount()*(cri.getPageNum()-1)},
+				new RowMapper<ItemVo>() {
+			@Override
+			public ItemVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ItemVo vo = new ItemVo(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getInt(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getInt(8));
+				
+				return vo;
+			}
+		});
+		
+		return list;
+	}
+	
+	public List<ItemVo> getListWithKeyWord(Criteria cri) {
+		//Index_desc
+		String sql = "select num,name,type,price,detail,review,avgrate,gender\r\n" + 
+				"from\r\n" + 
+				"(\r\n" + 
+				"    select /*+Index(tbl_item pk_item)*/\r\n" + 
+				"            rownum rn,num,name,type,price,detail,review,avgrate,gender\r\n" + 
+				"    from tbl_item\r\n" + 
+				"    where "+ cri.getSQL() +"\r\n" + 
+				"         rownum <= ?\r\n" + 
+				")\r\n" + 
+				"where rn > ?";
+		
+		List<ItemVo> list = jdbcTemplate.query(sql, 
+				new Object[] {cri.getAmount()*cri.getPageNum(),cri.getAmount()*(cri.getPageNum()-1)},
 				new RowMapper<ItemVo>() {
 			@Override
 			public ItemVo mapRow(ResultSet rs, int rowNum) throws SQLException {

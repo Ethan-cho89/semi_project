@@ -104,7 +104,7 @@ function inputPhoneNumber(obj) {
 	<form method="post" action="../member/update" name="boardWriteForm" >
 	<div class="wrap">
 	 <div class="mytitle"> 
-		<h2>회원수정하기</h2>
+		<h2>회원정보 관리</h2>
 	</div>
 	<div class="input-group">
 	<label for="email">이메일 아이디</label><br>
@@ -124,7 +124,14 @@ function inputPhoneNumber(obj) {
 	<input type="text" value="${member.regdate }" readonly="readonly" class="input-field"
 	style="height: 20px; width: 300px; background-color: gray;"><br>
 	이메일 수신 여부
-	<input type="checkbox" name="eokay"id="eokay" >수신<br><br>
+	 <c:choose>
+	        <c:when test="${member.eokay==1}">
+	                   <input type="checkbox" name="eokay"id="eokay" value="1" checked="checked">
+	                  </c:when>
+	                   <c:when test="${member.eokay==2}">
+	                   <input type="checkbox" name="eokay"id="eokay" value="2" >
+	                   </c:when>
+                </c:choose>
 	</div>
 	<input type="submit" value="수정하기" onclick="return test()">
 	</div>

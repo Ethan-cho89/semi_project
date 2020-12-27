@@ -32,15 +32,15 @@ public class MemberUpdateController extends HttpServlet {
 		String pwd=req.getParameter("pwd");
 		String phone =req.getParameter("phone");
 		String nick =req.getParameter("nick");
-		String eokay1=req.getParameter("eokay");
-		System.out.println(id+pwd+phone+nick+eokay1);
-		MemberDao dao=new MemberDao();
-		int eokay=0;
-		if(eokay1==null) {	
-			eokay=2;
-		}else if(eokay1.equals("on")) {
-			eokay=1;
-		}
+		 int eokay=0; 
+		 if(req.getParameter("eokay")==null){
+			 eokay=2;
+		 }else{
+			 eokay=1;
+			 }
+		 
+		 MemberDao dao=new MemberDao();
+		 
 		Member mem=new Member(id, pwd, phone, nick, null, eokay,1);
 		int n=dao.update(mem);
 		if(n>0) {
