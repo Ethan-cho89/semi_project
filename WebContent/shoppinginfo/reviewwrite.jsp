@@ -14,7 +14,6 @@
 		<div
 			style="height: 1200px; width: 1000px; float: left; margin-left: 150px">
 			<h1 style="color: white;">리뷰 쓰기</h1>
-
 			<form method="post"
 				action="${pageContext.request.contextPath }/shoppinginfo/reviewwrite">
 				<input type="hidden" id="onum" name="onum"

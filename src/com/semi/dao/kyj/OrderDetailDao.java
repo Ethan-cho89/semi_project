@@ -31,7 +31,6 @@ public class OrderDetailDao {
 						"from tbl_order o,tbl_coupon c,tbl_address a,tbl_stock s,tbl_item i\r\n" + 
 						"where o.mid = ? and o.num =? and o.anum = a.num and o.snum=s.snum and s.inum=i.num  and o.cnum=c.num";
 			}
-			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, omid);
 			pstmt.setInt(2, onum);

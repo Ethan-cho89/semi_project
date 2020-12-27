@@ -63,7 +63,6 @@ table.type11 td {
 					</c:if>
 				</c:forEach>
 			</table>
-
 			<div style="text-align: center;">
 				<c:if test="${startPageNum>10 }">
 					<a
