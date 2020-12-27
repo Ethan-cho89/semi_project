@@ -21,6 +21,7 @@
 		    slidesToShow: 1, //한 화면에 보여줄 아이템수
 		    slidesToScroll: 1, // 한번에 슬라이드 시킬 아이템 개수
 		    arrows: false, //좌우 화살 버튼 노출 여부 ( false 시 안보임 )
+		    draggable: false
 		  });
 	</script>
 	<% session.setAttribute("status", 4); %>

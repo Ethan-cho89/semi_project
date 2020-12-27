@@ -7,45 +7,63 @@
 <script src="../js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../css/summernote/summernote-lite.css">
 
+<style>
+ 	.content{
+		padding-top:82px;
+		padding-left:500px;
+		position:relative;
+		height:900px;
+	}
+	
+	.btn{
+		background-color: black;
+		color: white;
+		width: 50px;
+		height: 30px;
+		margin: 10px;
+	}
+	
+</style>
 
+<div class="content">
+	<form method="post" action="/itemboard/regist"  id="regForm" style="display: inline-block;">
+	  <label for="name">상품명 : </label> 
+	  <input name="name" type="text" width="30"><br>
+	  <label for="price">가격 : </label> 
+	  <input name="price" type="number" min="1000" width="30" ><br>
+	  <fieldset>
+	  	<legend>성별</legend>
+			<input type="radio" name="gender" value="0" readonly="readonly" <c:if test="${param.gender eq 0}">checked="checked"</c:if> >남
+			<input type="radio" name="gender" value="1" readonly="readonly" <c:if test="${param.gender eq 1}">checked="checked"</c:if>>여<br>
+	  </fieldset>
+	  
+	  <fieldset>
+	  	<legend>상품 분류</legend>
+			<input type="radio" name="type" value="상의">상의
+			<input type="radio" name="type" value="하의">하의
+			<input type="radio" name="type" value="아우터">아우터<br>
+	  </fieldset>
+	  
+	 <fieldset>
+	  	<legend>사이즈 별 재고</legend>
+	  	 	<label>S</label>
+	  	 	<input type="number" name="sizeS"  min="0" value="0"><br>
+	  	 	<label>M</label>
+	  	 	<input type="number" name="sizeM" min="0" value="0"><br>
+	  	 	<label>L</label>
+	  	 	<input type="number" name="sizeL" min="0" value="0"><br>
+	  	 	<label>XL</label>
+	  	 	<input type="number" name="sizeXL" min="0" value="0"><br>
+	  </fieldset>
+	  
+	  <label>내용</label><br>
+	  <textarea id="summernote" name="editordata"></textarea>
+	  <input class="btn" type="button" value="등록"  onclick="onClickSubmit()">
+	  <input class="btn" type="button"  value="리셋 " onclick="onClickReset()">
+	
+	</form>
+</div>
 
-<form method="post" action="/itemboard/regist"  id="regForm">
-
-  <label for="name">상품명 : </label> 
-  <input name="name" type="text" width="30"><br>
-  <label for="price">가격 : </label> 
-  <input name="price" type="number" min="1000" width="30" ><br>
-  <fieldset>
-  	<legend>성별</legend>
-		<input type="radio" name="gender" value="0" readonly="readonly" <c:if test="${param.gender eq 0}">checked="checked"</c:if> >남
-		<input type="radio" name="gender" value="1" readonly="readonly" <c:if test="${param.gender eq 1}">checked="checked"</c:if>>여<br>
-  </fieldset>
-  
-  <fieldset>
-  	<legend>상품 분류</legend>
-		<input type="radio" name="type" value="상의">상의
-		<input type="radio" name="type" value="하의">하의
-		<input type="radio" name="type" value="아우터">아우터<br>
-  </fieldset>
-  
- <fieldset>
-  	<legend>사이즈 별 재고</legend>
-  	 	<label>S</label>
-  	 	<input type="number" name="sizeS"  min="0" value="0"><br>
-  	 	<label>M</label>
-  	 	<input type="number" name="sizeM" min="0" value="0"><br>
-  	 	<label>L</label>
-  	 	<input type="number" name="sizeL" min="0" value="0"><br>
-  	 	<label>XL</label>
-  	 	<input type="number" name="sizeXL" min="0" value="0"><br>
-  </fieldset>
-  
-  <label>내용</label><br>
-  <textarea id="summernote" name="editordata"></textarea>
-  <input type="button" value="등록"  onclick="onClickSubmit()">
-  <input type="button"  value="리셋 " onclick="onClickReset()">
-
-</form>
 
 <script type="text/javascript">
 //console.log(self.location.host+"/");
@@ -64,8 +82,8 @@ var arr = new Array();
 				    ['insert',['picture','link']],
 				    ['view', ['fullscreen', 'help']]
 				  ],
-			  height: 300,  
-			  width: 800,// 에디터 높이
+			  height: 500,  
+			  width: 900,// 에디터 높이
 			  minHeight: null,             // 최소 높이
 			  maxHeight: null,             // 최대 높이
 			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부

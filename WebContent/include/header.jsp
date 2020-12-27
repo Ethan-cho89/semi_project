@@ -9,7 +9,7 @@
 <title>쇼핑몰</title>
 <style>
 	*{margin:0px; padding:0px;}
-	#menu{width:100%; position:fixed; z-index: 999;}
+	#menu{width:100%; height:82px; position:fixed; z-index: 999;}
 	#headmenu1{width:100%; height:30px; line-height:30px; position:relative; text-align: right; color:white; font-size:13px}
 	#headmenu1 a{text-decoration: none; transform:translateY(-50%); color:white; margin:15px;}
 	
@@ -50,9 +50,11 @@
 		<img src="${cp}/images/logoBlack.PNG" alt="nikeLogo" width=80 style="margin-top:6px; margin-left:30px" ></a>
 		<a href="/itemboard/list?gender=0" style="margin-left:290px;">남성의류</a>
 		<a href="/itemboard/list?gender=1" style="margin-left:50px;">여성의류</a>
-		<a href="/장바구니" style="float:right; margin-top:12px; margin-right:40px;">
+		<a href="/itemboard/cartList.jsp" style="float:right; margin-top:12px; margin-right:40px;">
 		<img src="${cp}/images/basket.PNG" alt="cart" width=40 style="margin-top: 3px;" ></a>
-		<input type="button" value="검색" style="float:right;">
-		<input type="text" name="keyword" size=20px; style="float: right; font-size:large; border-radius:20px;">
+		<form action="/itemboard/list" method="get" style="display: inline-block; float:right;">
+			<input type="submit" value="검색" style="float:right;">
+			<input type="text" name="keyword" size=20px; style="float: right; font-size:large; border-radius:20px;">
+		</form>
 	</div>
 </div>
