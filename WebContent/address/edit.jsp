@@ -34,8 +34,18 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-						<input type="checkbox" id="check" name="isDefault" value="1" <c:if test="${vo.isDefault==1}">checked</c:if>>
-						<label for="check" style="color:white;">&nbsp;기본배송지로 설정</label>
+						<c:choose>
+							<c:when test="${vo.isDefault==1 }">
+								<input type="checkbox" id="check" checked disabled="disabled"><label for="check" style="color:white;">&nbsp;기본배송지로 설정</label>
+								<input type="hidden" value="1" name="isDefault">
+							</c:when>
+							<c:when test="${vo.isDefault!=1 }">
+								<input type="checkbox" id="check" name="isDefault" value="1"><label for="check" style="color:white;">&nbsp;기본배송지로 설정</label>
+							
+							</c:when>
+						</c:choose>
+						
+
 						</td>
 					</tr>
 					<tr>
