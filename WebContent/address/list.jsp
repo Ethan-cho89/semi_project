@@ -35,7 +35,7 @@ td:nth-child(5) {width: 100px;}
 		<h1 >배송지 관리</h1>
 		<br>
 		<a href="${cp}/address/insert" style=" color:white;">배송지 추가</a>
-		<table width="1000" cellspacing=1 cellpadding=2 bgcolor="white"
+		<table width="1000" cellspacing=1 cellpadding=2 bgcolor="white" id="ths"
 			style="margin: auto; margin-top: 15px;">
 			<tr style="background-color: #EAEAEA;">
 				<th>기본배송지</th>
@@ -81,7 +81,9 @@ td:nth-child(5) {width: 100px;}
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var listTable = document.getElementById("listTable");
 				var json = JSON.parse(xhr.responseText);
-				if(json[0].code==false){
+				if(json[0].check==false){
+					var ths= document.getElementById("ths");
+					ths.deleteRow(0);
 				}else{
 					for (let i = 0; i < json.length; i++) {
 						var num = json[i].num;
