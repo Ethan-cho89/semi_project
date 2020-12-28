@@ -89,7 +89,7 @@
 			
 		</h2>
 		
-		<h3 id="sumPrice">000원</h3>
+		<h3 id="sumPrice"></h3>
 		<form id="payForm" action="/itemboard/pay" method="get">
 			<input class="payBtn" type="submit" value="구매하기">
 		</form>

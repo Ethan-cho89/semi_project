@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.semi.dao.PayDao;
+import com.semi.domain.AddressVo;
 import com.semi.domain.CartVo;
 
 @WebServlet("/pay/insert")
@@ -34,15 +35,29 @@ public class PayInsertController extends HttpServlet {
 		int cnum =Integer.parseInt(req.getParameter("cnum"));
 		
 		int adNum =Integer.parseInt(req.getParameter("adNum"));
+		String aName = req.getParameter("aName");
+		String addr = req.getParameter("addr");
 		String reN = req.getParameter("rN");
 		String reP = req.getParameter("rP");
 		String oderM = req.getParameter("oderM");
 		String oderP = req.getParameter("oderP");
+		
+		if(adNum==-1) {
+			AddressVo advo = new AddressVo(0, id, "", addr, reN, reP, oderM, oderP, 0);
+			adNum = dao.getKeyAndAddAddress(advo);
+		}else {
+			AddressVo advo = new AddressVo(adNum, id, "", addr, reN, reP, oderM, oderP, 0);
+			dao.modifyAddress(advo);
+		}
+		
 		int cnt = 0;
 		for(CartVo vo : list) {
 			cnt += dao.addOrder(vo, id, adNum, cnum, dcrate);
 		}
-		
+
+		if(cnum!=-1) {
+			dao.modifyCoupon(cnum,id);
+		}
 		
 		resp.sendRedirect("/home.jsp");
 	}

@@ -28,7 +28,8 @@ public class CouponholderDao {
 	}
 
 	public List<CouponHolderVo> getList(String id) {
-		return jdbcTemplate.query("select *\r\n" + "from tbl_coupholder\r\n" + "where id = ?", new Object[] { id },
+		return jdbcTemplate.query("select *\r\n" + "from tbl_coupholder\r\n" + "where id = ? and used = 0",
+				new Object[] { id },
 				new RowMapper<CouponHolderVo>() {
 					@Override
 					public CouponHolderVo mapRow(ResultSet rs, int rn) throws SQLException {

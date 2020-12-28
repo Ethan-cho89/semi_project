@@ -111,7 +111,7 @@
 				<div id="cList">
 				</div>
 			</div>
-			<input type="hidden" name="cnum"  >
+			<input type="hidden" name="cnum"  value="-1">
 		</c:if>
 		
 		<div>
