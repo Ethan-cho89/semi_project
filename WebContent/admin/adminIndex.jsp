@@ -21,9 +21,9 @@
 
 <div class="content">
 	<ul>
-		<li><a href="/coupon/list">쿠폰관리</a></li>
-		<li><a href="/admin/chart.jsp">매출관리</a></li>
-		<li><a href="/manager/list">회원 관리</a></li>
+		<li><a href="${cp}/coupon/list">쿠폰관리</a></li>
+		<li><a href="${cp}/admin/chart.jsp">매출관리</a></li>
+		<li><a href="${cp}/manager/list">회원 관리</a></li>
 	</ul>
 </div>
 
