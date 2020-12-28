@@ -6,7 +6,6 @@ import com.semi.domain.Criteria;
 import com.semi.domain.ItemVo;
 
 public interface ItemBoardService {
-
 	public List<ItemVo> getList(int gender);
 
 	public List<ItemVo> getList(Criteria cri);

@@ -75,5 +75,4 @@ public class ItemBoardServiceImpl implements ItemBoardService {
 		
 		return dao.getListWithKeyWord(cri);
 	}
-	
 }

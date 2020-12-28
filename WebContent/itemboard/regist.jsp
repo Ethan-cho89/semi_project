@@ -6,7 +6,6 @@
 <script src="../js/summernote/summernote-lite.js"></script>
 <script src="../js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../css/summernote/summernote-lite.css">
-
 <style>
  	.content{
 		padding-top:82px;

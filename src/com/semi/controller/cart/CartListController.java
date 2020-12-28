@@ -36,10 +36,7 @@ public class CartListController extends HttpServlet{
 				vo.setPhotoList(service.getList(vo.getInum()));
 			}
 			
-			//req.setAttribute("list", list);
 		}
-		
-		//req.getRequestDispatcher("/itemboard/cartList.jsp").forward(req, resp);
 		
 		Gson gson = new Gson(); 
 		
@@ -51,5 +48,4 @@ public class CartListController extends HttpServlet{
 		
 	}
 	
-
 }

@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.semi.domain.ItemVo;
-import com.semi.domain.PhotoVo;
 import com.semi.domain.StockVo;
 import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;

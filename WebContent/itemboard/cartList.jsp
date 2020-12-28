@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@include file="../include/header.jsp" %><!-- <body> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <style>
   .content{
 		padding-top:82px;
@@ -90,7 +91,7 @@
 		
 		<h3 id="sumPrice">000원</h3>
 		<form id="payForm" action="/itemboard/pay" method="get">
-			<input class="payBtn" type="submit" value="결제하기">
+			<input class="payBtn" type="submit" value="구매하기">
 		</form>
 </div>
 <script type="text/javascript">

@@ -7,7 +7,6 @@ import com.semi.dao.ChartDao;
 import com.semi.domain.ChartVo;
 
 public class ChartServieImpl implements ChartServie {
-	
 	private static ChartServie instance;
 	
 	private ChartDao dao;

@@ -58,5 +58,4 @@ public class StockServiceImpl implements StockService {
 		}
 		return cnt>=sizes.length;
 	}
-
 }

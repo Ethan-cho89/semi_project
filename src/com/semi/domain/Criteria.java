@@ -1,9 +1,7 @@
 package com.semi.domain;
 
 
-import lombok.Generated;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @ToString
@@ -123,5 +121,4 @@ public class Criteria {
 		
 		return builder.toString();
 	}
-
 }

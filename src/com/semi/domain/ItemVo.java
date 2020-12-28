@@ -32,5 +32,4 @@ public class ItemVo {
 		this.avgrate = avgrate;
 		this.gender = gender;
 	}
-	
 }

@@ -26,7 +26,6 @@ public class ImageFileWatchScheduling extends HttpServlet{
 	Scheduler scheduler ;
 	@Override
 	public void init() throws ServletException {
-		
 		try {
 			scheduler = new StdSchedulerFactory().getScheduler();
 			scheduler.start();

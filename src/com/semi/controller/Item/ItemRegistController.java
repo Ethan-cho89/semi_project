@@ -1,8 +1,6 @@
 package com.semi.controller.Item;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.semi.domain.ItemVo;
-import com.semi.domain.PhotoVo;
 import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
 import com.semi.service.PhotoService;

@@ -28,7 +28,7 @@ public class CookieUtil {
 		}
 		return null;
 	}
-	
+
 	public  static List<CartVo> getCartData(HttpServletRequest req) {
 		for(Cookie co : req.getCookies()) {
 			if(co.getName().equals("cart")) {
@@ -47,4 +47,5 @@ public class CookieUtil {
 		}
 		return null;
 	}
+	
 }

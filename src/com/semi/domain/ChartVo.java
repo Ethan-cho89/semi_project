@@ -8,4 +8,5 @@ import lombok.Data;
 public class ChartVo {
 	private String colName;
 	private int value;
+	
 }

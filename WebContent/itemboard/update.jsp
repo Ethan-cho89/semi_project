@@ -66,7 +66,6 @@
 	</form>
 </div>
 
-
 <script type="text/javascript">
 //console.log(self.location.host+"/");
 var imgArr = new Array();

@@ -13,7 +13,6 @@ public class PageMaker {
 	private int total;
 	private Criteria cri;
 	
-	
 	public PageMaker(Criteria cri,int total) {
 		this.cri = cri;
 		this.total = total;

@@ -11,4 +11,5 @@ public interface StockService {
 	public  Map<String, StockVo> getItemStock(int num);
 	
 	public boolean modify(int inum,int...sizes);
+	
 }

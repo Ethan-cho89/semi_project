@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@include file="../include/header.jsp" %><!-- <body> -->
 <!-- <link rel="stylesheet" type="text/css" href="../js/slick/slick.css"/> -->
+
 <style>
 	.slick-track:before,
 	.slick-track:after

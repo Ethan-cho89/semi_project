@@ -20,6 +20,7 @@ public class ImageFileWatchJob implements Job {
 		deleteFile(jc.getMergedJobDataMap().getString("root"));
 	}
 
+	
 	public void deleteFile(String root) {
 		String rootPath = "/upload/";
 		String tempPath = "/upload/temp";
@@ -55,6 +56,5 @@ public class ImageFileWatchJob implements Job {
 			System.out.println(ff.getAbsolutePath());
 			ff.delete();
 		}
-		
 	}
 }

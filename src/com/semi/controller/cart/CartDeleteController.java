@@ -37,6 +37,5 @@ public class CartDeleteController extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		
 		pw.write(gson.toJson(list));
-		
 	}
 }

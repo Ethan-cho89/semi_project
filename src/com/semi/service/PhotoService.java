@@ -17,4 +17,5 @@ public interface PhotoService {
 	public boolean delete(ServletContext sc,int num);
 	
 	public boolean deleteWithOutFile(int num);
+	
 }

@@ -30,7 +30,6 @@ public class ReviewDeleteController extends HttpServlet {
 			json.addProperty("code", "error");
 		}
 		
-		
 		PrintWriter pw = resp.getWriter();
 		pw.print(json.toString());
 	}

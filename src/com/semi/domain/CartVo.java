@@ -48,5 +48,4 @@ public class CartVo {
 	public int hashCode() {
 		return inum+iname.hashCode()+snum+size.hashCode();
 	}
-
 }

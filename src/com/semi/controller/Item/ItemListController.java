@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.semi.dao.ItemDao;
 import com.semi.domain.Criteria;
 import com.semi.domain.ItemVo;
 import com.semi.domain.PageMaker;
@@ -17,8 +16,6 @@ import com.semi.service.ItemBoardService;
 import com.semi.service.ItemBoardServiceImpl;
 import com.semi.service.PhotoService;
 import com.semi.service.PhotoServiceImpl;
-import com.semi.service.StockService;
-import com.semi.service.StockServiceImpl;
 
 @WebServlet("/itemboard/list")
 public class ItemListController extends HttpServlet{

@@ -80,5 +80,4 @@ public class PhotoServiceImpl implements PhotoService {
 	public boolean deleteWithOutFile(int num) {
 		return dao.delete(num)>=1;
 	}
-	
 }

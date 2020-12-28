@@ -59,4 +59,5 @@ public class StockDao {
 						size
 				});
 	}
+	
 } 

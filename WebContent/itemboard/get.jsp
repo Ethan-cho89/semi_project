@@ -88,7 +88,6 @@
 	</c:if>
 </div>
 
-
 <script type="text/javascript">
 const amount = 5;
 

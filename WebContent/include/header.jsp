@@ -32,7 +32,7 @@
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <div id="menu">
 	<div id="headmenu1" style="background-color: black; ">
-		<c:if test="${status==4}"><a href="">관리자 페이지</a>|</c:if>
+		<c:if test="${status==4}"><a href="/admin/adminIndex.jsp">관리자 페이지</a>|</c:if>
 		<a href="${cp}/qna/list">고객센터</a>|
 		<c:choose>
 		<c:when test="${empty sessionScope.id}">
@@ -53,7 +53,7 @@
 		<a href="/itemboard/cartList.jsp" style="float:right; margin-top:12px; margin-right:40px;">
 		<img src="${cp}/images/basket.PNG" alt="cart" width=40 style="margin-top: 3px;" ></a>
 		<form action="/itemboard/list" method="get" style="display: inline-block; float:right;">
-			<input type="submit" value="검색" style="float:right;">
+			<input type="image" src="${cp}/images/search.PNG" style="float:right;">
 			<input type="text" name="keyword" size=20px; style="float: right; font-size:large; border-radius:20px;">
 		</form>
 	</div>

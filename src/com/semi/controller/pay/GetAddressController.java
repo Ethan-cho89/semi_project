@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.semi.dao.Couponholder.CouponholderDao;
-import com.semi.domain.CouponHolderVo;
+import com.google.gson.JsonObject;
+import com.semi.dao.AddressDao;
+import com.semi.domain.AddressVo;
 
-@WebServlet("/pay/getCoupon")
-public class GetCouponController extends HttpServlet{
-
+@WebServlet("/pay/getAddr")
+public class GetAddressController extends HttpServlet{
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = (String) req.getSession().getAttribute("id");
 		
-		CouponholderDao dao = CouponholderDao.getInstance();
-		List<CouponHolderVo>list = dao.getList(id);
-		
+		AddressDao dao = AddressDao.getDao();
+		List<AddressVo> list =  dao.list(id);
 		
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/plain;charset=utf-8");

@@ -6,4 +6,5 @@ import com.semi.domain.ChartVo;
 
 public interface ChartServie {
 	public List<ChartVo> getList(String col);
+	
 }

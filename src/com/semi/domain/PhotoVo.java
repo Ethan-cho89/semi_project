@@ -17,4 +17,5 @@ public class PhotoVo {
 	public String getFilePath() {
 		return path+name;
 	}
+	
 }

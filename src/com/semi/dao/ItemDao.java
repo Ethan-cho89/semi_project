@@ -2,7 +2,6 @@ package com.semi.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.semi.domain.Criteria;
 import com.semi.domain.ItemVo;
-import com.semi.domain.PhotoVo;
 import com.semi.service.PhotoService;
 import com.semi.service.PhotoServiceImpl;
 import com.semi.util.db.DBCPBean;

@@ -25,6 +25,7 @@ public class PayGetController extends HttpServlet{
 		
 		req.setAttribute("list", list);
 		
+		
 		req.getRequestDispatcher("/itemboard/pay.jsp").forward(req, resp);
 	}
 }
