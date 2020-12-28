@@ -135,7 +135,7 @@ public class ItemDao {
 		String sql = "select num,name,type,price,detail,review,avgrate,gender\r\n" + 
 				"from\r\n" + 
 				"(\r\n" + 
-				"    select /*+Index(tbl_item pk_item)*/\r\n" + 
+				"    select /*+Index_DESC(tbl_item pk_item)*/\r\n" + 
 				"            rownum rn,num,name,type,price,detail,review,avgrate,gender\r\n" + 
 				"    from tbl_item\r\n" + 
 				"    where "+ cri.getSQL() +"\r\n" + 

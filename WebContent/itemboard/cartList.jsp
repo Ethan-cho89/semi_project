@@ -131,11 +131,11 @@ var itemArr;
 				console.log(data)
 				var json = JSON.parse(data);
 				itemArr = json;
-				sumPrice();
 				if(data=='null'||json.length < 1){
 					$('#nonCart').html('장바구니가 비었습니다') ;
 					return;
 				}
+				sumPrice();
 				showList(json);
 			}
 		});
