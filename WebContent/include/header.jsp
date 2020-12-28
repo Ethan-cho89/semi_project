@@ -46,13 +46,13 @@
 	</c:choose>
 	</div>
 	<div id="headmenu2">
-		<a href="/home.jsp" style="left:10px; float:left;">
+		<a href="${cp}/home.jsp" style="left:10px; float:left;">
 		<img src="${cp}/images/logoBlack.PNG" alt="nikeLogo" width=80 style="margin-top:6px; margin-left:30px" ></a>
-		<a href="/itemboard/list?gender=0" style="margin-left:290px;">남성의류</a>
-		<a href="/itemboard/list?gender=1" style="margin-left:50px;">여성의류</a>
-		<a href="/itemboard/cartList.jsp" style="float:right; margin-top:12px; margin-right:40px;">
+		<a href="${cp}/itemboard/list?gender=0" style="margin-left:290px;">남성의류</a>
+		<a href="${cp}/itemboard/list?gender=1" style="margin-left:50px;">여성의류</a>
+		<a href="${cp}/itemboard/cartList.jsp" style="float:right; margin-top:12px; margin-right:40px;">
 		<img src="${cp}/images/basket.PNG" alt="cart" width=40 style="margin-top: 3px;" ></a>
-		<form action="/itemboard/list" method="get" style="display: inline-block; float:right;">
+		<form action="${cp}/itemboard/list" method="get" style="display: inline-block; float:right;">
 			<input type="image" src="${cp}/images/search.PNG" style="float:right;">
 			<input type="text" name="keyword" size=20px; style="float: right; font-size:large; border-radius:20px;">
 		</form>
