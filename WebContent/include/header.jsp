@@ -52,6 +52,7 @@
 		<a href="${cp}/itemboard/list?gender=1" style="margin-left:50px;">여성의류</a>
 		<a href="${cp}/itemboard/cartList.jsp" style="float:right; margin-top:12px; margin-right:40px;">
 		<img src="${cp}/images/basket.PNG" alt="cart" width=40 style="margin-top: 3px;" ></a>
+		
 		<form action="${cp}/itemboard/list" method="get" style="display: inline-block; float:right;">
 			<input type="image" src="${cp}/images/search.PNG" style="float:right;">
 			<input type="text" name="keyword" size=20px; style="float: right; font-size:large; border-radius:20px;">

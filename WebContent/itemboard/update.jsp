@@ -25,7 +25,7 @@
 </style>
 
 <div class="content">
-	<form method="post" action="/itemboard/update"  id="regForm">
+	<form method="post" action="/itemboard/update"  id="regForm" style="display: inline-block;">
 	  <input type="hidden" value="${vo.num}" name="num">
 	  <label for="name">상품명 : </label> 
 	  <input name="name" type="text" width="30" value="${vo.name}"><br>
@@ -86,8 +86,8 @@ imgArr.push("${item.filePath }");
 				    ['insert',['picture','link']],
 				    ['view', ['fullscreen', 'help']]
 				  ],
-			  height: 300,  
-			  width: 800,// 에디터 높이
+			  height: 500,  
+			  width: 900,// 에디터 높이
 			  minHeight: null,             // 최소 높이
 			  maxHeight: null,             // 최대 높이
 			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부

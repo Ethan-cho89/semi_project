@@ -174,13 +174,16 @@ window.onload = function(){
 	
 	readReview(reviewPage++);
 	
-	btnshowReview.addEventListener("click", function(e) {
-		readReview(reviewPage++);
-		var cnt = reviewPage*amount;
-		if(cnt >= reviewCnt){
-			btnshowReview.style.display = 'none';
-		}
-	}, false)
+	if(btnshowReview!=null)
+	{
+			btnshowReview.addEventListener("click", function(e) {
+				readReview(reviewPage++);
+				var cnt = reviewPage*amount;
+				if(cnt >= reviewCnt){
+					btnshowReview.style.display = 'none';
+				}
+			}, false);
+	}
 	
 }//onload
 	
@@ -194,7 +197,13 @@ window.onload = function(){
 				
 				for(obj of json){
 					var li = document.createElement("li");
-					li.innerHTML = obj.id +" "+obj.rate +" "+obj.content;
+					var star="";
+					
+					for(let i = 0; i < obj.rate; i++){
+						star += "☆"
+					}
+					
+					li.innerHTML = obj.id +" "+star+" "+obj.content;
 					
 					<c:if test="${status == 4}">
 						let btn = document.createElement("button");

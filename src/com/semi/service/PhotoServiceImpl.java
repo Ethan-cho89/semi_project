@@ -65,6 +65,10 @@ public class PhotoServiceImpl implements PhotoService {
 	
 	public void fileDelete(ServletContext sc,List<PhotoVo> list) {
 		
+		if(list.size() < 1) {
+			return ;
+		}
+		
 		for(PhotoVo vo : list) {
 			File f = new File(sc.getRealPath(vo.getFilePath()));
 			if(f.exists()) {
