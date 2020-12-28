@@ -24,6 +24,5 @@
 		    draggable: false
 		  });
 	</script>
-	<% session.setAttribute("status", 4); %>
 </div>
 <%@include file="include/footer.jsp" %><!-- </body> -->
