@@ -32,7 +32,7 @@
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <div id="menu">
 	<div id="headmenu1" style="background-color: black; ">
-		<c:if test="${status==4}"><a href="/admin/adminIndex.jsp">관리자 페이지</a>|</c:if>
+		<c:if test="${status==4}"><a href="${cp}/admin/adminIndex.jsp">관리자 페이지</a>|</c:if>
 		<a href="${cp}/qna/list">고객센터</a>|
 		<c:choose>
 		<c:when test="${empty sessionScope.id}">
