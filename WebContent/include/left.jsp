@@ -48,11 +48,14 @@ function menuLoad(t) {
 	}, {
 		text : '내 정보',
 		iconCls : '',
+		state : 'open',
 		children : [ {
 			text : '<strong onclick="menuLoad(this)" data-url="/member/update">회원 정보 관리</strong>'
 		}, {
+			text : '<strong onclick="menuLoad(this)" data-url="/address/list">배송지 관리</strong>'
+		}, {
 			text : '<strong onclick="menuLoad(this)" data-url="/member/deletepage.jsp">회원 탈퇴</strong>'
-		} ]
+		}]
 	}];
 
 	function toggle() {

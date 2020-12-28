@@ -9,8 +9,8 @@
 <%--배송지 관리 --%>
 
 <style>
-	#wrap{width:100%;position:relative; margin:auto; margin-bottom:50px; top:200px; align-content: center; text-align : center;}
-	#wrap a{text-decoration: none; color:black; font-weight: 550;}
+/* 	#wrap{width:100%;position:relative; margin:auto; margin-bottom:50px; top:200px; align-content: center; text-align : center;} */
+/* 	#wrap a{text-decoration: none; color:black; font-weight: 550;} */
 	th{font-size:20px; padding:5px;}
 	td{font-size:15px; padding:5px;}
 	.button{border-style:none; width:60px; height:25px; border:0; cursor:pointer; outline:none; background-color:black; color:white; font-weight:bold; font-size:15px; border-radius:15px;}
@@ -30,8 +30,9 @@ td:nth-child(5) {width: 100px;}
 </style>
 
 <%-- 삭제를 하면 ajax로 바로 그 행을 지우는 기능 추가 --%>
-<div id="wrapper" style="width:100%; height:1100px; background-color: black;">
-	<div id="wrap">
+<div id="wrapper" style="height: 100%; width: 1920px; display: inline-block; padding-left: 10%; padding-right: 10%; background: black;padding-top: 300px; ">
+	<%@include file="../include/left.jsp"%>
+	<div id="wrap" style="height: 1200px; width: 1000px; float: left; margin-left: 150px">
 		<h1 >배송지 관리</h1>
 		<br>
 		<a href="${cp}/address/insert" style=" color:white;">배송지 추가</a>
