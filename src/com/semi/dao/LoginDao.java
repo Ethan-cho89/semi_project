@@ -24,7 +24,7 @@ public class LoginDao {
 		pstmt.setString(2, map.get("pwd"));
 		rs=pstmt.executeQuery();
 		if(rs.next()) {
-			if(!(rs.getInt("status")==0)) {
+			if(!(rs.getInt("status")==0 || rs.getInt("status")==3)) {
 				return true;
 			}
 			return false;

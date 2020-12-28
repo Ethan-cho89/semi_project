@@ -109,7 +109,7 @@
 	
     function test() {
     	var id=document.getElementById("id").value;
-    	var form = document.getElementsByTagName('form')[0];
+    	var form = document.getElementById("nono");
       var p1 = document.getElementById('pwd').value;
       var p2 = document.getElementById('pwd-check').value;
       var UserPassword = document.boardWriteForm.pwd;
@@ -162,7 +162,7 @@
 </head>
 <body>
 <div id="wrapper" style="width:100%; height:1100px; background-color: black;">
-	<form name="boardWriteForm" action="../member/join" method="post">
+	<form name="boardWriteForm" action="../member/join" method="post" id="nono">
 	<div class="wrap">
 	 <div class="mytitle"> 
 		<h2>쇼핑몰 멤버 가입</h2>
