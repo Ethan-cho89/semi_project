@@ -9,7 +9,7 @@
 			<div><img src="${cp}/images/nike_home_3.png"></div>
 			<div><img src="${cp}/images/nike_home_4.png"></div>
 			<div><img src="${cp}/images/nike_home_5.png"></div>
-			<div><img src="${cp}/images/nike_home_6.png"></div>
+			<div><img src="${cp}/images/nike_home_6.png"></div> 
 		</div>
 	</div>
 	<script type="text/javascript">

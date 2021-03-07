@@ -80,14 +80,14 @@
 			document.getElementById("idcheck").innerHTML="";
 			return;
 		}
-	      if(id.indexOf("@")==-1){
-	    	  alert("이메일 형식이 아닙니다");
-	    	  return false;
-	      }
-	      if(!e_RegExp.test(id)){ //이메일 유효성 검사
-	            alert("올바른 이메일 형식이 아닙니다.");
-	            return false;
-	        }
+	    if(id.indexOf("@")==-1){
+	    	alert("이메일 형식이 아닙니다");
+	    	return false;
+	    }
+	    if(!e_RegExp.test(id)){ //이메일 유효성 검사
+	    	alert("올바른 이메일 형식이 아닙니다.");
+	    	return false;
+	    }
 
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
@@ -108,11 +108,11 @@
 	}
 	
     function test() {
-    	var id=document.getElementById("id").value;
+  		var id=document.getElementById("id").value;
     	var form = document.getElementById("nono");
-      var p1 = document.getElementById('pwd').value;
-      var p2 = document.getElementById('pwd-check').value;
-      var UserPassword = document.boardWriteForm.pwd;
+    	var p1 = document.getElementById('pwd').value;
+    	var p2 = document.getElementById('pwd-check').value;
+    	var UserPassword = document.boardWriteForm.pwd;
       
       if(UserPassword.value.length<8 || UserPassword.value.length>17) {
     	    alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8~16자를 입력해주세요.");
